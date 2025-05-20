@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@layer base {
+  .main-container {
+    @apply w-full min-h-screen bg-white text-black;
+  }
+  .card-support {
+    @apply bg-[#F3F3F3] flex flex-col gap-10 p-[40px] rounded-[16px];
+  }
+  .arrow {
+    @apply text-black hover:text-[#E95102] transition-colors duration-300;
+  }
+  .header-nav {
+    @apply w-full h-[100px] flex items-center justify-between bg-white py-[24px] px-[80px];
+  }
+  .section-1 {
+    @apply flex flex-col min-h-full w-full px-[60px] py-[20px] justify-center items-center;
+  }
+  .footer-1 {
+    @apply flex min-h-full w-full py-[40px] px-[60px] gap-10 bg-black justify-center items-center rounded-tr-4xl rounded-tl-4xl;
+  }
+}
+@layer utilities {
+  .regist-1 {
+    @apply shadow-xl/50 flex justify-center items-center gap-5 h-[54px] rounded-full py-[15px] px-[24px] border border-white hover:border-orange-500 text-white;
+  }
+  .regist-2 {
+    @apply w-[384px] h-[54px] rounded-full py-[15px] px-[24px] border border-white hover:border-orange-500 text-white shadow-xl/50;
+  }
+  .div-buttons {
+    @apply bg-transparent border-1 text-white inline-flex items-center justify-center gap-2 h-12 px-5 rounded-full transition duration-300 font-semibold;
+  }
+}
+.logo--small {
+  @apply w-[130px] h-[51px] flex items-center justify-center items-center;
+}
+
+.logo-img--small {
+  @apply w-[130px] h-[50px] object-contain;
+}
+
+.logo--large {
+  @apply w-[628px] h-[246px] flex items-center justify-center;
+}
+
+.logo-img--large {
+  @apply w-[628px] h-[246px] object-contain;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+}
