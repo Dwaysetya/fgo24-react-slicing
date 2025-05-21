@@ -6,6 +6,7 @@ import Movie from "./pages/Movie";
 import Tickets from "./pages/Tickets";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import OrderPage from "./pages/OrderPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -28,6 +29,10 @@ function App() {
     {
       path: "/signin",
       element: <SignIn />,
+    },
+    {
+      path: "/order/:id",
+      element: <OrderPage />,
     },
   ]);
   return (

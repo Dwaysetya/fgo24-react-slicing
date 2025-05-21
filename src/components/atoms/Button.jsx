@@ -20,7 +20,7 @@ function Button({ className = "", children, variant = "primary", ...props }) {
     "inline-flex items-center justify-center gap-2 h-12 px-5 rounded-full transition duration-300 font-semibold";
 
   const variantStyle = {
-    primary: "bg-orange-500 text-white hover:bg-orange-600",
+    primary: "bg-orange-500 text-white hover:bg-orange-500",
     secondary:
       "bg-white text-orange-500 border border-black hover:bg-[#E95102] hover:text-white hover:border-none",
   };

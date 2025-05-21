@@ -1,5 +1,5 @@
-import React from "react";
 import Button from "../atoms/Button";
+import { Link } from "react-router-dom";
 
 function BookTikets() {
   return (
@@ -7,9 +7,11 @@ function BookTikets() {
       <div>
         <h1 className="font-semibold text-4xl">Book Tickets</h1>
       </div>
-      <div>
-        <Button variant="primary">Book now</Button>
-      </div>
+      <Link to="/order/:id">
+        <Button variant="primary" className="hover:bg-orange-700">
+          Book now
+        </Button>
+      </Link>
     </div>
   );
 }

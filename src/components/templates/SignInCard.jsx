@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { LuEye } from "react-icons/lu";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
-import logoTick from "../../assets/images/signup/tickits.svg";
+import logoTick from "../../assets/images/logo/logorooms.png";
 import React from "react";
 
 function SignInCard() {
@@ -19,11 +19,8 @@ function SignInCard() {
         style={{ backgroundImage: `url(${image11})` }}
       >
         {isModal && (
-          <div className="flex w-full h-screen bg-black/90 absolute z-30 justify-center items-center">
-            <div className=" flex flex-col gap-10 bg-black/10">
-              <div className="flex justify-center">
-                <img src={logoTick} alt="logo" />
-              </div>
+          <div className="flex w-full h-screen absolute z-30 justify-center items-center">
+            <div className=" flex flex-col gap-10 bg-black/10 ">
               <form action="">
                 <div className="flex flex-col gap-5">
                   <label className="text-white px-5">Email</label>
@@ -46,14 +43,13 @@ function SignInCard() {
             </div>
           </div>
         )}
-
-        <div className="w-full bg-black/30 min-h-screen px-10 flex justify-center items-center rounded-tl-4xl rounded-br-4xl">
-          <div className=" flex flex-col gap-10 bg-black/10">
-            <div className="flex justify-center">
+        <div className="w-full min-h-screen px-10 flex justify-center items-center">
+          <div className=" flex flex-col gap-10 justify-center items-center">
+            <div className="flex justify-center w-[30%]">
               <img src={logoTick} alt="logo" />
             </div>
             <form action="">
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-5 justify-center items-center">
                 <label className="text-white px-5">Email</label>
                 <input
                   id="email"

@@ -14,17 +14,17 @@ const Navbar = () => {
     {
       label: "LOGIN",
       to: "/signin",
-      variant: "secondary",
+      variant: "other",
     },
     {
       label: "SIGN UP",
       to: "/signup",
-      variant: "primary",
+      variant: "other",
     },
   ];
 
   return (
-    <div className="container mx-auto w-full h-[100px] flex items-center justify-between px-4">
+    <div className="container mx-auto w-full h-[100px] flex items-center justify-between px-4 bg-black">
       <div className="flex-shrink-0">
         <Logo size="small" />
       </div>

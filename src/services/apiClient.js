@@ -19,3 +19,4 @@ export const getMovies = async () => {
   console.log("aaa", response.data.resultss);
   return response.data.results;
 };
+

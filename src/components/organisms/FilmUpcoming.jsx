@@ -14,7 +14,7 @@ function FilmUpcoming({ film }) {
       </div>
 
       <div className="left-0 w-full z-10 p-4 bg-opacity-60">
-        <Title>{film.title}</Title>
+        <Title>{film.title.slice(0, 12) + "..."}</Title>
         <Text>{`⭐ ${film.vote_average.toFixed(1)}`}</Text>
       </div>
 

@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../components/organisms/Navbar";
 import HeroTickets from "../components/organisms/HeroTickets";
 import BookTikets from "../components/templates/BookTikets";

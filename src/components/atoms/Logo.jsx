@@ -1,6 +1,6 @@
 import React from "react";
-import logoSmall from "../../assets/images/logo/logoSmall.svg";
-import logoLarge from "../../assets/images/logo/logoLarge.svg";
+import logoSmall from "../../assets/images/logo/logorooms.png";
+import logoLarge from "../../assets/images/logo/logorooms.png";
 
 const Logo = ({ size = "small" }) => {
   const isSmall = size === "small";

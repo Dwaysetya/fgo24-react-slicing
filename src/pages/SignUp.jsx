@@ -1,4 +1,3 @@
-import React from "react";
 import SignUpCard from "../components/templates/SignUpCard";
 
 function SignUp() {
