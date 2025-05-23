@@ -2,6 +2,7 @@ import Image1 from "../../assets/images/signup/image 1.png";
 import Button from "../atoms/Button";
 import SeatGrid from "../organisms/SeatGrid";
 import order from "../../assets/images/orderpage/order.svg";
+import NavButtonLink from "../atoms/NavButtonLink";
 
 function OrderCard() {
   const orderCinema = [
@@ -86,6 +87,14 @@ function OrderCard() {
             <div className="flex justify-between shadow-md p-5">
               <p className="text-lg font-semibold">Total Payment</p>
               <p className="text-[#E95102] font-bold text-2xl">$30</p>
+            </div>
+            <div className="w-full flex justify-center items-centers mt-5">
+              <NavButtonLink
+                label="Checkout Now"
+                variant="payment"
+                to="/payment"
+                className="w-full"
+              />
             </div>
           </div>
         </section>
