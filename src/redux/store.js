@@ -1,8 +1,11 @@
-// import supaya redux tau kita memiliki action
-
 import { configureStore } from "@reduxjs/toolkit";
-import reducer from "./reducers";
+import persistedReducer from "./reducers";
+import { persistStore } from "redux-persist";
 
-export const store = configureStore({
-  reducer,
+const store = configureStore({
+  reducer: persistedReducer,
 });
+
+const persistor = persistStore(store);
+
+export { store, persistor };

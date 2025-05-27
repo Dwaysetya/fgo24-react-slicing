@@ -86,67 +86,70 @@ function PaymentCard() {
           <div>
             <h1 className="text-2xl font-bold">Personal Information</h1>
           </div>
-          <div className="flex flex-col gap-5">
-            <label className="text-black px-5 mt-5">Fullname</label>
-            <div className="payment flex justify-between ">
-              <input
-                id="password"
-                type="text"
-                placeholder="Enter your name"
-                required
-                className=" w-full outline-none"
-              />
+          <form action="">
+            <div className="flex flex-col gap-5">
+              <label className="text-black px-5 mt-5">Fullname</label>
+              <div className="payment flex justify-between ">
+                <input
+                  id="password"
+                  type="text"
+                  placeholder="Enter your name"
+                  required
+                  className=" w-full outline-none"
+                />
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col gap-5">
-            <label className="text-black px-5 mt-5">Email</label>
-            <div className="payment flex justify-between w-full">
-              <input
-                id="password"
-                type="text"
-                placeholder="Enter your email"
-                required
-                className=" w-full outline-none"
-              />
+            <div className="flex flex-col gap-5">
+              <label className="text-black px-5 mt-5">Email</label>
+              <div className="payment flex justify-between w-full">
+                <input
+                  id="password"
+                  type="text"
+                  placeholder="Enter your email"
+                  required
+                  className=" w-full outline-none"
+                />
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col gap-5">
-            <label className="text-black px-5 mt-5">Phone Number</label>
-            <div className="payment flex justify-between w-full">
-              <input
-                id="password"
-                type="text"
-                placeholder="Enter your phone"
-                required
-                className=" w-full outline-none"
-              />
+            <div className="flex flex-col gap-5">
+              <label className="text-black px-5 mt-5">Phone Number</label>
+              <div className="payment flex justify-between w-full">
+                <input
+                  id="password"
+                  type="text"
+                  placeholder="Enter your phone"
+                  required
+                  className=" w-full outline-none"
+                />
+              </div>
             </div>
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold">Payment Method</h1>
-          </div>
-          <div className="w-full p-10 flex gap-5">
-            <Button variant="secondary">
-              <img src={image} alt="logo" />
-            </Button>
-            <Button variant="secondary">
-              <img src={image1} alt="logo" />
-            </Button>
-            <Button variant="secondary">
-              <img src={image2} alt="logo" />
-            </Button>
-            <Button variant="secondary">
-              <img src={image3} alt="logo" />
-            </Button>
-          </div>
-          <div className="w-full flex justify-center items-centers mt-5">
-            <button
-              className="w-full bg-[#E95102] text-white border-transparent hover:bg-orange-800 p-5 rounded-4xl"
-              onClick={() => setIsModal(true)}
-            >
-              Pay your order
-            </button>
-          </div>
+            <div className="p-5">
+              <h1 className="text-2xl font-bold">Payment Method</h1>
+            </div>
+            <div className="w-full p-10 flex gap-5">
+              <Button variant="secondary">
+                <img src={image} alt="logo" />
+              </Button>
+              <Button variant="secondary">
+                <img src={image1} alt="logo" />
+              </Button>
+              <Button variant="secondary">
+                <img src={image2} alt="logo" />
+              </Button>
+              <Button variant="secondary">
+                <img src={image3} alt="logo" />
+              </Button>
+            </div>
+            <div className="w-full flex justify-center items-centers mt-5">
+              <button
+                className="w-full bg-[#E95102] text-white border-transparent hover:bg-orange-800 p-5 rounded-4xl"
+                onClick={() => setIsModal(true)}
+                type="button"
+              >
+                Pay your order
+              </button>
+            </div>
+          </form>
         </section>
       </section>
     </main>

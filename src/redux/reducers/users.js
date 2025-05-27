@@ -12,7 +12,7 @@ const users = createSlice({
       const id = Math.floor(Math.random() * 100);
       state.data.push({
         id,
-        ...action.payload,
+        value: action.payload,
       });
       console.log("data", initialState);
       return state;

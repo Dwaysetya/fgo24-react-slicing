@@ -5,6 +5,8 @@ import { FaFacebook } from "react-icons/fa";
 import { LuEyeClosed } from "react-icons/lu";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/reducers/auth";
 import Button from "../atoms/Button";
 import image11 from "../../assets/images/signup/image 1.png";
 import logoTick from "../../assets/images/logo/logorooms.png";
@@ -17,9 +19,12 @@ function SignInCard() {
   const users = useSelector((state) => state.users.data);
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function onSubmit(data) {
-    const validasi = users.find(
+    const decodedUsers = users.map((user) => JSON.parse(atob(user.value)));
+
+    const validasi = decodedUsers.find(
       (user) => user.email === data.email && user.password === data.password
     );
     if (validasi) {
@@ -35,7 +40,8 @@ function SignInCard() {
         icon: "error",
       });
     }
-    reset.form();
+    dispatch(loginUser(validasi));
+    reset();
   }
 
   return (
@@ -91,14 +97,14 @@ function SignInCard() {
                 <div className="shadow-xl/50 flex justify-between w-[384px] h-[54px] rounded-full py-[15px] px-[24px] bg-orange/50 border border-white hover:border-orange-500 text-white">
                   <input
                     id="password"
-                    type={showPassword ? "password" : "text"}
+                    type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
                     className="w-full outline-none"
                     {...register("password")}
                     autoComplete="off"
                   />
                   <div onClick={() => setShowPassword(!showPassword)}>
-                    {showPassword ? <LuEyeClosed /> : <LuEye />}
+                    {showPassword ? <LuEye /> : <LuEyeClosed />}
                   </div>
                 </div>
               </div>

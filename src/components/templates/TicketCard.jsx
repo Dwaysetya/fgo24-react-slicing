@@ -1,6 +1,8 @@
 import image11 from "../../assets/images/signup/image 1.png";
 import qrcode from "../../assets/images/qr.svg";
 import Button from "../atoms/Button";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 function TicketCard() {
   const struk = [
@@ -23,6 +25,19 @@ function TicketCard() {
       value: "C4, C5, C6",
     },
   ];
+  const navigate = useNavigate();
+
+  function handleClick() {
+    Swal.fire({
+      title: "Download Sukses!",
+      icon: "success",
+    });
+  }
+
+  function handleDone() {
+    navigate("/movie");
+  }
+
   return (
     <main className=" w-full bg-[#D6D8E7] h-auto">
       <div
@@ -87,8 +102,12 @@ function TicketCard() {
                 </div>
               </div>
             </div>
-            <Button className="button-hover">Download</Button>
-            <Button className="button-hover">Done</Button>
+            <Button className="button-hover" onClick={handleClick}>
+              Download
+            </Button>
+            <Button className="button-hover" onClick={handleDone}>
+              Done
+            </Button>
           </section>
         </section>
       </div>

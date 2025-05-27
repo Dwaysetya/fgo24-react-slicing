@@ -1,12 +1,14 @@
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "../atoms/Button";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 function BookTikets() {
   const [isMovie, setIsMovie] = useState();
   const { id } = useParams();
   const navigate = useNavigate();
+  const currentUser = useSelector((state) => state.auth.currentUser);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -32,6 +34,18 @@ function BookTikets() {
 
     if (id) fetchMovie();
   }, [id]);
+  const handleBookNow = () => {
+    if (!currentUser) {
+      Swal.fire({
+        icon: "warning",
+        title: "Belum login ya...",
+        text: "Anda harus login terlebih dahulu untuk memesan tiket.",
+      });
+      return;
+    }
+
+    navigate(`/order/${isMovie.id}`);
+  };
   return (
     <div className="flex w-full justify-between items-center">
       <div>
@@ -41,7 +55,7 @@ function BookTikets() {
         <Button
           variant="primary"
           className="hover:bg-orange-700"
-          onClick={() => navigate(`/order/${isMovie.id}`)}
+          onClick={handleBookNow}
         >
           Book now
         </Button>

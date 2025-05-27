@@ -1,21 +1,54 @@
-import image11 from "../../assets/images/signup/image 1.png";
-import { LuEyeClosed } from "react-icons/lu";
-import Button from "../atoms/Button";
-import { Link, useNavigate } from "react-router-dom";
 import { LuEye } from "react-icons/lu";
+import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
+import { addUsers } from "../../redux/reducers/users";
 import { FaFacebook } from "react-icons/fa";
+import { LuEyeClosed } from "react-icons/lu";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import image11 from "../../assets/images/signup/image 1.png";
+import Button from "../atoms/Button";
 import logoTick from "../../assets/images/logo/logorooms.png";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addUsers } from "../../redux/reducers/users";
+import * as yup from "yup";
 import Swal from "sweetalert2";
-import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const validationSchema = yup.object({
+  email: yup
+    .string()
+    .email("Format email tidak valid")
+    .min(8, "Email minimal 8 karakter")
+    .required("Email wajib diisi"),
+
+  password: yup
+    .string()
+    .min(8, "Password minimal 8 karakter")
+    .matches(/[a-z]/, "Harus mengandung huruf kecil")
+    .matches(/[A-Z]/, "Harus mengandung huruf besar")
+    .matches(/[0-9]/, "Harus mengandung angka")
+    .required("Password wajib diisi"),
+
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password")], "Konfirmasi password tidak cocok")
+    .required("Konfirmasi password wajib diisi"),
+
+  rokok: yup.array().notRequired(),
+});
 
 function SignUpCard() {
   const [showPassword, setShowPassword] = React.useState(false);
   const users = useSelector((state) => state.users.data);
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
   console.log("first", users);
@@ -27,17 +60,15 @@ function SignUpCard() {
       confirmPassword: data.confirmPassword,
     };
 
-    dispatch(addUsers(newData));
+    dispatch(addUsers(btoa(JSON.stringify(newData))));
 
-    Swal.fire(
-      {
-        title: "Berhasil!",
-        text: "Data berhasil disimpan",
-        icon: "success",
-        confirmButtonText: "OK",
-      },
-      1000
-    );
+    Swal.fire({
+      title: "Berhasil!",
+      text: "Data berhasil disimpan",
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+
     navigate("/signin");
     reset();
   }
@@ -70,12 +101,15 @@ function SignUpCard() {
                   className="regist-2"
                 />
               </div>
+              {errors.email && (
+                <div className="text-yellow-600">{errors.email.message}</div>
+              )}
               <div className="flex flex-col gap-5">
                 <label className="text-white px-5 mt-5">Password</label>
                 <div className="regist-2 flex justify-between ">
                   <input
                     id="password"
-                    type={showPassword ? "password" : "text"}
+                    type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
                     required
                     autoComplete="off"
@@ -84,16 +118,21 @@ function SignUpCard() {
                   />
 
                   <div onClick={() => setShowPassword(!showPassword)}>
-                    {showPassword ? <LuEyeClosed /> : <LuEye />}
+                    {showPassword ? <LuEye /> : <LuEyeClosed />}
                   </div>
                 </div>
+                {errors.password && (
+                  <div className="text-yellow-600">
+                    {errors.password.message}
+                  </div>
+                )}
               </div>
               <div className="flex flex-col gap-5">
                 <label className="text-white px-5 mt-5">Confirm Password</label>
                 <div className="regist-2 flex focus:bg-transparent justify-between ">
                   <input
                     id="confirm"
-                    type={showPassword ? "password" : "text"}
+                    type={showPassword ? "text" : "password"}
                     placeholder="Confirm your password"
                     required
                     autoComplete="off"
@@ -101,9 +140,14 @@ function SignUpCard() {
                     className=" w-full outline-none"
                   />
                   <div onClick={() => setShowPassword(!showPassword)}>
-                    {showPassword ? <LuEyeClosed /> : <LuEye />}
+                    {showPassword ? <LuEye /> : <LuEyeClosed />}
                   </div>
                 </div>
+                {errors.confirmPassword && (
+                  <p style={{ color: "red" }}>
+                    {errors.confirmPassword.message}
+                  </p>
+                )}
               </div>
               <div className="flex gap-5 mt-2 px-5">
                 <input type="checkbox" name="gree" required />
