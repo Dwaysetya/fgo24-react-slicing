@@ -29,12 +29,6 @@ function Movie() {
       </section>
       <section className="section-1">
         <MovieCard />
-        <div className="flex gap-5 mt-10">
-          <Button variant="secondary">1</Button>
-          <Button variant="secondary">2</Button>
-          <Button variant="secondary">3</Button>
-          <Button variant="secondary">4</Button>
-        </div>
       </section>
       <section className="flex min-h-full w-full p-[60px]">
         <div className="bg-[#FDECE3] flex flex-col w-full justify-center items-center py-[80px] px[244px] rounded-3xl gap-10 ">
