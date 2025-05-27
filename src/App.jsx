@@ -1,6 +1,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 import Home from "./pages/Home";
 import Movie from "./pages/Movie";
@@ -9,6 +10,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import OrderPage from "./pages/OrderPage";
 import Payment from "./pages/Payment";
+import TicketResult from "./pages/TicketResult";
 
 function App() {
   const router = createBrowserRouter([
@@ -40,10 +42,18 @@ function App() {
       path: "/payment",
       element: <Payment />,
     },
+    {
+      path: "/ticketresult",
+      element: <TicketResult />,
+    },
   ]);
 
   // penghubung antara halaman halaman , secara otomatis akan memberikan akses ke redux kepada haaman halaman yang lain
-  return <RouterProvider router={router} />;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  );
 }
 
 export default App;

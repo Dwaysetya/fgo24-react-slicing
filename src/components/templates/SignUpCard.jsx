@@ -1,24 +1,45 @@
 import image11 from "../../assets/images/signup/image 1.png";
 import { LuEyeClosed } from "react-icons/lu";
 import Button from "../atoms/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LuEye } from "react-icons/lu";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import logoTick from "../../assets/images/logo/logorooms.png";
 import React from "react";
-import { registerHooks } from "../../hooks/registerHooks";
+import { useDispatch, useSelector } from "react-redux";
+import { addUsers } from "../../redux/reducers/users";
+import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
 
 function SignUpCard() {
   const [showPassword, setShowPassword] = React.useState(false);
-  const [isEmail, setIsEmail] = React.useState("");
-  const [isPassword, setIsPassword] = React.useState("");
+  const users = useSelector((state) => state.users.data);
+  const { register, handleSubmit, reset } = useForm();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  console.log("first", users);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const data = { email: isEmail, password: isPassword };
-    const result = registerHooks(data);
-    return result;
+  function saveData(data) {
+    const newData = {
+      email: data.email,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
+    };
+
+    dispatch(addUsers(newData));
+
+    Swal.fire(
+      {
+        title: "Berhasil!",
+        text: "Data berhasil disimpan",
+        icon: "success",
+        confirmButtonText: "OK",
+      },
+      1000
+    );
+    navigate("/signin");
+    reset();
   }
 
   return (
@@ -36,7 +57,7 @@ function SignUpCard() {
                 className="flex justify-center items-center "
               />
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(saveData)}>
               <div className="flex flex-col gap-5">
                 <label className="text-white px-5">Email</label>
                 <input
@@ -44,9 +65,8 @@ function SignUpCard() {
                   type="text"
                   placeholder="Enter your email"
                   required
-                  value={isEmail}
+                  {...register("email")}
                   autoComplete="off"
-                  onChange={(e) => setIsEmail(e.target.value)}
                   className="regist-2"
                 />
               </div>
@@ -59,8 +79,7 @@ function SignUpCard() {
                     placeholder="Enter your password"
                     required
                     autoComplete="off"
-                    value={isPassword}
-                    onChange={(e) => setIsPassword(e.target.value)}
+                    {...register("password")}
                     className=" w-full outline-none"
                   />
 
@@ -78,6 +97,7 @@ function SignUpCard() {
                     placeholder="Confirm your password"
                     required
                     autoComplete="off"
+                    {...register("confirmPassword")}
                     className=" w-full outline-none"
                   />
                   <div onClick={() => setShowPassword(!showPassword)}>

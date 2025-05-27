@@ -5,6 +5,8 @@ import image2 from "../../assets/images/logo/paypal.svg";
 import image3 from "../../assets/images/logo/visa.svg";
 import { useState } from "react";
 import NavButtonLink from "../atoms/NavButtonLink";
+import Chip from "../atoms/Chip";
+import { Link } from "react-router-dom";
 
 function PaymentCard() {
   const [isModal, setIsModal] = useState(false);
@@ -32,8 +34,45 @@ function PaymentCard() {
     },
   ];
   return (
-    <main className=" w-full p-10 bg-[#D6D8E7]">
-      <section className="w-ful flex justify-center items-center relative">
+    <main className=" w-full bg-[#D6D8E7]">
+      {isModal && (
+        <div className="flex w-full min-h-svw absolute z-99 justify-center items-center bg-black/90 m-0">
+          <div className=" flex w-full h-screen flex-col gap-10 bg-black/10  justify-center items-center">
+            <div className="w-[573px] bg-white rounded-3xl p-10 flex flex-col justify-center items-center gap-7">
+              <h1 className="text-2xl font-bold">Payment Info</h1>
+              <div className="flex w-full items-center justify-between gap-5">
+                <p className="font-normal text-sm">No. Rekening Virtual :</p>
+                <p>12321328913829724</p>
+                <Chip>Copy</Chip>
+              </div>
+              <div className="flex w-full items-center justify-between gap-5">
+                <p className="font-normal text-sm">Total Payment :</p>
+                <p className="text-[#1D4ED8] text-lg font-bold">$30</p>
+              </div>
+              <div className="flex w-full items-center justify-between gap-5">
+                <p className="font-normal text-sm">
+                  Pay this payment bill before it is due,{" "}
+                  <span className="text-red-600">on June 23, 2023.</span> If the
+                  bill has not been paid by the specified time, it will be
+                  forfeited
+                </p>
+              </div>
+              <Link to="/ticketresult" className="w-full">
+                <button className="w-full bg-[#E95102] text-white border-transparent hover:bg-orange-800 p-5 rounded-4xl">
+                  Check Payment
+                </button>
+              </Link>
+              <button
+                className="w-full bg-[#E95102] text-white border-transparent hover:bg-orange-800 p-5 rounded-4xl"
+                onClick={() => setIsModal(false)}
+              >
+                Pay Later
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      <section className="w-ful flex justify-center items-center relative p-10">
         <section className="w-[50%] flex flex-col justify-center gap-5 p-10 bg-white">
           <div>
             <h1 className="text-2xl">Payment Info</h1>
@@ -101,39 +140,13 @@ function PaymentCard() {
             </Button>
           </div>
           <div className="w-full flex justify-center items-centers mt-5">
-            <NavButtonLink
-              label="Pay your order"
-              variant="payment"
-              to="/payment"
-              className="w-full"
+            <button
+              className="w-full bg-[#E95102] text-white border-transparent hover:bg-orange-800 p-5 rounded-4xl"
               onClick={() => setIsModal(true)}
-            />
+            >
+              Pay your order
+            </button>
           </div>
-          {isModal && (
-            <div className="flex w-full h-screen absolute z-30 justify-center items-center">
-              <div className=" flex flex-col gap-10 bg-black/10 ">
-                <form action="">
-                  <div className="flex flex-col gap-5">
-                    <label className="text-white px-5">Email</label>
-                    <input
-                      id="email"
-                      type="text"
-                      placeholder="Enter your email"
-                      className="w-[384px] h-[54px] rounded-full py-[15px] px-[24px] bg-orange/50 border border-white hover:border-orange-500 text-white shadow-xl/50 "
-                    />
-                  </div>
-                  <div className="w-[384px] h-[54px] rounded-full mt-10">
-                    <Button
-                      className="shadow-xl/10 w-[384px] h-[54px] rounded-full"
-                      onClick={() => setIsModal(false)}
-                    >
-                      Send email
-                    </Button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          )}
         </section>
       </section>
     </main>

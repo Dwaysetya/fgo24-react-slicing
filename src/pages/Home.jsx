@@ -48,8 +48,8 @@ const Home = () => {
             <h2 className="font-semibold text-4xl">Now Showing in Cinemas</h2>
             <FaArrowAltCircleRight size={50} className="arrow" />
           </div>
-          <div className="flex flex-col gap-5 justify-center items-center overflow-x-auto">
-            <div className="flex flex-col gap-5 space-x-4 overflow-x-auto">
+          <div className="flex flex-col gap-5 justify-center items-center">
+            <div className="flex flex-col gap-5 space-x-4">
               <FilmList />
             </div>
           </div>

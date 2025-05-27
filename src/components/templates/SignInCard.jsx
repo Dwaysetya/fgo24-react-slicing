@@ -1,16 +1,42 @@
-import image11 from "../../assets/images/signup/image 1.png";
-import { LuEyeClosed } from "react-icons/lu";
-import Button from "../atoms/Button";
-import { Link } from "react-router-dom";
 import { LuEye } from "react-icons/lu";
+import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
+import { LuEyeClosed } from "react-icons/lu";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Button from "../atoms/Button";
+import image11 from "../../assets/images/signup/image 1.png";
 import logoTick from "../../assets/images/logo/logorooms.png";
 import React from "react";
+import Swal from "sweetalert2";
 
 function SignInCard() {
   const [isModal, setIsModal] = React.useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
+  const users = useSelector((state) => state.users.data);
+  const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
+
+  function onSubmit(data) {
+    const validasi = users.find(
+      (user) => user.email === data.email && user.password === data.password
+    );
+    if (validasi) {
+      Swal.fire({
+        title: "Login berhasil!",
+        icon: "success",
+      });
+      navigate("/");
+    } else {
+      Swal.fire({
+        title: "Login gagal!",
+        text: "Email atau password salah.",
+        icon: "error",
+      });
+    }
+    reset.form();
+  }
 
   return (
     <section className="main-container">
@@ -19,8 +45,8 @@ function SignInCard() {
         style={{ backgroundImage: `url(${image11})` }}
       >
         {isModal && (
-          <div className="flex w-full h-screen absolute z-30 justify-center items-center">
-            <div className=" flex flex-col gap-10 bg-black/10 ">
+          <div className="flex w-full h-screen absolute z-30 justify-center items-center bg-black/90 ">
+            <div className=" flex flex-col gap-10">
               <form action="">
                 <div className="flex flex-col gap-5">
                   <label className="text-white px-5">Email</label>
@@ -48,7 +74,7 @@ function SignInCard() {
             <div className="flex justify-center w-[30%]">
               <img src={logoTick} alt="logo" />
             </div>
-            <form action="">
+            <form action="" onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-5 justify-center items-center">
                 <label className="text-white px-5">Email</label>
                 <input
@@ -56,6 +82,7 @@ function SignInCard() {
                   type="text"
                   placeholder="Enter your email"
                   autoComplete="off"
+                  {...register("email")}
                   className="w-[384px] h-[54px] rounded-full py-[15px] px-[24px] bg-orange/50 border border-white hover:border-orange-500 text-white shadow-xl/50 "
                 />
               </div>
@@ -67,6 +94,7 @@ function SignInCard() {
                     type={showPassword ? "password" : "text"}
                     placeholder="Enter your password"
                     className="w-full outline-none"
+                    {...register("password")}
                     autoComplete="off"
                   />
                   <div onClick={() => setShowPassword(!showPassword)}>

@@ -1,16 +1,15 @@
-import React from "react";
 import Navbar from "../components/organisms/Navbar";
 import Footer from "../components/organisms/Footer";
-import PaymentCard from "../components/templates/PaymentCard";
+import TicketCard from "../components/templates/TicketCard";
 
-function Payment() {
+function TicketResult() {
   return (
     <main className="main-container">
       <header className="header-nav">
         <Navbar />
       </header>
       <section className="w-full">
-        <PaymentCard />
+        <TicketCard />
       </section>
       <footer className="footer-1 ">
         <Footer />
@@ -19,4 +18,4 @@ function Payment() {
   );
 }
 
-export default Payment;
+export default TicketResult;

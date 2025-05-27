@@ -36,6 +36,9 @@
   .div-buttons-1 { 
     @apply bg-transparent border-1 text-orange-500 inline-flex items-center justify-center gap-2 h-12 px-5 rounded-full transition duration-300 font-semibold;
   }
+  .button-hover{
+    @apply hover:bg-transparent hover:text-orange-500 hover:border-orange-500 hover:border-1;
+  }
 }
 .logo--small {
   @apply w-[130px] h-[51px] flex items-center justify-center items-center;
