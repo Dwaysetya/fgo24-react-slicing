@@ -20,3 +20,18 @@ export const getMovies = async () => {
   return response.data.results;
 };
 
+export const getMoviesUpcomming = async () => {
+  const response = await axiosInstance.get(
+    `/movie/upcoming?language=en-US&page=1&region=id&api_key=${API_KEY}`
+  );
+  console.log("upcomming", response.data.results);
+  return response.data.results;
+};
+
+export const getMoviesDetails = async (id) => {
+  const response = await axiosInstance.get(
+    `https://api.themoviedb.org/3/movie/${id}?&append_to_response=credits`
+  );
+  console.log("details", response.data);
+  return response.data;
+};

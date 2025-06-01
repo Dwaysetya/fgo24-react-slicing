@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect } from "react";
+import { getMoviesDetails } from "../../services/apiClient";
 
 function HeroTickets() {
   const [isMovie, setIsMovie] = React.useState();
@@ -11,24 +12,13 @@ function HeroTickets() {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}?&append_to_response=credits`,
-          {
-            method: "GET",
-            headers: {
-              accept: "application/json",
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNjFhZmNlMThmOTVlNDNhODYzNzcwZjRmNzU3N2NlYSIsIm5iZiI6MTc0NzQyMTY2My45ODIsInN1YiI6IjY4Mjc4OWRmYmY0NWFiNTM1MjNkZDM2MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.B3xquaTWkKxdQBeHsdUUfT-uv9FaZrYjKzkm19U_v6E",
-            },
-          }
-        );
-        const result = await response.json();
-        console.log("data", result);
-        setIsMovie(result);
-        setIsGenre(result.genres || []);
-        setIsCredits(result.credits.crew);
-        setIsCast(result.credits.cast);
-        console.log("daaaa", result);
+        const response = await getMoviesDetails(id);
+        console.log("data", response);
+        setIsMovie(response);
+        setIsGenre(response.genres || []);
+        setIsCredits(response.credits.crew);
+        setIsCast(response.credits.cast);
+        console.log("daaaa", response);
       } catch (error) {
         console.log("Gagal mengambil data", error);
       }
@@ -67,7 +57,7 @@ function HeroTickets() {
                   <div className="flex-col gap-10">
                     <div className="w-full">
                       <h1 className="text-white font-semibold text-6xl">
-                        {isMovie.title}
+                        {isMovie.title.slice(0, 20)}
                       </h1>
                     </div>
                     <p className="text-lg font-light text-white mt-5">

@@ -78,9 +78,6 @@ const Home = () => {
           <div className="h-[200%] flex gap-15">
             <FilmUpcomingList />
           </div>
-          <div className="mt-50 gap-0 w-[70%] h-auto">
-            <ButtonUpcoming />
-          </div>
         </div>
         <div className="flex flex-col w-[30%]">
           <Chip className="flex bg-[#FDECE3] rounded-full py-[13px] px-[24px] mb-10 w-[216px]">
@@ -90,10 +87,6 @@ const Home = () => {
             Exciting Movie Coming Soon
           </h2>
           <div className="flex mt-52 justify-between">
-            <div className=" flex gap-5">
-              <FaArrowAltCircleLeft size={50} className="arrow" />
-              <FaArrowAltCircleRight size={50} className="arrow" />
-            </div>
             <NavAction buttons={navButtons} />
           </div>
         </div>

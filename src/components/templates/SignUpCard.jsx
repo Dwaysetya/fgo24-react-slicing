@@ -56,11 +56,10 @@ function SignUpCard() {
   function saveData(data) {
     const newData = {
       email: data.email,
-      password: data.password,
-      confirmPassword: data.confirmPassword,
+      password: btoa(data.password),
     };
 
-    dispatch(addUsers(btoa(JSON.stringify(newData))));
+    dispatch(addUsers(newData));
 
     Swal.fire({
       title: "Berhasil!",
@@ -90,7 +89,7 @@ function SignUpCard() {
             </div>
             <form onSubmit={handleSubmit(saveData)}>
               <div className="flex flex-col gap-5">
-                <label className="text-white px-5">Email</label>
+                <label className="text-white px-5 ">Email</label>
                 <input
                   id="email"
                   type="text"

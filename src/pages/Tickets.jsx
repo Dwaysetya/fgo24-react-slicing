@@ -1,9 +1,7 @@
 import Navbar from "../components/organisms/Navbar";
 import HeroTickets from "../components/organisms/HeroTickets";
 import BookTikets from "../components/templates/BookTikets";
-import SelectTikets from "../components/templates/SelectTikets";
 import ChooseCinema from "../components/templates/ChooseCinema";
-import CustomCheckbox from "../components/templates/CustomCheckbox";
 import Footer from "../components/organisms/Footer";
 
 function Tickets() {
@@ -19,14 +17,8 @@ function Tickets() {
         <div>
           <BookTikets />
         </div>
-        <div className="mt-20">
-          <SelectTikets />
-        </div>
         <div className="mt-10">
           <ChooseCinema />
-        </div>
-        <div className="mt-10">
-          <CustomCheckbox />
         </div>
       </section>
       <footer className="footer-1">

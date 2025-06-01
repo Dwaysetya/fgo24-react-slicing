@@ -12,6 +12,9 @@ import SignIn from "./pages/SignIn";
 import OrderPage from "./pages/OrderPage";
 import Payment from "./pages/Payment";
 import TicketResult from "./pages/TicketResult";
+import OrderHistory from "./components/templates/OrderHistory";
+import ProfilPage from "./pages/ProfilPage";
+import AccountSetting from "./components/templates/AccountSetting";
 
 function App() {
   const router = createBrowserRouter([
@@ -46,6 +49,20 @@ function App() {
     {
       path: "/ticketresult",
       element: <TicketResult />,
+    },
+    {
+      path: "/profil",
+      element: <ProfilPage />,
+      children: [
+        {
+          path: "/profil/setting",
+          element: <AccountSetting />,
+        },
+        {
+          path: "/profil/history",
+          element: <OrderHistory />,
+        },
+      ],
     },
   ]);
 

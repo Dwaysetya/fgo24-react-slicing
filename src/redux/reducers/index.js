@@ -4,19 +4,32 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import users from "./users";
-import auth from "./auth"; // ← tambahkan ini
+import auth from "./auth";
+import profile from "./profile";
+import transaksi from "./historyTransaksi";
 
-const persistConfig = {
-  key: "root",
+const usersPersistConfig = {
+  key: "users",
   storage,
-  whitelist: ["users", "auth"], // ⬅️ auth ditambahkan agar disimpan di localStorage
+};
+const authPersistConfig = {
+  key: "auth",
+  storage,
+};
+const profilePersistConfig = {
+  key: "profile",
+  storage,
+};
+const transaksiPersistConfig = {
+  key: "transaksi",
+  storage,
 };
 
-const rootReducer = combineReducers({
-  users,
-  auth, // ← tambahkan ini juga
+const reducer = combineReducers({
+  users: persistReducer(usersPersistConfig, users),
+  auth: persistReducer(authPersistConfig, auth),
+  profile: persistReducer(profilePersistConfig, profile),
+  transaksi: persistReducer(transaksiPersistConfig, transaksi),
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-export default persistedReducer;
+export default reducer;

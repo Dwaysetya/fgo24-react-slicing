@@ -10,12 +10,14 @@ function FilmCard({ film }) {
 
   return (
     <div className="relative w-[296px] rounded-2xl overflow-hidden">
-      <Chip
-        className="w-[139px] h-[40px] flex bg-[#FDECE3] absolute top-0 rounded-br-2xl rounded-tl-2xl justify-center z-20"
-        textClassName="text-base self-center text-orange-500"
-      >
-        Recomended
-      </Chip>
+      {film.vote_average >= 7.2 && (
+        <Chip
+          className="w-[139px] h-[40px] flex bg-[#FDECE3] absolute top-0 rounded-br-2xl rounded-tl-2xl justify-center z-20"
+          textClassName="text-base self-center text-orange-500"
+        >
+          Recomended
+        </Chip>
+      )}
 
       <div className="relative w-full h-auto group">
         <Image

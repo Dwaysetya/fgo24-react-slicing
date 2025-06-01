@@ -1,14 +1,32 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "../atoms/Button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import SelectTikets from "./SelectTikets";
+import CustomCheckbox from "./CustomCheckbox";
+import { setHistorytransaksi } from "../../redux/reducers/historyTransaksi";
 
 function BookTikets() {
   const [isMovie, setIsMovie] = useState();
   const { id } = useParams();
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.auth.currentUser);
+  // const book = useSelector((state) => state.transaksi.hostoryTransaksi);
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({
+    date: "",
+    time: "",
+    location: "",
+    cinema: "",
+  });
+
+  const handleChange = (field, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -43,23 +61,30 @@ function BookTikets() {
       });
       return;
     }
+    dispatch(setHistorytransaksi({ id: currentUser.id, ...formData }));
 
     navigate(`/order/${isMovie.id}`);
   };
   return (
-    <div className="flex w-full justify-between items-center">
-      <div>
+    <div className="flex flex-col gap-10 w-full">
+      <div className="flex w-full justify-between items-center">
         <h1 className="font-semibold text-4xl">Book Tickets</h1>
+        {isMovie && (
+          <Button
+            variant="primary"
+            className="hover:bg-orange-700"
+            onClick={handleBookNow}
+          >
+            Book now
+          </Button>
+        )}
       </div>
-      {isMovie && (
-        <Button
-          variant="primary"
-          className="hover:bg-orange-700"
-          onClick={handleBookNow}
-        >
-          Book now
-        </Button>
-      )}
+      {/* Ini bagian SelectTikets */}
+      <SelectTikets formData={formData} onChange={handleChange} />
+      <CustomCheckbox
+        selectedCinema={formData.cinema}
+        onSelectCinema={(cinemaId) => handleChange("cinema", cinemaId)}
+      />
     </div>
   );
 }

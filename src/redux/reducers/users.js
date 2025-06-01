@@ -12,13 +12,22 @@ const users = createSlice({
       const id = Math.floor(Math.random() * 100);
       state.data.push({
         id,
-        value: action.payload,
+        ...action.payload,
       });
       console.log("data", initialState);
       return state;
     },
+    editData: (state, action) => {
+      const index = state.data.findIndex((u) => u.id === action.payload.id);
+      if (index !== -1) {
+        state.data[index] = {
+          ...state.data[index],
+          ...action.payload,
+        };
+      }
+    },
   },
 });
 
-export const { addUsers } = users.actions;
+export const { addUsers, editData } = users.actions;
 export default users.reducer;

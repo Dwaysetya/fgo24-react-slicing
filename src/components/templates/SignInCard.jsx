@@ -1,10 +1,10 @@
 import { LuEye } from "react-icons/lu";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
 import { LuEyeClosed } from "react-icons/lu";
+import { FaFacebook } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/reducers/auth";
 import Button from "../atoms/Button";
@@ -22,16 +22,29 @@ function SignInCard() {
   const dispatch = useDispatch();
 
   function onSubmit(data) {
-    const decodedUsers = users.map((user) => JSON.parse(atob(user.value)));
+    const decodedUsers = users.map((user) => ({
+      ...user,
+      password: atob(user.password),
+    }));
 
-    const validasi = decodedUsers.find(
+    console.log(decodedUsers[0].password);
+    console.log(data.password);
+
+    const index = decodedUsers.findIndex(
       (user) => user.email === data.email && user.password === data.password
     );
-    if (validasi) {
+    console.log(index, "s");
+
+    if (index !== -1) {
+      const user = decodedUsers[index];
+
+      dispatch(loginUser({ id: user.id, ...user }));
+
       Swal.fire({
         title: "Login berhasil!",
         icon: "success",
       });
+
       navigate("/");
     } else {
       Swal.fire({
@@ -40,7 +53,7 @@ function SignInCard() {
         icon: "error",
       });
     }
-    dispatch(loginUser(validasi));
+
     reset();
   }
 
@@ -55,7 +68,7 @@ function SignInCard() {
             <div className=" flex flex-col gap-10">
               <form action="">
                 <div className="flex flex-col gap-5">
-                  <label className="text-white px-5">Email</label>
+                  <label className="text-white">Email</label>
                   <input
                     id="email"
                     type="text"
@@ -81,7 +94,7 @@ function SignInCard() {
               <img src={logoTick} alt="logo" />
             </div>
             <form action="" onSubmit={handleSubmit(onSubmit)}>
-              <div className="flex flex-col gap-5 justify-center items-center">
+              <div className="flex flex-col gap-5">
                 <label className="text-white px-5">Email</label>
                 <input
                   id="email"
@@ -122,6 +135,14 @@ function SignInCard() {
                 </Button>
               </div>
             </form>
+            <div>
+              <p className="text-white">
+                Don't have an account?{" "}
+                <Link to="/signup" className="text-orange-500">
+                  Sign-Up
+                </Link>
+              </p>
+            </div>
             <div className="flex items-center w-full gap-10 justify-center">
               <div className="shadow-xl/50 flex justify-center items-center gap-5 h-[54px] rounded-full py-[15px] px-[24px] bg-orange/50 border border-white hover:border-orange-500 text-white">
                 <FcGoogle />

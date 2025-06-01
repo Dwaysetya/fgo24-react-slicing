@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import FilmUpcoming from "../organisms/FilmUpcoming";
-import { getMovies } from "../../services/apiClient";
+import { getMoviesUpcomming } from "../../services/apiClient";
 import Button from "../atoms/Button";
 
 function FilmUpcomingList() {
@@ -13,7 +13,7 @@ function FilmUpcomingList() {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const result = await getMovies();
+        const result = await getMoviesUpcomming();
         console.log("data", result);
         setIsMovies(result);
       } catch (error) {

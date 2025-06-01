@@ -1,16 +1,20 @@
-import Image1 from "../../assets/images/signup/image 1.png";
-import SeatGrid from "../organisms/SeatGrid";
+// import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import order from "../../assets/images/orderpage/order.svg";
 import NavButtonLink from "../atoms/NavButtonLink";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { setHistorytransaksi } from "../../redux/reducers/historyTransaksi";
 
 function OrderCard() {
   const [isMovie, setIsMovie] = useState();
   const [isGenre, setIsGenre] = useState([]);
-  // const [isCredits, setIsCredits] = useState([]);
-  // const [isCast, setIsCast] = useState([]);
+  const [isSeat, setIsSeat] = useState([]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { id } = useParams();
+
+  console.log(isSeat);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -30,8 +34,6 @@ function OrderCard() {
         console.log("data", result);
         setIsMovie(result);
         setIsGenre(result.genres || []);
-        // setIsCredits(result.credits.crew);
-        // setIsCast(result.credits.cast);
         console.log("daaaa", result);
       } catch (error) {
         console.log("Gagal mengambil data", error);
@@ -55,14 +57,51 @@ function OrderCard() {
     },
     {
       name: "Seat choosed",
-      value: "C4, C5, C6",
+      value: isSeat.join(","),
     },
   ];
+  const rows = ["A", "B", "C", "D", "E", "F", "G"];
+  const colsLeft = [1, 2, 3, 4, 5, 6, 7];
+  const colsRight = [8, 9, 10, 11, 12, 13, 14];
+  // const { register, handleSubmit, watch } = useForm();
+
+  function chooseSeat(e) {
+    if (isSeat.includes(e.target.value)) {
+      const updateSeate = isSeat.filter((seat) => seat !== e.target.value);
+      setIsSeat(updateSeate);
+    } else {
+      const containerSeat = e.target.value;
+      setIsSeat([...isSeat, containerSeat]);
+    }
+  }
+
+  function handleSubmit() {
+    dispatch(
+      setHistorytransaksi({ resultSeat: isSeat.length * 10, seat: isSeat })
+    );
+    navigate("/payment");
+  }
+
+  const renderGrid = (cols) => (
+    <div className="grid grid-rows-7 grid-cols-7 gap-1">
+      {rows.map((row) =>
+        cols.map((col) => (
+          <input
+            key={`${row}${col}`}
+            type="checkbox"
+            value={`${row}${col}`}
+            onChange={chooseSeat}
+            className="w-[26px] h-[26px] rounded cursor-pointer appearance-none checked:bg-blue-500 bg-gray-200 border border-gray-300 hover:ring-2 hover:ring-offset-1 hover:ring-blue-300"
+          />
+        ))
+      )}
+    </div>
+  );
   return (
     <main>
       {isMovie && (
         <section className="w-ful h-[1072px] flex justify-center items-center">
-          <section className="w-[80%] h-[80%] flex justify-center gap-5">
+          <form className="w-[80%] h-[80%] flex justify-center gap-5">
             <div className="w-[70%] p-10 flex flex-col justify-center items-center shadow-2xl gap-10">
               <div className="w-full h-auto flex justify-center items-center p-2 gap-5 shadow-md">
                 <div className="w-[50%] h-[117px] flex justify-center items-center">
@@ -73,7 +112,9 @@ function OrderCard() {
                 </div>
                 <div className="flex flex-col gap-5 w-full">
                   <div className="w-full h-[20px]">
-                    <h1 className="font-semibold text-2xl">{isMovie.title}</h1>
+                    <h1 className="font-semibold text-2xl">
+                      {isMovie.title.slice(0, 20)}
+                    </h1>
                   </div>
                   <div className="w-full h-[30px] mb-2">
                     <div className=" flex gap-10">
@@ -94,7 +135,43 @@ function OrderCard() {
                 <p className="text-sm font-semibold text-white">Screen</p>
               </div>
               <div className="w-full">
-                <SeatGrid />
+                <div className="p-6">
+                  <div className="flex justify-center">
+                    <div className="flex flex-col justify-between mr-2 text-sm font-medium">
+                      {rows.map((e) => (
+                        <span
+                          key={e}
+                          className="h-[26px] leading-[26px] text-center"
+                        >
+                          {e}
+                        </span>
+                      ))}
+                    </div>
+                    <div>
+                      <div className="flex gap-10">
+                        {renderGrid(colsLeft)}
+                        {renderGrid(colsRight)}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-center gap-10 mt-2 text-sm font-medium mr-12">
+                    <div className="w-[26px]"></div>
+                    <div className="grid grid-cols-7 gap-1">
+                      {colsLeft.map((c) => (
+                        <span key={c} className="w-[26px] text-center">
+                          {c}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="grid grid-cols-7 gap-1">
+                      {colsRight.map((c) => (
+                        <span key={c} className="w-[26px] text-center">
+                          {c}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="w-full">
                 <h1 className="font-semibold text-lg">Seating key</h1>
@@ -124,18 +201,21 @@ function OrderCard() {
               </div>
               <div className="flex justify-between shadow-md p-5">
                 <p className="text-lg font-semibold">Total Payment</p>
-                <p className="text-[#E95102] font-bold text-2xl">$30</p>
+                <p className="text-[#E95102] font-bold text-2xl">
+                  ${isSeat.length * 10}
+                </p>
               </div>
               <div className="w-full flex justify-center items-centers mt-5">
-                <NavButtonLink
-                  label="Checkout Now"
-                  variant="payment"
-                  to="/payment"
-                  className="w-full"
-                />
+                <button
+                  className="bg-[#E95102] text-white border-transparent hover:bg-orange-800 w-full p-5"
+                  type="submit"
+                  onClick={handleSubmit}
+                >
+                  Payment Now
+                </button>
               </div>
             </div>
-          </section>
+          </form>
         </section>
       )}
     </main>
