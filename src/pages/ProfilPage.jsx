@@ -8,9 +8,9 @@ import NavMenu from "../components/molecules/NavMenu";
 
 function ProfilPage() {
   const currentUser = useSelector((state) => state.auth.currentUser);
+  const image = useSelector((image) => image.profile.image);
   const dispatch = useDispatch();
 
-  const image = useSelector((image) => image.profile.image);
 
   const user = {
     role: "Moviegoers",

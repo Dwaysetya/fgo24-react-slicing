@@ -1,20 +1,53 @@
 // import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import order from "../../assets/images/orderpage/order.svg";
-import NavButtonLink from "../atoms/NavButtonLink";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { setHistorytransaksi } from "../../redux/reducers/historyTransaksi";
 
+import ebu from "../../assets/images/orderpage/ebu.svg";
+import order from "../../assets/images/orderpage/order.svg";
+import hiflix from "../../assets/images/orderpage/hiflix.svg";
+
 function OrderCard() {
-  const [isMovie, setIsMovie] = useState();
   const [isGenre, setIsGenre] = useState([]);
+  const [isMovie, setIsMovie] = useState();
   const [isSeat, setIsSeat] = useState([]);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const transaksi = useSelector((state) => state.transaksi.historyTransaksi);
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const rows = ["A", "B", "C", "D", "E", "F", "G"];
+  const colsLeft = [1, 2, 3, 4, 5, 6, 7];
+  const colsRight = [8, 9, 10, 11, 12, 13, 14];
 
   console.log(isSeat);
+  console.log(transaksi, "trans");
+  const cinema = [
+    { id: "ebu", src: ebu },
+    { id: "hiflix", src: hiflix },
+    { id: "cineone", src: order },
+  ];
+
+  const display = cinema.find((item) => item.id === transaksi.cinema);
+
+  const orderCinema = [
+    {
+      name: "Movie selected",
+      value: isMovie?.title || "",
+    },
+    {
+      name: "Tuesday, 07 July 2020",
+      value: "13:00pm",
+    },
+    {
+      name: "One ticket price",
+      value: "$10",
+    },
+    {
+      name: "Seat choosed",
+      value: isSeat.join(","),
+    },
+  ];
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -42,28 +75,22 @@ function OrderCard() {
 
     if (id) fetchMovie();
   }, [id]);
-  const orderCinema = [
-    {
-      name: "Movie selected",
-      value: isMovie?.title || "",
-    },
-    {
-      name: "Tuesday, 07 July 2020",
-      value: "13:00pm",
-    },
-    {
-      name: "One ticket price",
-      value: "$10",
-    },
-    {
-      name: "Seat choosed",
-      value: isSeat.join(","),
-    },
-  ];
-  const rows = ["A", "B", "C", "D", "E", "F", "G"];
-  const colsLeft = [1, 2, 3, 4, 5, 6, 7];
-  const colsRight = [8, 9, 10, 11, 12, 13, 14];
-  // const { register, handleSubmit, watch } = useForm();
+
+  const renderGrid = (cols) => (
+    <div className="grid grid-rows-7 grid-cols-7 gap-1">
+      {rows.map((row) =>
+        cols.map((col) => (
+          <input
+            key={`${row}${col}`}
+            type="checkbox"
+            value={`${row}${col}`}
+            onChange={chooseSeat}
+            className="w-[26px] h-[26px] rounded cursor-pointer appearance-none checked:bg-blue-500 bg-gray-200 border border-gray-300 hover:ring-2 hover:ring-offset-1 hover:ring-blue-300"
+          />
+        ))
+      )}
+    </div>
+  );
 
   function chooseSeat(e) {
     if (isSeat.includes(e.target.value)) {
@@ -82,21 +109,6 @@ function OrderCard() {
     navigate("/payment");
   }
 
-  const renderGrid = (cols) => (
-    <div className="grid grid-rows-7 grid-cols-7 gap-1">
-      {rows.map((row) =>
-        cols.map((col) => (
-          <input
-            key={`${row}${col}`}
-            type="checkbox"
-            value={`${row}${col}`}
-            onChange={chooseSeat}
-            className="w-[26px] h-[26px] rounded cursor-pointer appearance-none checked:bg-blue-500 bg-gray-200 border border-gray-300 hover:ring-2 hover:ring-offset-1 hover:ring-blue-300"
-          />
-        ))
-      )}
-    </div>
-  );
   return (
     <main>
       {isMovie && (
@@ -187,7 +199,7 @@ function OrderCard() {
             <div className="w-[30%] flex flex-col">
               <div className="flex justify-center items-center flex-col shadow-md gap-5">
                 <div>
-                  <img src={order} alt="order" />
+                  <img src={display?.src} alt="order" />
                 </div>
                 <div>
                   <h1>CineOne21 Cinema</h1>

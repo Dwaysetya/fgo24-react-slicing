@@ -14,19 +14,18 @@ const axiosInstance = axios.create({
 
 export const getMovies = async () => {
   const response = await axiosInstance.get(
-    `/movie/now_playing?language=en-US&page=1&region=id&api_key=${API_KEY}`
+    `/movie/now_playing?language=en-US&page=1&region=id`
   );
-  console.log("aaa", response.data.resultss);
   return response.data.results;
 };
 
 export const getMoviesUpcomming = async () => {
   const response = await axiosInstance.get(
-    `/movie/upcoming?language=en-US&page=1&region=id&api_key=${API_KEY}`
+    `/movie/upcoming?language=en-US&page=1&region=id`
   );
-  console.log("upcomming", response.data.results);
   return response.data.results;
 };
+
 
 export const getMoviesDetails = async (id) => {
   const response = await axiosInstance.get(
