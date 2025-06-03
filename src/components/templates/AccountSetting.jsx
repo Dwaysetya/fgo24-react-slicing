@@ -1,30 +1,84 @@
-import { useState } from "react";
-import { LuEye } from "react-icons/lu";
-import { LuEyeClosed } from "react-icons/lu";
+import { useEffect, useState } from "react";
+import { LuEye, LuEyeClosed } from "react-icons/lu";
 import Button from "../atoms/Button";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { editData } from "../../redux/reducers/users";
 import { loginUser } from "../../redux/reducers/auth";
 import Swal from "sweetalert2";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+// Validasi schema dengan Yup
+
+const schema = yup.object().shape({
+  name: yup.string().optional(),
+  lastname: yup.string().optional(),
+  email: yup
+    .string()
+    .email("Format email tidak valid")
+    .required("Email wajib diisi"),
+  phone: yup.string().optional(),
+  password: yup.string().optional(),
+  newpassword: yup.string().when("password", {
+    is: (val) => val && val.length > 0, // Jika password lama diisi
+    then: (schema) =>
+      schema
+        .required("Password baru wajib diisi")
+        .notOneOf(
+          [yup.ref("password")],
+          "Password baru tidak boleh sama dengan password lama"
+        ),
+    otherwise: (schema) => schema.optional(),
+  }),
+});
 
 const AccountSetting = () => {
   const [showPassword, setShowPassword] = useState(false);
   const userId = useSelector((state) => state.auth.currentUser?.id);
   const users = useSelector((state) => state.users.data);
   const user = users.find((e) => e.id === userId);
+  console.log(atob(users[0].password));
 
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   const dispatch = useDispatch();
 
-  function handleEdit(data) {
+  useEffect(() => {
+    if (user) {
+      setValue("name", user.name);
+      setValue("lastname", user.lastname);
+      setValue("email", user.email);
+      setValue("phone", user.phone);
+    }
+  }, [user, setValue]);
+
+  const handleEdit = (data) => {
     if (!user) {
-      Swal.fire({
+      return Swal.fire({
         icon: "error",
         title: "Gagal!",
         text: "User tidak ditemukan.",
       });
-      return;
+    }
+
+    // Kalau password lama diisi, validasi dulu
+    if (data.password?.trim()) {
+      if (atob(user.password) !== data.password) {
+        return Swal.fire({
+          icon: "error",
+          title: "Gagal!",
+          text: "Password lama salah.",
+        });
+      }
     }
 
     const updatedData = {
@@ -32,8 +86,9 @@ const AccountSetting = () => {
       lastname: data.lastname,
       email: data.email,
       phone: data.phone,
-      password: data.password,
-      confirm: data.confirm,
+      password: data.newpassword?.trim()
+        ? btoa(data.newpassword)
+        : user.password,
     };
 
     const editValue = {
@@ -41,10 +96,9 @@ const AccountSetting = () => {
       ...updatedData,
     };
 
-    console.log(editValue);
-
     dispatch(editData(editValue));
     dispatch(loginUser(editValue));
+
     Swal.fire({
       icon: "success",
       title: "Berhasil!",
@@ -52,110 +106,122 @@ const AccountSetting = () => {
       timer: 2000,
       showConfirmButton: false,
     });
-  }
+
+    reset();
+  };
 
   return (
     <form onSubmit={handleSubmit(handleEdit)} className="flex flex-col gap-10">
-      <div className="bg-white rounded-2xl py-6 px-5 shadow-sm flex flex-col justify-between items-center gap-5">
-        <div className="bg-white w-full py-6 border-b border-black flex gap-10 items-center">
-          <h1 className="text-gray-500">Details Information</h1>
-        </div>
-        <div className="flex flex-col w-full py-5 justify-between gap-5">
-          <div className="flex w-full gap-5">
-            <div className="flex flex-col gap-5 w-full">
-              <label className="text-black">First Name</label>
-              <input
-                id="naem"
-                {...register("name")}
-                type="text"
-                placeholder="Enter your first name"
-                autoComplete="off"
-                className=" w-full rounded-full py-[10px] px-[24px] bg-orange/50 border border-gray-500 hover:border-orange-500 text-black "
-              />
-            </div>
-            <div className="flex flex-col gap-5 w-full">
-              <label className="text-black">Last Name</label>
-              <input
-                {...register("lastname")}
-                id="last name"
-                type="text"
-                placeholder="Enter your last name"
-                autoComplete="off"
-                className="w-full rounded-full py-[10px] px-[24px] bg-orange/50 border border-gray-500 hover:border-orange-500 text-black "
-              />
-            </div>
+      <div className="bg-white rounded-2xl py-6 px-5 shadow-sm flex flex-col gap-5">
+        <h1 className="text-gray-500 border-b border-black pb-4">
+          Details Information
+        </h1>
+        <div className="flex gap-5">
+          <div className="flex flex-col w-full gap-2">
+            <label>First Name</label>
+            <input
+              {...register("name")}
+              placeholder="Enter your first name"
+              autoComplete="off"
+              className="w-full rounded-full py-2 px-4 bg-orange/50 border border-gray-500 hover:border-orange-500"
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name.message}</p>
+            )}
           </div>
-          <div className="flex w-full gap-5">
-            <div className="flex flex-col gap-5 w-full">
-              <label className="text-black">E-mail</label>
-              <input
-                {...register("email")}
-                id="email"
-                type="text"
-                placeholder="Enter your email"
-                autoComplete="off"
-                className=" w-full rounded-full py-[10px] px-[24px] bg-orange/50 border border-gray-500 hover:border-orange-500 text-black "
-              />
-            </div>
-            <div className="flex flex-col gap-5 w-full">
-              <label className="text-black">Phone Number</label>
-              <input
-                {...register("phone")}
-                id="phone"
-                type="text"
-                placeholder="Enter your phone number"
-                autoComplete="off"
-                className="w-full rounded-full py-[10px] px-[24px] bg-orange/50 border border-gray-500 hover:border-orange-500 text-black "
-              />
-            </div>
+          <div className="flex flex-col w-full gap-2">
+            <label>Last Name</label>
+            <input
+              {...register("lastname")}
+              placeholder="Enter your last name"
+              autoComplete="off"
+              className="w-full rounded-full py-2 px-4 bg-orange/50 border border-gray-500 hover:border-orange-500"
+            />
+            {errors.lastname && (
+              <p className="text-red-500 text-sm">{errors.lastname.message}</p>
+            )}
+          </div>
+        </div>
+        <div className="flex gap-5">
+          <div className="flex flex-col w-full gap-2">
+            <label>Email</label>
+            <input
+              {...register("email")}
+              placeholder="Enter your email"
+              autoComplete="off"
+              className="w-full rounded-full py-2 px-4 bg-orange/50 border border-gray-500 hover:border-orange-500"
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+          </div>
+          <div className="flex flex-col w-full gap-2">
+            <label>Phone Number</label>
+            <input
+              {...register("phone")}
+              placeholder="Enter your phone number"
+              autoComplete="off"
+              className="w-full rounded-full py-2 px-4 bg-orange/50 border border-gray-500 hover:border-orange-500"
+            />
+            {errors.phone && (
+              <p className="text-red-500 text-sm">{errors.phone.message}</p>
+            )}
           </div>
         </div>
       </div>
-      <div className="bg-white rounded-2xl py-6 px-5 shadow-sm flex flex-col justify-between items-center gap-5">
-        <div className="bg-white w-full py-6 border-b border-black flex gap-10 items-center">
-          <h1 className="text-gray-500">Account and Privacy</h1>
-        </div>
-        <div className="flex w-full py-5 justify-between gap-5">
-          <div className="flex w-full gap-5 flex-col">
-            <label className="text-black">Old Password</label>
-            <div className="w-full rounded-full flex items-center gap-3 bg-orange/50 border border-gray-500 hover:border-orange-500 text-black">
+
+      <div className="bg-white rounded-2xl py-6 px-5 shadow-sm flex flex-col gap-5">
+        <h1 className="text-gray-500 border-b border-black pb-4">
+          Account and Privacy
+        </h1>
+        <div className="flex gap-5">
+          <div className="flex flex-col w-full gap-2">
+            <label>Old Password</label>
+            <div className="flex items-center w-full rounded-full px-4 bg-orange/50 border border-gray-500 hover:border-orange-500">
               <input
-                id="password"
                 {...register("password")}
                 type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                className="w-full rounded-full py-[10px] px-[24px] bg-orange/50 hover:border-orange-500 text-black outline-0"
+                placeholder="Enter your current password"
+                className="w-full bg-transparent py-2 outline-none"
                 autoComplete="off"
               />
-              <div
+              <span
                 onClick={() => setShowPassword(!showPassword)}
-                className="text-black px-5"
+                className="cursor-pointer text-black px-2"
               >
                 {showPassword ? <LuEye /> : <LuEyeClosed />}
-              </div>
+              </span>
             </div>
+            {errors.password && (
+              <p className="text-red-500 text-sm">{errors.password.message}</p>
+            )}
           </div>
-          <div className="flex w-full gap-5 flex-col">
-            <label className="text-black">New Password</label>
-            <div className="w-full rounded-full flex items-center gap-3 bg-orange/50 border border-gray-500 hover:border-orange-500 text-black">
+          <div className="flex flex-col w-full gap-2">
+            <label>New Password</label>
+            <div className="flex items-center w-full rounded-full px-4 bg-orange/50 border border-gray-500 hover:border-orange-500">
               <input
-                id="password"
-                {...register("confirm")}
+                {...register("newpassword")}
                 type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                className="w-full rounded-full py-[10px] px-[24px] bg-orange/50 hover:border-orange-500 text-black outline-0"
+                placeholder="Enter your new password"
+                className="w-full bg-transparent py-2 outline-none"
                 autoComplete="off"
               />
-              <div
+              <span
                 onClick={() => setShowPassword(!showPassword)}
-                className="text-black px-5"
+                className="cursor-pointer text-black px-2"
               >
                 {showPassword ? <LuEye /> : <LuEyeClosed />}
-              </div>
+              </span>
             </div>
+            {errors.newpassword && (
+              <p className="text-red-500 text-sm">
+                {errors.newpassword.message}
+              </p>
+            )}
           </div>
         </div>
       </div>
+
       <div>
         <Button type="submit">Update changes</Button>
       </div>

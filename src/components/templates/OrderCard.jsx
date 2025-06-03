@@ -7,12 +7,15 @@ import { setHistorytransaksi } from "../../redux/reducers/historyTransaksi";
 import ebu from "../../assets/images/orderpage/ebu.svg";
 import order from "../../assets/images/orderpage/order.svg";
 import hiflix from "../../assets/images/orderpage/hiflix.svg";
+import { getMoviesDetails } from "../../services/apiClient";
 
 function OrderCard() {
   const [isGenre, setIsGenre] = useState([]);
   const [isMovie, setIsMovie] = useState();
   const [isSeat, setIsSeat] = useState([]);
   const transaksi = useSelector((state) => state.transaksi.historyTransaksi);
+  const historyBook = useSelector((state) => state.transaksi.historyBook);
+  const usedSeats = historyBook.flatMap((item) => item.seat);
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,8 +39,8 @@ function OrderCard() {
       value: isMovie?.title || "",
     },
     {
-      name: "Tuesday, 07 July 2020",
-      value: "13:00pm",
+      name: transaksi.date,
+      value: `${transaksi.time} pm`,
     },
     {
       name: "One ticket price",
@@ -52,22 +55,10 @@ function OrderCard() {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}?&append_to_response=credits`,
-          {
-            method: "GET",
-            headers: {
-              accept: "application/json",
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNjFhZmNlMThmOTVlNDNhODYzNzcwZjRmNzU3N2NlYSIsIm5iZiI6MTc0NzQyMTY2My45ODIsInN1YiI6IjY4Mjc4OWRmYmY0NWFiNTM1MjNkZDM2MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.B3xquaTWkKxdQBeHsdUUfT-uv9FaZrYjKzkm19U_v6E",
-            },
-          }
-        );
-        const result = await response.json();
-        console.log("data", result);
-        setIsMovie(result);
-        setIsGenre(result.genres || []);
-        console.log("daaaa", result);
+        const response = await getMoviesDetails(id);
+        setIsMovie(response);
+        setIsGenre(response.genres || []);
+        console.log("daaaa", response);
       } catch (error) {
         console.log("Gagal mengambil data", error);
       }
@@ -79,15 +70,36 @@ function OrderCard() {
   const renderGrid = (cols) => (
     <div className="grid grid-rows-7 grid-cols-7 gap-1">
       {rows.map((row) =>
-        cols.map((col) => (
-          <input
-            key={`${row}${col}`}
-            type="checkbox"
-            value={`${row}${col}`}
-            onChange={chooseSeat}
-            className="w-[26px] h-[26px] rounded cursor-pointer appearance-none checked:bg-blue-500 bg-gray-200 border border-gray-300 hover:ring-2 hover:ring-offset-1 hover:ring-blue-300"
-          />
-        ))
+        cols.map((col) => {
+          const seatValue = `${row}${col}`;
+          const isUsed = usedSeats.includes(seatValue);
+          const isSelected = isSeat.includes(seatValue);
+          console.log("isUsed:", isUsed, "seat:", seatValue);
+
+          return (
+            <div key={seatValue}>
+              <input
+                type="checkbox"
+                value={seatValue}
+                onChange={chooseSeat}
+                disabled={isUsed}
+                checked={isSelected}
+                className={`
+                  w-[26px] h-[26px] rounded cursor-pointer appearance-none border border-gray-300
+                  ${isUsed ? "bg-[#6E7191] cursor-not-allowed" : ""}
+                  ${
+                    isSelected
+                      ? "bg-blue-500"
+                      : isUsed
+                      ? "bg-[#6E7191]"
+                      : "bg-gray-200"
+                  }
+                  hover:ring-2 hover:ring-offset-1 hover:ring-blue-300
+                `}
+              />
+            </div>
+          );
+        })
       )}
     </div>
   );
@@ -103,8 +115,16 @@ function OrderCard() {
   }
 
   function handleSubmit() {
+    const genres = isGenre.map((item) => item.name);
+
     dispatch(
-      setHistorytransaksi({ resultSeat: isSeat.length * 10, seat: isSeat })
+      setHistorytransaksi({
+        resultSeat: isSeat.length * 10,
+        seat: isSeat,
+        genre: genres,
+        title: isMovie.title,
+        poster: isMovie.backdrop_path,
+      })
     );
     navigate("/payment");
   }
@@ -136,7 +156,9 @@ function OrderCard() {
                     </div>
                   </div>
                   <div className="w-full h-[30px] justify-center items-center">
-                    <p className="text-base font-normal">Regular - 13:00 PM</p>
+                    <p className="text-base font-normal">
+                      Regular - {transaksi.time} PM
+                    </p>
                   </div>
                 </div>
               </div>
@@ -202,7 +224,7 @@ function OrderCard() {
                   <img src={display?.src} alt="order" />
                 </div>
                 <div>
-                  <h1>CineOne21 Cinema</h1>
+                  <h1>{display.id} Cinema</h1>
                 </div>
                 {orderCinema.map((item, index) => (
                   <div className="flex w-full justify-between p-5" key={index}>

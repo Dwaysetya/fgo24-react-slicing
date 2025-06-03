@@ -4,9 +4,36 @@ import Text from "../atoms/Text";
 import Chip from "../atoms/Chip";
 import Button from "../atoms/Button";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getMoviesDetails } from "../../services/apiClient";
+
+const genreMap = {
+  28: "Action",
+  12: "Adventure",
+  35: "Comedy",
+  27: "Horror",
+  53: "Thriller",
+  878: "Sci-Fi",
+};
 
 function FilmCard({ film }) {
   const navigate = useNavigate();
+  const [isGenre, setIsGenre] = useState([]);
+
+  useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        const response = await getMoviesDetails(film.id);
+        setIsGenre(response.genres || []);
+      } catch (error) {
+        console.log("Gagal mengambil data", error);
+      }
+    };
+
+    fetchMovie();
+  }, []);
+
+  console.log("film", isGenre);
 
   return (
     <div className="relative w-[296px] rounded-2xl overflow-hidden">
@@ -42,23 +69,19 @@ function FilmCard({ film }) {
       </div>
 
       <div className="mt-3 z-20 p-4 bg-opacity-60">
-        <Title>{film.title}</Title>
+        <Title>{film.title.slice(0, 20)}</Title>
         <Text>{`⭐ ${film.vote_average.toFixed(1)}`}</Text>
       </div>
 
       <div className="flex gap-2 justify-center items-center mt-2 z-20">
-        <Chip
-          className="rounded-full bg-[#878786] py-[8px] px-[24px]"
-          textClassName="text-black"
-        >
-          Action
-        </Chip>
-        <Chip
-          className="rounded-full bg-[#878786] py-[8px] px-[24px]"
-          textClassName="text-black"
-        >
-          Adventure
-        </Chip>
+        {isGenre.slice(0, 2).map((item) => (
+          <Chip
+            className="rounded-full bg-[#878786] py-[8px] px-[24px]"
+            textClassName="text-black"
+          >
+            {item.name}
+          </Chip>
+        ))}
       </div>
     </div>
   );

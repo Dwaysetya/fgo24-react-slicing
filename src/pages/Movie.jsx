@@ -1,10 +1,8 @@
 import Navbar from "../components/organisms/Navbar";
 import HeroSection from "../components/organisms/HeroSection";
 import SelectOption from "../components/templates/SelectOption";
-import Showwing from "../components/organisms/Showwing";
 import CardSubscribe from "../components/organisms/CardSubscribe";
 import Footer from "../components/organisms/Footer";
-import Button from "../components/atoms/Button";
 import MovieCard from "../components/templates/MovieCard";
 
 function Movie() {
@@ -21,9 +19,6 @@ function Movie() {
           <div className="flex justify-between">
             <h1 className=" text-6xl font-semibold">Now Showing in Cinemas</h1>
             <SelectOption />
-          </div>
-          <div>
-            <Showwing />
           </div>
         </div>
       </section>

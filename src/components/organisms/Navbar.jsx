@@ -7,10 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Logo from "../atoms/Logo";
 import NavMenu from "../molecules/NavMenu";
 import NavAction from "../molecules/NavAction";
+import { setHistorytransaksi } from "../../redux/reducers/historyTransaksi";
 
 const Navbar = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
-  const image = useSelector((image) => image.profile.image);
+  const image = useSelector((image) => image.users.data);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -19,6 +20,8 @@ const Navbar = () => {
     { label: "MOVIE", to: "/movie" },
     { label: "BUY TIKET", to: "/tickets" },
   ];
+
+  const profileImage = image.find((item) => item.id === currentUser.id)?.image;
 
   const navButtons = [
     {
@@ -34,8 +37,9 @@ const Navbar = () => {
   ];
 
   function LogOut() {
-    dispatch(logoutUser());
-    navigate("/signin");
+    dispatch(logoutUser()); // Kosongkan auth
+    dispatch(setHistorytransaksi({})); // Kosongkan histori
+    navigate("/signin"); // Pindah ke login page
   }
 
   return (
@@ -50,27 +54,37 @@ const Navbar = () => {
 
       <div className="flex-shrink-0 flex gap-5 items-center">
         {currentUser ? (
-          <Link to="/profil/setting">
-            <div className="text-sm font-medium">
-              Hi,{" "}
-              {currentUser.name
-                ? currentUser.name
-                : getDisplayName(currentUser.email)}
+          <>
+            <Link to="/profil/setting">
+              <div className="text-sm font-medium">
+                Hi,{" "}
+                {currentUser.name
+                  ? currentUser.name
+                  : getDisplayName(currentUser.email)}
+              </div>
+            </Link>
+
+            {profileImage ? (
+              <img
+                src={profileImage}
+                alt="Profile"
+                className="w-10 h-10 rounded-full mb-2 object-cover"
+              />
+            ) : (
+              <img
+                src="https://randomuser.me/api/portraits/men/32.jpg"
+                alt="User Avatar"
+                className="w-10 h-10 rounded-full object-cover"
+              />
+            )}
+
+            <div onClick={LogOut} className="ml-5 cursor-pointer">
+              <BiLogOut className="text-red-700 text-2xl" />
             </div>
-          </Link>
+          </>
         ) : (
           <NavAction buttons={navButtons} />
         )}
-        {image && (
-          <img
-            src={image}
-            className="w-10 h-10 rounded-full object-cover self-center"
-            alt="Profile"
-          />
-        )}
-        <div onClick={LogOut} className="ml-5">
-          <BiLogOut className="text-red-700 text-2xl" />
-        </div>
       </div>
     </div>
   );

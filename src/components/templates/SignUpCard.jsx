@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { addUsers } from "../../redux/reducers/users";
 import { FaFacebook } from "react-icons/fa";
 import { LuEyeClosed } from "react-icons/lu";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,7 +14,6 @@ import logoTick from "../../assets/images/logo/logorooms.png";
 import React from "react";
 import * as yup from "yup";
 import Swal from "sweetalert2";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 const validationSchema = yup.object({
   email: yup
@@ -54,6 +54,18 @@ function SignUpCard() {
   console.log("first", users);
 
   function saveData(data) {
+    const userDitemukan = users.find((user) => user.email === data.email);
+
+    if (userDitemukan) {
+      Swal.fire({
+        title: "Error!",
+        text: "Email sudah digunakan",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+
     const newData = {
       email: data.email,
       password: btoa(data.password),
@@ -78,8 +90,8 @@ function SignUpCard() {
         className="w-full h-screen bg-cover bg-center flex flex-col gap-5 relative justify-center items-center"
         style={{ backgroundImage: `url(${image11})` }}
       >
-        <div className="w-full bg-black/30 min-h-screen px-10 flex justify-center items-center rounded-tl-4xl rounded-br-4xl">
-          <div className=" flex flex-col gap-5 bg-black/10 w-full justify-center items-center">
+        <div className="w-full min-h-screen px-10 flex justify-center items-center rounded-tl-4xl rounded-br-4xl">
+          <div className=" flex flex-col gap-5 bg-black/80 w-[40%] py-20 justify-center items-center rounded-4xl">
             <div className="flex justify-center w-[20%] items-center">
               <img
                 src={logoTick}

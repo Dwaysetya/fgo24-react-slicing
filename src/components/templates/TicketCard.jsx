@@ -3,29 +3,31 @@ import qrcode from "../../assets/images/qr.svg";
 import Button from "../atoms/Button";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function TicketCard() {
+  const navigate = useNavigate();
+  const transaksi = useSelector((state) => state.transaksi.historyTransaksi);
   const struk = [
     {
       title1: "Movie",
       title2: "Category",
-      value1: "Spider-Man: ..",
+      value1: transaksi.title,
       value: "PG-13",
     },
     {
       title1: "Date",
       title2: "Time",
-      value1: "07 Jul",
-      value: "2:00pm",
+      value1: transaksi.date,
+      value: transaksi.time,
     },
     {
       title1: "Count",
       title2: "Seats",
-      value1: "3 pcs",
-      value: "C4, C5, C6",
+      value1: transaksi.seat.length,
+      value: transaksi.seat.join(","),
     },
   ];
-  const navigate = useNavigate();
 
   function handleClick() {
     Swal.fire({
@@ -98,7 +100,7 @@ function TicketCard() {
               <div className="flex w-full p-10">
                 <div className="flex w-full justify-between px-10 py-5 border-1 rounded">
                   <p>Total</p>
-                  <p>$30.00</p>
+                  <p>${transaksi.resultSeat}</p>
                 </div>
               </div>
             </div>

@@ -1,23 +1,24 @@
 import { LuEye } from "react-icons/lu";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { LuEyeClosed } from "react-icons/lu";
-import { FaFacebook } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/reducers/auth";
+import { FaFacebook } from "react-icons/fa";
+import { LuEyeClosed } from "react-icons/lu";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+
+import Swal from "sweetalert2";
+import React from "react";
 import Button from "../atoms/Button";
 import image11 from "../../assets/images/signup/image 1.png";
 import logoTick from "../../assets/images/logo/logorooms.png";
-import React from "react";
-import Swal from "sweetalert2";
 
 function SignInCard() {
-  const [isModal, setIsModal] = React.useState(false);
-  const [showPassword, setShowPassword] = React.useState(false);
-  const users = useSelector((state) => state.users.data);
   const { register, handleSubmit, reset } = useForm();
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [isModal, setIsModal] = React.useState(false);
+  const users = useSelector((state) => state.users.data);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -65,7 +66,7 @@ function SignInCard() {
       >
         {isModal && (
           <div className="flex w-full h-screen absolute z-30 justify-center items-center bg-black/90 ">
-            <div className=" flex flex-col gap-10">
+            <div className=" flex flex-col gap-10 bg-black/70">
               <form action="">
                 <div className="flex flex-col gap-5">
                   <label className="text-white">Email</label>
@@ -89,7 +90,7 @@ function SignInCard() {
           </div>
         )}
         <div className="w-full min-h-screen px-10 flex justify-center items-center">
-          <div className=" flex flex-col gap-10 justify-center items-center">
+          <div className=" flex flex-col gap-10 justify-center items-center bg-black/80 w-[40%] py-20 rounded-4xl">
             <div className="flex justify-center w-[30%]">
               <img src={logoTick} alt="logo" />
             </div>

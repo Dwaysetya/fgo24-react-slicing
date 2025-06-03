@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Navbar from "../components/organisms/Navbar";
 import NavMenu from "../components/molecules/NavMenu";
+import { editData } from "../redux/reducers/users";
+import { loginUser } from "../redux/reducers/auth";
 
 function ProfilPage() {
   const currentUser = useSelector((state) => state.auth.currentUser);
-  const image = useSelector((image) => image.profile.image);
+  const image = useSelector((image) => image.users.data);
   const dispatch = useDispatch();
-
 
   const user = {
     role: "Moviegoers",
@@ -21,6 +22,7 @@ function ProfilPage() {
     { label: "Account Setting", to: "/profil/setting" },
     { label: "Order Historry", to: "/profil/history" },
   ];
+  const profileImage = image.find((item) => item.id === currentUser.id)?.image;
 
   return (
     <main className="main-container">
@@ -36,9 +38,9 @@ function ProfilPage() {
             <div className="bg-white rounded-2xl p-6 shadow-sm">
               <div className="flex flex-col items-center">
                 <div className="relative group">
-                  {image ? (
+                  {profileImage ? (
                     <img
-                      src={image}
+                      src={profileImage}
                       alt="Profile"
                       className="w-20 h-20 rounded-full mb-4 object-cover"
                     />
@@ -65,7 +67,21 @@ function ProfilPage() {
                         if (file) {
                           const reader = new FileReader();
                           reader.onloadend = () => {
-                            dispatch(setProfileImage(reader.result));
+                            const base64Image = reader.result;
+
+                            // Update image di state profile
+                            dispatch(setProfileImage(base64Image));
+
+                            // Update image di state users
+                            dispatch(
+                              editData({
+                                ...currentUser,
+                                image: base64Image,
+                              })
+                            );
+                            dispatch(
+                              loginUser({ ...currentUser, image: base64Image })
+                            );
                           };
                           reader.readAsDataURL(file);
                         }
