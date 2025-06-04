@@ -7,14 +7,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMoviesDetails } from "../../services/apiClient";
 
-const genreMap = {
-  28: "Action",
-  12: "Adventure",
-  35: "Comedy",
-  27: "Horror",
-  53: "Thriller",
-  878: "Sci-Fi",
-};
+// const genreMap = {
+//   28: "Action",
+//   12: "Adventure",
+//   35: "Comedy",
+//   27: "Horror",
+//   53: "Thriller",
+//   878: "Sci-Fi",
+// };
 
 function FilmCard({ film }) {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ function FilmCard({ film }) {
     };
 
     fetchMovie();
-  }, []);
+  }, [film.id]);
 
   console.log("film", isGenre);
 

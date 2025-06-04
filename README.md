@@ -34,46 +34,65 @@ git clone   https://github.com/Dwaysetya/fgo24-react-slicing
 2. Enter the project firectory
 
 ```
-cd directory-name
+cd fgo24-react-slicing
 ```
 
 3. Install the Depedencies
 
 ```
- npm create vite@latest name-file -- --template react
+ npm i react-router-dom
 ```
 
 4. Install the Depedencies
 
 ```
- npm i react-router-dom
+ npm install tailwindcss @tailwindcss/vite
 ```
 
 5. Install the Depedencies
 
 ```
- npm install tailwindcss @tailwindcss/vite
+ npm i yup@hookform/resolver
 ```
 
 6. Install the Depedencies
 
 ```
- npm i yup@hookform/resolver
-```
-
-7. Install the Depedencies
-
-```
 npm install
 ```
 
-8. run the project
+7. run the project
 
 ```
 npm run dev
 ```
 
-9. Project will running on (http://localhost:5173/)
+9. Project will running on (http://localhost:8080/)
+
+## With Docker
+
+1. Clone this project
+
+```
+git clone   https://github.com/Dwaysetya/fgo24-react-slicing
+```
+
+2. Get into the path
+
+```
+cd fgo24-react-slicing
+```
+
+3. Build image
+
+```
+docker build . -t react-slicing:latest
+```
+
+4. Run image with docker
+```
+docker run -p 8080:80 -d react-slicing:latest
+```
 
 ## Depedencies
 
