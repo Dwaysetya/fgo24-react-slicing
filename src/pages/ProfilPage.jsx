@@ -69,19 +69,25 @@ function ProfilPage() {
                           reader.onloadend = () => {
                             const base64Image = reader.result;
 
-                            // Update image di state profile
-                            dispatch(setProfileImage(base64Image));
+                            const originalUser = image.find(
+                              (item) => item.id === currentUser.id
+                            );
 
-                            // Update image di state users
-                            dispatch(
-                              editData({
-                                ...currentUser,
+                            if (originalUser) {
+                              const updatedUser = {
+                                ...originalUser, // data yang lengkap, termasuk password terenkripsi
                                 image: base64Image,
-                              })
-                            );
-                            dispatch(
-                              loginUser({ ...currentUser, image: base64Image })
-                            );
+                              };
+
+                              // Update image di state profile
+                              dispatch(setProfileImage(base64Image));
+
+                              // Update image di Redux users
+                              dispatch(editData(updatedUser));
+
+                              // Update user yang sedang login (auth)
+                              dispatch(loginUser(updatedUser));
+                            }
                           };
                           reader.readAsDataURL(file);
                         }

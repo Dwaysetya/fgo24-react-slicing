@@ -1,6 +1,5 @@
 import Navbar from "../components/organisms/Navbar";
 import HeroSection from "../components/organisms/HeroSection";
-import SelectOption from "../components/templates/SelectOption";
 import CardSubscribe from "../components/organisms/CardSubscribe";
 import Footer from "../components/organisms/Footer";
 import MovieCard from "../components/templates/MovieCard";
@@ -13,14 +12,6 @@ function Movie() {
       </header>
       <section className="section-1">
         <HeroSection />
-      </section>
-      <section className="section-1">
-        <div className="flex flex-col w-full px-[50px] justify-between gap-10">
-          <div className="flex justify-between">
-            <h1 className=" text-6xl font-semibold">Now Showing in Cinemas</h1>
-            <SelectOption />
-          </div>
-        </div>
       </section>
       <section className="section-1">
         <MovieCard />

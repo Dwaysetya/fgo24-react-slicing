@@ -43,7 +43,7 @@ const Home = () => {
           </p>
         </div>
         <div className="flex flex-col mt-20">
-          <div className="flex flex-row justify-between gap-90">
+          <div className="flex flex-row justify-between md:gap-10 lg:gap-90 ">
             <FaArrowAltCircleLeft size={50} className="arrow" />
             <h2 className="font-semibold text-4xl">Now Showing in Cinemas</h2>
             <FaArrowAltCircleRight size={50} className="arrow" />
@@ -64,7 +64,7 @@ const Home = () => {
             <Chip className="flex bg-[#FDECE3] rounded-full py-[13px] px-[24px] mb-10 w-[216px]">
               WHY CHOOSE US
             </Chip>
-            <h2 className="font-semibold text-6xl text-white">
+            <h2 className="font-semibold text-6xl text-white md:text-3xl">
               Unleashing the Ultimate Movie Experience
             </h2>
           </div>

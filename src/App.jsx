@@ -15,6 +15,8 @@ import TicketResult from "./pages/TicketResult";
 import OrderHistory from "./components/templates/OrderHistory";
 import ProfilPage from "./pages/ProfilPage";
 import AccountSetting from "./components/templates/AccountSetting";
+import Admin from "./pages/Admin";
+import AdminList from "./pages/AdminList";
 
 function App() {
   const router = createBrowserRouter([
@@ -49,6 +51,14 @@ function App() {
     {
       path: "/ticketresult",
       element: <TicketResult />,
+    },
+    {
+      path: "/admin",
+      element: <Admin />,
+    },
+    {
+      path: "/adminlist",
+      element: <AdminList />,
     },
     {
       path: "/profil",

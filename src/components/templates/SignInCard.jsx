@@ -39,7 +39,9 @@ function SignInCard() {
     if (index !== -1) {
       const user = decodedUsers[index];
 
-      dispatch(loginUser({ id: user.id, ...user }));
+      const { id, email } = user;
+
+      dispatch(loginUser({ id, email }));
 
       Swal.fire({
         title: "Login berhasil!",

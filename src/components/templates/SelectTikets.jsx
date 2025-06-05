@@ -18,6 +18,7 @@ function SelectTikets({ formData = {}, onChange }) {
           Choose Date
         </label>
         <select
+          requaried
           value={formData.date || ""}
           onChange={(e) => onChange("date", e.target.value)}
           className="border-1 border-black px-5 py-2 text-black rounded-full"
@@ -35,6 +36,7 @@ function SelectTikets({ formData = {}, onChange }) {
           Choose Time
         </label>
         <select
+          required
           value={formData.time}
           onChange={(e) => onChange("time", e.target.value)}
           className="border-1 border-black px-5 py-2 text-black rounded-full"
@@ -52,6 +54,7 @@ function SelectTikets({ formData = {}, onChange }) {
           Choose Location
         </label>
         <select
+          requaried
           value={formData.location}
           onChange={(e) => onChange("location", e.target.value)}
           className="border-1 border-black px-5 py-2 text-black rounded-full"

@@ -8,6 +8,7 @@ import Chip from "../atoms/Chip";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addHistoryBook } from "../../redux/reducers/historyTransaksi";
+import Skeleton from "react-loading-skeleton";
 
 function PaymentCard() {
   const transaksi = useSelector((state) => state.transaksi.historyTransaksi);
@@ -108,10 +109,37 @@ function PaymentCard() {
   const [hour, minute] = transaksi.time.split(":").map(Number);
   date.setHours(hour);
   date.setMinutes(minute);
-  date.setHours(date.getHours() + 2); // Tambah 2 jam
+  date.setHours(date.getHours() + 2);
 
-  const newTime = date.toTimeString().slice(0, 5); // "17:25"
+  const newTime = date.toTimeString().slice(0, 5);
   console.log(newTime);
+
+  if (!users) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-[#D6D8E7] p-10">
+        <div className="w-[50%] bg-white p-10 rounded shadow space-y-6">
+          <Skeleton height={30} width={200} />
+          {[...Array(5)].map((_, i) => (
+            <Skeleton key={i} height={50} />
+          ))}
+
+          <Skeleton height={30} width={150} />
+          <Skeleton height={45} />
+          <Skeleton height={45} />
+          <Skeleton height={45} />
+
+          <Skeleton height={30} width={150} className="mt-5" />
+          <div className="flex gap-4">
+            {[...Array(4)].map((_, i) => (
+              <Skeleton key={i} circle height={64} width={64} />
+            ))}
+          </div>
+
+          <Skeleton height={50} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <main className="w-full bg-[#D6D8E7]">

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Logo from "../atoms/Logo";
 import NavMenu from "../molecules/NavMenu";
 import NavAction from "../molecules/NavAction";
-import { setHistorytransaksi } from "../../redux/reducers/historyTransaksi";
+import { clearHistoryTransaksi } from "../../redux/reducers/historyTransaksi";
 
 const Navbar = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
@@ -21,7 +21,9 @@ const Navbar = () => {
     { label: "BUY TIKET", to: "/tickets" },
   ];
 
-  const profileImage = image.find((item) => item.id === currentUser.id)?.image;
+  const profileImage = currentUser?.id
+    ? image.find((item) => item.id === currentUser.id)?.image
+    : null;
 
   const navButtons = [
     {
@@ -38,7 +40,7 @@ const Navbar = () => {
 
   function LogOut() {
     dispatch(logoutUser()); // Kosongkan auth
-    dispatch(setHistorytransaksi({})); // Kosongkan histori
+    dispatch(clearHistoryTransaksi()); // Kosongkan histori
     navigate("/signin"); // Pindah ke login page
   }
 

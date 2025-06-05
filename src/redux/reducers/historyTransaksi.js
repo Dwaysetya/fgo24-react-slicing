@@ -18,8 +18,12 @@ const transaksi = createSlice({
     addHistoryBook: (state) => {
       state.historyBook.push(state.historyTransaksi);
     },
+    clearHistoryTransaksi: (state) => {
+      state.historyTransaksi = {};
+    },
   },
 });
 
-export const { setHistorytransaksi, addHistoryBook } = transaksi.actions;
+export const { setHistorytransaksi, addHistoryBook, clearHistoryTransaksi } =
+  transaksi.actions;
 export default transaksi.reducer;

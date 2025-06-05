@@ -61,10 +61,22 @@ function BookTikets() {
       });
       return;
     }
-    dispatch(setHistorytransaksi({ id: currentUser.id, ...formData }));
 
+    // Validasi semua field harus terisi
+    const { date, time, location, cinema } = formData;
+    if (!date || !time || !location || !cinema) {
+      Swal.fire({
+        icon: "error",
+        title: "Form belum lengkap",
+        text: "Silakan lengkapi semua data terlebih dahulu.",
+      });
+      return;
+    }
+
+    dispatch(setHistorytransaksi({ id: currentUser.id, ...formData }));
     navigate(`/order/${isMovie.id}`);
   };
+
   return (
     <div className="flex flex-col gap-10 w-full">
       <div className="flex w-full justify-between items-center">

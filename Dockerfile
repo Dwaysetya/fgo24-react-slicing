@@ -1,19 +1,18 @@
-FROM ubuntu:noble
+FROM node:lts-alpine
 
 WORKDIR /workspace
 
-RUN apt-get update && apt-get install nginx nodejs npm -y
-
 COPY package*.json .
-
 RUN npm install
-
-COPY . . 
-
+COPY . .
 RUN npm run build
 
-RUN cp -r dist/* /var/www/html/
 
+# RUN npm install serve
+# CMD ["npx", "serve","dist/", "-l","tcp://0.0.0.0:3000"]
+
+FROM nginx:latest
+
+COPY --from=0 /workspace/dist/ /usr/share/nginx/html/
+# COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]

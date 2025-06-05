@@ -27,7 +27,7 @@ function FilmList() {
 
   return (
     <div className="w-full flex flex-col justify-center items-center gap-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[32px] mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-[32px] mt-10">
         {isMovies
           .sort((a, b) => b.vote_average - a.vote_average)
           .slice(OFFSET, LIMIT * page)

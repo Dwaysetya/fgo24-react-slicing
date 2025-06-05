@@ -6,7 +6,7 @@ const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false, // <-- mematikan pengecekan serializability
+      serializableCheck: false,
     }),
 });
 
