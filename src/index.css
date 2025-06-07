@@ -14,10 +14,10 @@
     @apply w-full h-[100px] flex items-center justify-between bg-black py-[24px] px-5 sm:px-[80px] shadow-md;
   }
   .section-1 {
-    @apply flex flex-col min-h-full w-full px-[60px] py-[20px] justify-center items-center;
+    @apply flex flex-col h-auto w-full px-10 lg:px-[60px] py-[20px] items-center;
   }
   .footer-1 {
-    @apply flex min-h-full w-full py-[40px] px-[60px] gap-10 bg-black justify-center items-center rounded-tr-4xl rounded-tl-4xl;
+    @apply flex h-auto w-full py-[40px] px-[60px] gap-10 bg-black justify-center items-center rounded-tr-4xl rounded-tl-4xl;
   }
 }
 @layer utilities {

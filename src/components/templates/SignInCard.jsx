@@ -67,21 +67,23 @@ function SignInCard() {
         style={{ backgroundImage: `url(${image11})` }}
       >
         {isModal && (
-          <div className="flex w-full h-screen absolute z-30 justify-center items-center bg-black/90 ">
-            <div className=" flex flex-col gap-10 bg-black/70">
-              <form action="">
-                <div className="flex flex-col gap-5">
-                  <label className="text-white">Email</label>
+          <div className="flex w-full h-screen absolute z-30 justify-center items-center bg-black/90 px-4">
+            <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 bg-black/70 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl md:rounded-4xl w-full max-w-sm sm:max-w-md">
+              <form>
+                <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
+                  <label className="text-white text-sm sm:text-base">
+                    Email
+                  </label>
                   <input
                     id="email"
                     type="text"
                     placeholder="Enter your email"
-                    className="w-[384px] h-[54px] rounded-full py-[15px] px-[24px] bg-orange/50 border border-white hover:border-orange-500 text-white shadow-xl/50 "
+                    className="w-full h-12 sm:h-14 md:h-[54px] rounded-full py-3 sm:py-4 md:py-[15px] px-4 sm:px-5 md:px-[24px] bg-orange/50 border border-white hover:border-orange-500 text-white shadow-xl/50 text-sm sm:text-base outline-none"
                   />
                 </div>
-                <div className="w-[384px] h-[54px] rounded-full mt-10">
+                <div className="w-full h-12 sm:h-14 md:h-[54px] rounded-full mt-6 sm:mt-8 md:mt-10">
                   <Button
-                    className="shadow-xl/10 w-[384px] h-[54px] rounded-full"
+                    className="shadow-xl/10 w-full h-full rounded-full text-sm sm:text-base"
                     onClick={() => setIsModal(false)}
                   >
                     Send email
@@ -91,70 +93,92 @@ function SignInCard() {
             </div>
           </div>
         )}
-        <div className="w-full min-h-screen px-10 flex justify-center items-center">
-          <div className=" flex flex-col gap-10 justify-center items-center bg-black/80 w-[40%] py-20 rounded-4xl">
-            <div className="flex justify-center w-[30%]">
-              <img src={logoTick} alt="logo" />
+        <div className="w-full min-h-screen px-4 sm:px-6 md:px-8 lg:px-10 flex justify-center items-center">
+          <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 justify-center items-center bg-black/80 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:w-[40%] py-8 sm:py-12 md:py-16 lg:py-20 px-6 sm:px-8 md:px-12 lg:px-0 rounded-2xl sm:rounded-3xl md:rounded-4xl">
+            <div className="flex justify-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-[30%]">
+              <img
+                src={logoTick}
+                alt="logo"
+                className="w-full h-full object-contain"
+              />
             </div>
-            <form action="" onSubmit={handleSubmit(onSubmit)}>
-              <div className="flex flex-col gap-5">
-                <label className="text-white px-5">Email</label>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="w-full space-y-4 sm:space-y-5"
+            >
+              <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
+                <label className="text-white px-2 sm:px-3 md:px-4 lg:px-5 text-sm sm:text-base">
+                  Email
+                </label>
                 <input
                   id="email"
                   type="text"
                   placeholder="Enter your email"
                   autoComplete="off"
                   {...register("email")}
-                  className="w-[384px] h-[54px] rounded-full py-[15px] px-[24px] bg-orange/50 border border-white hover:border-orange-500 text-white shadow-xl/50 "
+                  className="w-full px-4 py-3 sm:px-5 sm:py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
                 />
               </div>
-              <div className="flex flex-col gap-5">
-                <label className="text-white px-5 mt-10">Password</label>
-                <div className="shadow-xl/50 flex justify-between w-[384px] h-[54px] rounded-full py-[15px] px-[24px] bg-orange/50 border border-white hover:border-orange-500 text-white">
+              <div className="w-full">
+                <label className="block text-white text-sm sm:text-base mb-2 px-1">
+                  Password
+                </label>
+                <div className="relative w-full">
                   <input
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
-                    className="w-full outline-none"
+                    className="w-full px-4 py-3 sm:px-5 sm:py-4 pr-12 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
                     {...register("password")}
                     autoComplete="off"
                   />
-                  <div onClick={() => setShowPassword(!showPassword)}>
-                    {showPassword ? <LuEye /> : <LuEyeClosed />}
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white transition-colors p-1"
+                  >
+                    {showPassword ? (
+                      <LuEye size={18} className="sm:w-5 sm:h-5" />
+                    ) : (
+                      <LuEyeClosed size={18} className="sm:w-5 sm:h-5" />
+                    )}
+                  </button>
                 </div>
               </div>
-              <div className="flex justify-end gap-5 mt-5 px-5">
+              <div className="flex justify-end gap-3 sm:gap-4 md:gap-5 mt-3 sm:mt-4 md:mt-5 px-2 sm:px-3 md:px-4 lg:px-5">
                 <p
-                  className="text-white hover:text-orange-500 cursor-pointer"
+                  className="text-white hover:text-orange-500 cursor-pointer text-xs sm:text-sm md:text-base transition-colors"
                   onClick={() => setIsModal(true)}
                 >
                   Forgot your password
                 </p>
               </div>
-              <div className="w-[384px] h-[54px] rounded-full mt-10">
-                <Button className="shadow-xl/10 w-[384px] h-[54px] rounded-full">
+              <div className="w-full h-12 sm:h-14 md:h-[54px] rounded-full mt-6 sm:mt-8 md:mt-10">
+                <Button className="shadow-xl/10 w-full h-full rounded-full text-sm sm:text-base font-medium">
                   Join For Free Now
                 </Button>
               </div>
             </form>
-            <div>
-              <p className="text-white">
+            <div className="mt-4 sm:mt-6">
+              <p className="text-white text-xs sm:text-sm md:text-base text-center">
                 Don't have an account?{" "}
-                <Link to="/signup" className="text-orange-500">
+                <Link
+                  to="/signup"
+                  className="text-orange-500 hover:text-orange-400 transition-colors font-medium"
+                >
                   Sign-Up
                 </Link>
               </p>
             </div>
-            <div className="flex items-center w-full gap-10 justify-center">
-              <div className="shadow-xl/50 flex justify-center items-center gap-5 h-[54px] rounded-full py-[15px] px-[24px] bg-orange/50 border border-white hover:border-orange-500 text-white">
-                <FcGoogle />
-                <span>Google</span>
-              </div>
-              <div className="shadow-xl/50 flex justify-center items-center gap-5 h-[54px] rounded-full py-[15px] px-[24px] bg-orange/50 border border-white hover:border-orange-500 text-white">
-                <FaFacebook className="text-blue-700" />
-                <span>Facebook</span>
-              </div>
+            <div className="flex items-center w-full max-w-xs sm:max-w-sm gap-4 sm:gap-6 justify-center mt-6 sm:mt-8">
+              <button className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 text-white text-xs sm:text-sm font-medium transition-colors min-w-0 flex-1">
+                <FcGoogle className="text-lg sm:text-xl flex-shrink-0" />
+                <span className="truncate">Google</span>
+              </button>
+              <button className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 text-white text-xs sm:text-sm font-medium transition-colors min-w-0 flex-1">
+                <FaFacebook className="text-blue-400 text-lg sm:text-xl flex-shrink-0" />
+                <span className="truncate">Facebook</span>
+              </button>
             </div>
           </div>
         </div>

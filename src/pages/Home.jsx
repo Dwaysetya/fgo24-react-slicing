@@ -56,7 +56,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="flex min-h-full">
+      <section className="flex h-auto">
         <div className=" bg-[#0F100D] w-full rounded-[48px] flex flex-col md:flex-row items-center justify-center min-h-full p-[60px] gap-[24px]">
           <div className="flex flex-col">
             <Chip className="flex w-full justify-center bg-[#FDECE3] rounded-full py-[13px] md:px-[24px] mb-10 md:w-[216px]">
@@ -89,7 +89,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="flex min-h-full w-full p-[60px]">
+      <section className="flex h-auto w-full p-[60px]">
         <div className="bg-[#FDECE3] flex flex-col w-full justify-center items-center py-[80px] px[244px] rounded-3xl gap-10 ">
           <h2 className="font-semibold text-md sm:text-3xl text-center md:text-left md:text-4xl lg:text-6xl text-black">
             Subscribe to Our Newsletter

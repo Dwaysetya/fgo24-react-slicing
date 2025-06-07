@@ -79,7 +79,7 @@ function BookTikets() {
 
   return (
     <div className="flex flex-col gap-10 w-full">
-      <div className="flex w-full justify-between items-center">
+      <div className="flex sm:flex-row flex-col gap-2 w-full justify-between items-center">
         <h1 className="font-semibold text-4xl">Book Tickets</h1>
         {isMovie && (
           <Button

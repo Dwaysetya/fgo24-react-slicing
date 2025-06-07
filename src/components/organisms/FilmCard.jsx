@@ -76,7 +76,7 @@ function FilmCard({ film }) {
       <div className="flex gap-2 justify-center items-center mt-2 z-20">
         {isGenre.slice(0, 2).map((item) => (
           <Chip
-            className="rounded-full p-2 bg-[#878786] md:py-[8px] md:px-[24px]"
+            className="rounded-full p-2 bg-[#878786]  md:py-[8px] md:px-[24px] text-xs sm:text-xl"
             textClassName="text-black"
           >
             {item.name.slice(0, 8)}
