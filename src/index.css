@@ -2,7 +2,7 @@
 
 @layer base {
   .main-container {
-    @apply w-full h-full bg-white text-black;
+    @apply w-full h-screen bg-white text-black;
   }
   .card-support {
     @apply bg-[#F3F3F3] flex flex-col gap-10 p-[40px] rounded-[16px];

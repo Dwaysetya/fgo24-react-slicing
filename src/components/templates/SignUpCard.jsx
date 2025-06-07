@@ -90,18 +90,24 @@ function SignUpCard() {
         className="w-full h-screen bg-cover bg-center flex flex-col gap-5 relative justify-center items-center"
         style={{ backgroundImage: `url(${image11})` }}
       >
-        <div className="w-full min-h-screen px-10 flex justify-center items-center rounded-tl-4xl rounded-br-4xl">
-          <div className=" flex flex-col gap-5 bg-black/80 w-[40%] py-20 justify-center items-center rounded-4xl">
-            <div className="flex justify-center w-[20%] items-center">
+        <div className="w-full min-h-auto px-4 sm:px-6 md:px-8 lg:px-10 flex justify-center items-center rounded-tl-4xl rounded-br-4xl">
+          <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 bg-black/80 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:w-[40%] py-8 sm:py-5 md:py-16 lg:py-5 px-6 sm:px-8 md:px-12 lg:px-16 justify-center items-center rounded-2xl sm:rounded-3xl md:rounded-4xl">
+            <div className="flex justify-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 items-center mb-2">
               <img
                 src={logoTick}
                 alt="logo"
-                className="flex justify-center items-center "
+                className="w-full object-contain"
               />
             </div>
-            <form onSubmit={handleSubmit(saveData)}>
-              <div className="flex flex-col gap-5">
-                <label className="text-white px-5 ">Email</label>
+            <form
+              onSubmit={handleSubmit(saveData)}
+              className="w-full space-y-4 sm:space-y-5"
+            >
+              {/* Email Field */}
+              <div className="w-full">
+                <label className="block text-white text-sm sm:text-base mb-2 px-1">
+                  Email
+                </label>
                 <input
                   id="email"
                   type="text"
@@ -109,15 +115,21 @@ function SignUpCard() {
                   required
                   {...register("email")}
                   autoComplete="off"
-                  className="regist-2"
+                  className="w-full px-4 py-3 sm:px-5 sm:py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
                 />
+                {errors.email && (
+                  <p className="text-yellow-400 text-xs sm:text-sm mt-1 px-1">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
-              {errors.email && (
-                <div className="text-yellow-600">{errors.email.message}</div>
-              )}
-              <div className="flex flex-col gap-5">
-                <label className="text-white px-5 mt-5">Password</label>
-                <div className="regist-2 flex justify-between ">
+
+              {/* Password Field */}
+              <div className="w-full">
+                <label className="block text-white text-sm sm:text-base mb-2 px-1">
+                  Password
+                </label>
+                <div className="relative w-full">
                   <input
                     id="password"
                     type={showPassword ? "text" : "password"}
@@ -125,22 +137,33 @@ function SignUpCard() {
                     required
                     autoComplete="off"
                     {...register("password")}
-                    className=" w-full outline-none"
+                    className="w-full px-4 py-3 sm:px-5 sm:py-4 pr-12 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
                   />
-
-                  <div onClick={() => setShowPassword(!showPassword)}>
-                    {showPassword ? <LuEye /> : <LuEyeClosed />}
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white transition-colors p-1"
+                  >
+                    {showPassword ? (
+                      <LuEye size={18} />
+                    ) : (
+                      <LuEyeClosed size={18} />
+                    )}
+                  </button>
                 </div>
                 {errors.password && (
-                  <div className="text-yellow-600">
+                  <p className="text-yellow-400 text-xs sm:text-sm mt-1 px-1">
                     {errors.password.message}
-                  </div>
+                  </p>
                 )}
               </div>
-              <div className="flex flex-col gap-5">
-                <label className="text-white px-5 mt-5">Confirm Password</label>
-                <div className="regist-2 flex focus:bg-transparent justify-between ">
+
+              {/* Confirm Password Field */}
+              <div className="w-full">
+                <label className="block text-white text-sm sm:text-base mb-2 px-1">
+                  Confirm Password
+                </label>
+                <div className="relative w-full">
                   <input
                     id="confirm"
                     type={showPassword ? "text" : "password"}
@@ -148,48 +171,70 @@ function SignUpCard() {
                     required
                     autoComplete="off"
                     {...register("confirmPassword")}
-                    className=" w-full outline-none"
+                    className="w-full px-4 py-3 sm:px-5 sm:py-4 pr-12 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
                   />
-                  <div onClick={() => setShowPassword(!showPassword)}>
-                    {showPassword ? <LuEye /> : <LuEyeClosed />}
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white transition-colors p-1"
+                  >
+                    {showPassword ? (
+                      <LuEye size={18} />
+                    ) : (
+                      <LuEyeClosed size={18} />
+                    )}
+                  </button>
                 </div>
                 {errors.confirmPassword && (
-                  <p style={{ color: "red" }}>
+                  <p className="text-red-400 text-xs sm:text-sm mt-1 px-1">
                     {errors.confirmPassword.message}
                   </p>
                 )}
               </div>
-              <div className="flex gap-5 mt-2 px-5">
-                <input type="checkbox" name="gree" required />
-                <label htmlFor="gree" className="text-white">
+
+              {/* Terms Checkbox */}
+              <div className="flex items-start gap-3 mt-4 px-1">
+                <input
+                  type="checkbox"
+                  name="gree"
+                  required
+                  className="mt-0.5 w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0"
+                />
+                <label
+                  htmlFor="gree"
+                  className="text-white text-xs sm:text-sm md:text-base leading-relaxed"
+                >
                   I agree to terms & conditions
                 </label>
               </div>
-              <div className="w-[384px] h-[54px] rounded-full mt-5">
-                <Button className="shadow-xl/10 w-[384px] h-[54px] rounded-full">
+
+              {/* Submit Button */}
+              <div className="w-full pt-2">
+                <Button className="w-full h-12 sm:h-14 rounded-full text-sm sm:text-base font-medium shadow-lg hover:shadow-xl transition-shadow">
                   Join For Free Now
                 </Button>
-                <p className="shadow-xl/10 rounded-full text-white mt-5 flex align-center justify-center">
+                <p className="text-white text-center mt-4 sm:mt-5 text-xs sm:text-sm md:text-base">
                   Already have an account?{" "}
                   <Link
                     to="/signin"
-                    className="text-orange-500 hover:text-white"
+                    className="text-orange-500 hover:text-orange-400 transition-colors font-medium"
                   >
                     Log in
                   </Link>
                 </p>
               </div>
             </form>
-            <div className="flex items-center w-full gap-10 justify-center mt-10">
-              <div className="regist-1">
-                <FcGoogle />
-                <span>Google</span>
-              </div>
-              <div className="regist-1">
-                <FaFacebook className="text-blue-700" />
-                <span>Facebook</span>
-              </div>
+
+            {/* Social Login */}
+            <div className="flex items-center w-full max-w-xs sm:max-w-sm gap-4 sm:gap-6 justify-center mt-6 sm:mt-8">
+              <button className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 text-white text-xs sm:text-sm font-medium transition-colors min-w-0 flex-1">
+                <FcGoogle className="text-lg sm:text-xl flex-shrink-0" />
+                <span className="truncate">Google</span>
+              </button>
+              <button className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 text-white text-xs sm:text-sm font-medium transition-colors min-w-0 flex-1">
+                <FaFacebook className="text-blue-400 text-lg sm:text-xl flex-shrink-0" />
+                <span className="truncate">Facebook</span>
+              </button>
             </div>
           </div>
         </div>
