@@ -1,8 +1,6 @@
 import React from "react";
 import Navbar from "../components/organisms/Navbar";
 import Chip from "../components/atoms/Chip";
-import { FaArrowAltCircleLeft } from "react-icons/fa";
-import { FaArrowAltCircleRight } from "react-icons/fa";
 import FilmList from "../components/templates/FilmList";
 import NavAction from "../components/molecules/NavAction";
 import SupportList from "../components/templates/SupportList";
@@ -27,44 +25,44 @@ const Home = () => {
         <Navbar />
       </header>
       {/* Hero or content section */}
-      <section className="flex flex-col items-center justify-center min-h-full py-[40px] px-[80px] gap-[24px]">
-        <Chip textClassName="font-black text-xl text-orange-500">
+      <section className="flex flex-col items-center justify-center min-h-full py-[40px] px-5 sm:px-[80px] gap-[24px]">
+        <Chip textClassName="font-black text-xs sm:text-md md:text-xl text-orange-500">
           MOVIE TICKET PURCHASES #1 IN INDONESIA
         </Chip>
         <div className="flex flex-col">
-          <h1 className="text-6xl font-medium text-center">
+          <h1 className="md:text-6xl text-md sm:text-2xl font-medium text-center ">
             Experience the Magic of Cinema:{" "}
             <span className="headline-4 text-orange-500 block">
               Book Your Tickets Today
             </span>{" "}
           </h1>
-          <p className="mt-2 text-[#333333] text-lg font-light text-center">
+          <p className="mt-2 text-[#333333] text-md md:text-lg sm:text-2xl font-light text-center">
             Sign up and get the ticket with a lot of discount
           </p>
         </div>
-        <div className="flex flex-col mt-20">
-          <div className="flex flex-row justify-between md:gap-10 lg:gap-90 ">
-            <FaArrowAltCircleLeft size={50} className="arrow" />
-            <h2 className="font-semibold text-4xl">Now Showing in Cinemas</h2>
-            <FaArrowAltCircleRight size={50} className="arrow" />
+        <div className="flex flex-col mt-0 sm:mt-10">
+          <div className="flex flex-row justify-center md:gap-10 lg:gap-90 py-10 sm:py-10 sm:p-5 ">
+            <h2 className="font-semibold text-md sm:text-2xl md:text-4xl">
+              Now Showing in Cinemas
+            </h2>
           </div>
           <div className="flex flex-col gap-5 justify-center items-center">
-            <div className="flex flex-col gap-5 space-x-4">
+            <div className="flex flex-col gap-5 space-x-4 ">
               <FilmList />
             </div>
           </div>
-          <div className="flex justify-center items-center mt-20">
+          <div className="flex justify-center items-center sm:mt-20">
             <NavAction buttons={navButtons} />
           </div>
         </div>
       </section>
       <section className="flex min-h-full">
-        <div className=" bg-[#0F100D] w-full rounded-[48px] flex flex-row items-center justify-center min-h-full p-[60px] gap-[24px]">
+        <div className=" bg-[#0F100D] w-full rounded-[48px] flex flex-col md:flex-row items-center justify-center min-h-full p-[60px] gap-[24px]">
           <div className="flex flex-col">
-            <Chip className="flex bg-[#FDECE3] rounded-full py-[13px] px-[24px] mb-10 w-[216px]">
+            <Chip className="flex w-full justify-center bg-[#FDECE3] rounded-full py-[13px] md:px-[24px] mb-10 md:w-[216px]">
               WHY CHOOSE US
             </Chip>
-            <h2 className="font-semibold text-6xl text-white md:text-3xl">
+            <h2 className="font-semibold md:text-6xl text-white text-center sm:text-left text-md sm:text-3xl">
               Unleashing the Ultimate Movie Experience
             </h2>
           </div>
@@ -73,27 +71,27 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="flex min-h-full w-full p-[60px] gap-10">
-        <div className="flex flex-col w-[70%]">
+      <section className="flex flex-col-reverse md:flex-row min-h-full w-full p-[60px] md:gap-10">
+        <div className="flex flex-col md:w-[70%]">
           <div className="h-[200%] flex gap-15">
             <FilmUpcomingList />
           </div>
         </div>
-        <div className="flex flex-col w-[30%]">
-          <Chip className="flex bg-[#FDECE3] rounded-full py-[13px] px-[24px] mb-10 w-[216px]">
+        <div className="flex w-full flex-col justify-center md:w-[30%]">
+          <Chip className="flex w-full justify-center bg-[#FDECE3] rounded-full py-[13px] px-[24px] mb-10 md:w-[216px]">
             UPCOMING MOVIES
           </Chip>
-          <h2 className="font-semibold text-6xl text-black">
+          <h2 className="font-semibold text-center mb-5 md:mb-0 md:text-left text-4xl md:text-6xl text-black">
             Exciting Movie Coming Soon
           </h2>
-          <div className="flex mt-52 justify-between">
+          <div className="flex md:mt-52 justify-center md:justify-between">
             <NavAction buttons={navButtons} />
           </div>
         </div>
       </section>
       <section className="flex min-h-full w-full p-[60px]">
         <div className="bg-[#FDECE3] flex flex-col w-full justify-center items-center py-[80px] px[244px] rounded-3xl gap-10 ">
-          <h2 className="font-semibold text-6xl text-black">
+          <h2 className="font-semibold text-md sm:text-3xl text-center md:text-left md:text-4xl lg:text-6xl text-black">
             Subscribe to Our Newsletter
           </h2>
           <div>

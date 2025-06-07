@@ -5,6 +5,7 @@ import Button from "../atoms/Button";
 
 function FilmList() {
   const [isMovies, setIsMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const LIMIT = 4;
   const OFFSET = (page - 1) * LIMIT;
@@ -16,53 +17,90 @@ function FilmList() {
 
   const fetchMovie = async () => {
     try {
+      setLoading(true);
       const result = await getMovies();
       console.log("data", result);
-      setIsMovies(result);
+      setIsMovies(result || []);
       console.log("daaaa", result);
     } catch (error) {
       console.log("Gagal mengambil data", error);
+      setIsMovies([]);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-[32px] mt-10">
-        {isMovies
-          .sort((a, b) => b.vote_average - a.vote_average)
-          .slice(OFFSET, LIMIT * page)
-          .map((film) => (
-            <div key={film.id}>
-              <FilmCard film={film} />
+    <div className="w-full max-w-[375px] sm:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] mx-auto px-4">
+      {loading ? (
+        <div className="flex justify-center items-center h-64">
+          <div className="text-lg">Loading...</div>
+        </div>
+      ) : (
+        <>
+          {/* Film Grid */}
+          <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-4 mb-8">
+            {/* Mobile horizontal scroll */}
+            <div className="flex overflow-x-auto gap-4 pb-4 sm:hidden">
+              {isMovies
+                .sort((a, b) => b.vote_average - a.vote_average)
+                .slice(OFFSET, OFFSET + LIMIT)
+                .map((film) => (
+                  <div key={film.id} className="flex-shrink-0 w-48">
+                    <FilmCard film={film} />
+                  </div>
+                ))}
             </div>
-          ))}
-      </div>
-      <div className="flex w-full items-center justify-center gap-5">
-        <Button
-          onClick={() => setPage(page - 1)}
-          disabled={page === 1}
-          className="button-hover"
-        >
-          Prev
-        </Button>
-        {Array.from({ length: TOTAL }).map((_, index) => (
-          <Button
-            disabled={page === index + 1}
-            className="button-hover"
-            onClick={() => setPage(page + 1)}
-          >
-            {index + 1}
-          </Button>
-        ))}
-        <Button
-          onClick={() => setPage(page + 1)}
-          disabled={page * LIMIT >= isMovies.length}
-          className="button-hover"
-        >
-          Next
-        </Button>
-      </div>
+
+            {/* Desktop grid */}
+            <div className="hidden sm:contents">
+              {isMovies
+                .sort((a, b) => b.vote_average - a.vote_average)
+                .slice(OFFSET, OFFSET + LIMIT)
+                .map((film) => (
+                  <div key={film.id} className="w-full">
+                    <FilmCard film={film} />
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          {/* Pagination */}
+          <div className="flex flex-wrap justify-center items-center gap-2 py-10 sm:py-6">
+            <Button
+              onClick={() => setPage(page - 1)}
+              disabled={page === 1}
+              className="button-hover px-3 py-2 text-sm"
+            >
+              Prev
+            </Button>
+
+            <div className="flex flex-wrap gap-1 mx-2">
+              {Array.from({ length: TOTAL }).map((_, index) => (
+                <Button
+                  key={index}
+                  onClick={() => setPage(index + 1)}
+                  className={`px-3 py-2 text-sm ${
+                    page === index + 1 ? "active" : ""
+                  }`}
+                >
+                  {index + 1}
+                </Button>
+              ))}
+            </div>
+
+            <Button
+              onClick={() => setPage(page + 1)}
+              disabled={page * LIMIT >= isMovies.length}
+              className="button-hover px-3 py-2 text-sm"
+            >
+              Next
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
+
 export default FilmList;

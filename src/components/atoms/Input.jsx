@@ -13,7 +13,7 @@ import React from "react";
  */
 function Input({ id, type = "text", label, value, ...props }) {
   const baseInputStyle =
-    "w-[384px] h-[54px] rounded-full py-[15px] px-[24px] bg-white border border-black hover:border-orange-500";
+    "w-full lg:w-[384px] lg:h-[54px] rounded-full py-[15px] px-[24px] bg-white border border-black hover:border-orange-500";
 
   // Untuk radio dan checkbox, tampilkan sebagai grup
   if (type === "radio" || type === "checkbox") {
