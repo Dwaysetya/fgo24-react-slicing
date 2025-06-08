@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import React, { useEffect } from "react";
 import { getMoviesDetails } from "../../services/apiClient";
+import { useEffect, useState } from "react";
 
 function HeroTickets() {
-  const [isMovie, setIsMovie] = React.useState();
-  const [isGenre, setIsGenre] = React.useState([]);
-  const [isCredits, setIsCredits] = React.useState([]);
-  const [isCast, setIsCast] = React.useState([]);
+  const [isMovie, setIsMovie] = useState();
+  const [isGenre, setIsGenre] = useState([]);
+  const [isCredits, setIsCredits] = useState([]);
+  const [isCast, setIsCast] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -38,7 +38,6 @@ function HeroTickets() {
       {isMovie && (
         <>
           <div className="flex flex-col">
-            {/* Hero Section */}
             <div
               className="w-full h-screen md:h-150 lg:h-120 bg-cover bg-center flex flex-col gap-5 relative rounded-[48px] md:rounded-[16px]"
               style={{
@@ -46,7 +45,6 @@ function HeroTickets() {
               }}
             >
               <div className="w-full h-full bg-black/50 md:bg-black/70 bg-cover bg-center flex flex-col gap-5 absolute rounded-[48px] md:rounded-[16px]">
-                {/* Desktop Layout */}
                 <div className="hidden md:block">
                   <div className="w-[296px] h-[444px] md:mt-100 lg:mt-40 ml-20 absolute">
                     <img
@@ -78,8 +76,6 @@ function HeroTickets() {
                     </div>
                   </div>
                 </div>
-
-                {/* Mobile Layout */}
                 <div className="md:hidden flex flex-col items-center justify-center h-full px-6 text-center">
                   <div className="w-[280px] h-[420px] mb-6">
                     <img
@@ -111,8 +107,6 @@ function HeroTickets() {
                 </div>
               </div>
             </div>
-
-            {/* Info Section */}
             <div className="flex flex-col md:flex-row">
               <div className="hidden md:block md:w-[70%] lg:w-[40%] 2xl:w-[30%]"></div>
               <div className="p-[20px] w-full flex gap-5 flex-col md:gap-6 md:w-[50%] lg:w-[50%] 2xl:w-[60%] md:flex-row">

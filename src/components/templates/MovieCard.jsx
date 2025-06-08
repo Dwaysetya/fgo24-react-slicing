@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { CiSearch } from "react-icons/ci";
 import { getMovies } from "../../services/apiClient";
-import FilmCard from "../organisms/FilmCard";
+import { useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 import Title from "../atoms/Title";
 import Button from "../atoms/Button";
-import { CiSearch } from "react-icons/ci";
-import { useSearchParams } from "react-router-dom";
+import FilmCard from "../organisms/FilmCard";
 
 const genreMap = {
   28: "Action",
@@ -16,11 +17,12 @@ const genreMap = {
 };
 
 function MovieCard() {
-  const [isMovies, setIsMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [activeGenre, setActiveGenre] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [tempSearch, setTempSearch] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [selected, setSelected] = useState("");
+  const [isMovies, setIsMovies] = useState([]);
 
   useEffect(() => {
     const query = searchParams.get("search") || "";
@@ -47,12 +49,9 @@ function MovieCard() {
     return matchGenre && matchSearch;
   });
 
-  const [selected, setSelected] = useState("");
-
   const handleChange = (e) => {
     setSelected(e.target.value);
   };
-  // Tambahkan fungsi sort berdasarkan pilihan user
   const sortedMovies = [...filteredMovies].sort((a, b) => {
     if (selected === "alphabet") {
       return a.title.localeCompare(b.title);
@@ -63,12 +62,11 @@ function MovieCard() {
     } else if (selected === "recommended") {
       return b.vote_average - a.vote_average;
     }
-    return 0; // default: no sorting
+    return 0;
   });
 
   return (
     <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 px-4 sm:px-6 md:px-8">
-      {/* Header with Title and Sort */}
       <div className="flex flex-col sm:flex-row sm:justify-between gap-4 sm:gap-0 items-start sm:items-center">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold">
           Now Showing
@@ -90,8 +88,6 @@ function MovieCard() {
           </select>
         </div>
       </div>
-
-      {/* Search Section */}
       <div className="flex flex-col gap-4 lg:hidden">
         <h2 className="text-lg font-medium">Find movie</h2>
         <div className="relative">
@@ -117,8 +113,6 @@ function MovieCard() {
           <CiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
         </div>
       </div>
-
-      {/* Filters Section */}
       <div className="flex flex-col gap-4 lg:hidden">
         <h2 className="text-lg font-medium">Filters</h2>
         <div className="grid grid-cols-2 gap-3">
@@ -136,8 +130,6 @@ function MovieCard() {
           ))}
         </div>
       </div>
-
-      {/* Desktop Search and Filters */}
       <div className="hidden lg:flex lg:justify-between gap-4">
         <div className="flex flex-col gap-3 w-[40%]">
           <Title>Find movie</Title>
@@ -182,8 +174,6 @@ function MovieCard() {
           </div>
         </div>
       </div>
-
-      {/* Movie List */}
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-[32px]">
         {sortedMovies.length > 0 ? (
           sortedMovies.map((film) => <FilmCard key={film.id} film={film} />)

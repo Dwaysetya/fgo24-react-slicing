@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import FilmUpcoming from "../organisms/FilmUpcoming";
 import { getMoviesUpcomming } from "../../services/apiClient";
-import Button from "../atoms/Button";
+import { useEffect, useState } from "react";
+
+import FilmUpcoming from "../organisms/FilmUpcoming";
 
 function FilmUpcomingList() {
   const [movies, setMovies] = useState([]);
@@ -34,7 +34,6 @@ function FilmUpcomingList() {
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
-      // Scroll to top of movies section when page changes
     }
   };
 
@@ -53,7 +52,6 @@ function FilmUpcomingList() {
     let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
     let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
 
-    // Adjust start page if we're near the end
     if (endPage - startPage < maxVisiblePages - 1) {
       startPage = Math.max(1, endPage - maxVisiblePages + 1);
     }
@@ -107,7 +105,6 @@ function FilmUpcomingList() {
 
   return (
     <div className="w-full flex flex-col justify-center items-center gap-10 px-4">
-      {/* Movies Horizontal Scroll */}
       <div className="w-full">
         <div className="overflow-x-auto pb-4">
           <div className=" grid grid-cols-4 sm:flex w-auto lg:gap-8 mt-10 min-w-max px-0">
@@ -120,10 +117,8 @@ function FilmUpcomingList() {
         </div>
       </div>
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex items-center justify-center gap-3 flex-wrap">
-          {/* Previous Button */}
           <button
             onClick={handlePrevious}
             disabled={currentPage === 1}
@@ -139,13 +134,10 @@ function FilmUpcomingList() {
           >
             Prev
           </button>
-
-          {/* Page Numbers */}
           <div className="flex items-center gap-2">
             {renderPaginationNumbers()}
           </div>
 
-          {/* Next Button */}
           <button
             onClick={handleNext}
             disabled={currentPage === totalPages}
@@ -164,7 +156,6 @@ function FilmUpcomingList() {
         </div>
       )}
 
-      {/* Page Info */}
       <div className="text-sm text-gray-500 text-center">
         Showing {startIndex + 1}-{Math.min(endIndex, movies.length)} of{" "}
         {movies.length} movies

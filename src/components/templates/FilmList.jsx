@@ -1,12 +1,14 @@
-import FilmCard from "../organisms/FilmCard";
 import { getMovies } from "../../services/apiClient";
 import { useState, useEffect } from "react";
+
+import FilmCard from "../organisms/FilmCard";
 import Button from "../atoms/Button";
 
 function FilmList() {
   const [isMovies, setIsMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
+
   const LIMIT = 4;
   const OFFSET = (page - 1) * LIMIT;
   const TOTAL = Math.ceil(isMovies.length / LIMIT);
@@ -38,9 +40,7 @@ function FilmList() {
         </div>
       ) : (
         <>
-          {/* Film Grid */}
           <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-4 mb-8">
-            {/* Mobile horizontal scroll */}
             <div className="flex overflow-x-auto gap-4 pb-4 sm:hidden">
               {isMovies
                 .sort((a, b) => b.vote_average - a.vote_average)
@@ -51,8 +51,6 @@ function FilmList() {
                   </div>
                 ))}
             </div>
-
-            {/* Desktop grid */}
             <div className="hidden sm:contents">
               {isMovies
                 .sort((a, b) => b.vote_average - a.vote_average)
@@ -64,8 +62,6 @@ function FilmList() {
                 ))}
             </div>
           </div>
-
-          {/* Pagination */}
           <div className="flex flex-wrap justify-center items-center gap-2 py-10 sm:py-6">
             <Button
               onClick={() => setPage(page - 1)}

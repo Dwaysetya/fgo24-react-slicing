@@ -39,16 +39,22 @@ function SignInCard() {
     if (index !== -1) {
       const user = decodedUsers[index];
 
-      const { id, email } = user;
+      const { id, email, role } = user;
 
       dispatch(loginUser({ id, email }));
 
       Swal.fire({
         title: "Login berhasil!",
         icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
       });
 
-      navigate("/");
+      if (role && role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     } else {
       Swal.fire({
         title: "Login gagal!",
@@ -94,7 +100,7 @@ function SignInCard() {
           </div>
         )}
         <div className="w-full min-h-screen px-4 sm:px-6 md:px-8 lg:px-10 flex justify-center items-center">
-          <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 justify-center items-center bg-black/80 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:w-[40%] py-8 sm:py-12 md:py-16 lg:py-20 px-6 sm:px-8 md:px-12 lg:px-0 rounded-2xl sm:rounded-3xl md:rounded-4xl">
+          <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 justify-center items-center bg-black/80 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:w-[40%] py-8 sm:py-12 md:py-16 lg:py-20 px-6 sm:px-8 md:px-12 rounded-2xl sm:rounded-3xl md:rounded-4xl">
             <div className="flex justify-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-[30%]">
               <img
                 src={logoTick}
@@ -116,11 +122,11 @@ function SignInCard() {
                   placeholder="Enter your email"
                   autoComplete="off"
                   {...register("email")}
-                  className="w-full px-4 py-3 sm:px-5 sm:py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
+                  className="w-full px-4 2xl:px-5 py-3 sm:px-5 sm:py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
                 />
               </div>
               <div className="w-full">
-                <label className="block text-white text-sm sm:text-base mb-2 px-1">
+                <label className="block text-white text-sm sm:text-base mb-2 px-5">
                   Password
                 </label>
                 <div className="relative w-full">

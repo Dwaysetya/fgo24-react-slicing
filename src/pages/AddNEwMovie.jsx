@@ -1,17 +1,17 @@
-import AdminPage from "../components/templates/AdminPage";
 import NavbarAdmin from "../components/organisms/NavbarAdmin";
+import AddMovieCard from "../components/templates/AddMovieCard";
 
-function Admin() {
+function AddNewMovie() {
   return (
     <main className="main-container">
       <header className="header-nav">
         <NavbarAdmin />
       </header>
       <section className="w-full p-20">
-        <AdminPage />
+        <AddMovieCard />
       </section>
     </main>
   );
 }
 
-export default Admin;
+export default AddNewMovie;

@@ -1,13 +1,11 @@
-import React from "react";
-import Navbar from "../components/organisms/Navbar";
 import Chip from "../components/atoms/Chip";
+import Navbar from "../components/organisms/Navbar";
+import Footer from "../components/organisms/Footer";
 import FilmList from "../components/templates/FilmList";
 import NavAction from "../components/molecules/NavAction";
 import SupportList from "../components/templates/SupportList";
-import FilmUpcomingList from "../components/templates/FilmUpcomingList";
-import ButtonUpcoming from "../components/organisms/ButtonUpcoming";
 import CardSubscribe from "../components/organisms/CardSubscribe";
-import Footer from "../components/organisms/Footer";
+import FilmUpcomingList from "../components/templates/FilmUpcomingList";
 
 const Home = () => {
   const navButtons = [
@@ -20,11 +18,9 @@ const Home = () => {
 
   return (
     <main className="main-container">
-      {/* Header section (Navbar) */}
       <header className="header-nav">
         <Navbar />
       </header>
-      {/* Hero or content section */}
       <section className="flex flex-col items-center justify-center min-h-full py-[40px] px-5 sm:px-[80px] gap-[24px]">
         <Chip textClassName="font-black text-xs sm:text-md md:text-xl text-orange-500">
           MOVIE TICKET PURCHASES #1 IN INDONESIA

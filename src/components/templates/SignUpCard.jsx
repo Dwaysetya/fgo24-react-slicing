@@ -103,7 +103,6 @@ function SignUpCard() {
               onSubmit={handleSubmit(saveData)}
               className="w-full space-y-4 sm:space-y-5"
             >
-              {/* Email Field */}
               <div className="w-full">
                 <label className="block text-white text-sm sm:text-base mb-2 px-1">
                   Email
@@ -124,7 +123,6 @@ function SignUpCard() {
                 )}
               </div>
 
-              {/* Password Field */}
               <div className="w-full">
                 <label className="block text-white text-sm sm:text-base mb-2 px-1">
                   Password
@@ -158,7 +156,6 @@ function SignUpCard() {
                 )}
               </div>
 
-              {/* Confirm Password Field */}
               <div className="w-full">
                 <label className="block text-white text-sm sm:text-base mb-2 px-1">
                   Confirm Password
@@ -192,7 +189,6 @@ function SignUpCard() {
                 )}
               </div>
 
-              {/* Terms Checkbox */}
               <div className="flex items-start gap-3 mt-4 px-1">
                 <input
                   type="checkbox"
@@ -208,7 +204,6 @@ function SignUpCard() {
                 </label>
               </div>
 
-              {/* Submit Button */}
               <div className="w-full pt-2">
                 <Button className="w-full h-12 sm:h-14 rounded-full text-sm sm:text-base font-medium shadow-lg hover:shadow-xl transition-shadow">
                   Join For Free Now
@@ -224,8 +219,6 @@ function SignUpCard() {
                 </p>
               </div>
             </form>
-
-            {/* Social Login */}
             <div className="flex items-center w-full max-w-xs sm:max-w-sm gap-4 sm:gap-6 justify-center mt-6 sm:mt-8">
               <button className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 text-white text-xs sm:text-sm font-medium transition-colors min-w-0 flex-1">
                 <FcGoogle className="text-lg sm:text-xl flex-shrink-0" />

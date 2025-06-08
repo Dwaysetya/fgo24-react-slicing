@@ -1,14 +1,13 @@
-import Button from "../atoms/Button";
+import { useNavigate } from "react-router-dom";
+import { addHistoryBook } from "../../redux/reducers/historyTransaksi";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import image from "../../assets/images/logo/google.svg";
+import Chip from "../atoms/Chip";
 import image1 from "../../assets/images/logo/dana.svg";
 import image2 from "../../assets/images/logo/paypal.svg";
 import image3 from "../../assets/images/logo/visa.svg";
-import { useEffect, useState } from "react";
-import Chip from "../atoms/Chip";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addHistoryBook } from "../../redux/reducers/historyTransaksi";
-import Skeleton from "react-loading-skeleton";
 
 function PaymentCard() {
   const transaksi = useSelector((state) => state.transaksi.historyTransaksi);
@@ -114,91 +113,92 @@ function PaymentCard() {
   const newTime = date.toTimeString().slice(0, 5);
   console.log(newTime);
 
-  if (!users) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-[#D6D8E7] p-10">
-        <div className="w-[50%] bg-white p-10 rounded shadow space-y-6">
-          <Skeleton height={30} width={200} />
-          {[...Array(5)].map((_, i) => (
-            <Skeleton key={i} height={50} />
-          ))}
-
-          <Skeleton height={30} width={150} />
-          <Skeleton height={45} />
-          <Skeleton height={45} />
-          <Skeleton height={45} />
-
-          <Skeleton height={30} width={150} className="mt-5" />
-          <div className="flex gap-4">
-            {[...Array(4)].map((_, i) => (
-              <Skeleton key={i} circle height={64} width={64} />
-            ))}
-          </div>
-
-          <Skeleton height={50} />
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <main className="w-full bg-[#D6D8E7]">
-      {/* MODAL */}
+    <main className="w-full bg-[#D6D8E7] min-h-screen">
       {isModal && (
-        <div className="flex w-full min-h-svw absolute z-99 justify-center items-center bg-black/90 m-0">
-          <div className="flex w-full h-screen flex-col gap-10 bg-black/10 justify-center items-center">
-            <div className="w-[573px] bg-white rounded-3xl p-10 flex flex-col justify-center items-center gap-7">
-              <h1 className="text-2xl font-bold">Payment Info</h1>
-              <div className="flex w-full items-center justify-between gap-5">
-                <p className="font-normal text-sm">No. Rekening Virtual :</p>
-                <p>{selectedCinema.rekening}</p>
-                <Chip>Copy</Chip>
+        <div className="flex w-full min-h-screen fixed inset-0 z-50 justify-center items-center bg-black/90 p-4">
+          <div className="flex w-full h-full flex-col gap-6 sm:gap-8 lg:gap-10 bg-black/10 justify-center items-center">
+            <div className="w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-center items-center gap-5 sm:gap-6 lg:gap-7 mx-4">
+              <h1 className="text-xl sm:text-2xl font-bold text-center">
+                Payment Info
+              </h1>
+
+              <div className="flex w-full items-center justify-between gap-3 sm:gap-5 text-sm sm:text-base">
+                <p className="font-normal text-xs sm:text-sm flex-shrink-0">
+                  No. Rekening Virtual :
+                </p>
+                <p className="text-center flex-1 break-all text-xs sm:text-base">
+                  {selectedCinema.rekening}
+                </p>
+                <Chip
+                  textClassName="text-xs sm:text-base text-orange-500"
+                  className="flex bg-[#FDECE3] rounded-full py-2 px-1 sm:py-[13px] sm:px-[24px]"
+                >
+                  Copy
+                </Chip>
               </div>
-              <div className="flex w-full items-center justify-between gap-5">
-                <p className="font-normal text-sm">Total Payment :</p>
-                <p className="text-[#1D4ED8] text-lg font-bold">
+
+              <div className="flex w-full items-center justify-between gap-3 sm:gap-5">
+                <p className="font-normal text-xs sm:text-sm">
+                  Total Payment :
+                </p>
+                <p className="text-[#1D4ED8] text-base sm:text-lg font-bold">
                   ${transaksi.resultSeat}
                 </p>
               </div>
-              <div className="flex w-full text-sm text-center">
-                Pay this payment bill before it is due,{" "}
+
+              <div className="flex w-full text-xs sm:text-sm text-center justify-center flex-wrap">
+                <span>Pay this payment bill before it is due,</span>
                 <span className="text-red-600 ml-1">{newTime}</span>
               </div>
-              <div className="w-full">
+
+              <div className="w-full space-y-3 sm:space-y-4">
                 <button
                   onClick={handleClick}
-                  className="w-full bg-[#E95102] text-white hover:bg-orange-800 p-5 rounded-4xl"
+                  className="w-full bg-[#E95102] text-white hover:bg-orange-800 p-4 sm:p-5 rounded-2xl sm:rounded-4xl text-sm sm:text-base font-medium transition-colors"
                 >
                   Check Payment
                 </button>
+                <button
+                  className="w-full bg-[#E95102] text-white hover:bg-orange-800 p-4 sm:p-5 rounded-2xl sm:rounded-4xl text-sm sm:text-base font-medium transition-colors"
+                  onClick={() => setIsModal(false)}
+                >
+                  Pay Later
+                </button>
               </div>
-              <button
-                className="w-full bg-[#E95102] text-white hover:bg-orange-800 p-5 rounded-4xl"
-                onClick={() => setIsModal(false)}
-              >
-                Pay Later
-              </button>
             </div>
           </div>
         </div>
       )}
+      <section className="w-full flex justify-center items-center relative px-4 py-6 sm:px-6 sm:py-8 lg:p-10">
+        <section className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-4xl flex flex-col justify-center gap-4 sm:gap-5 lg:gap-6 p-6 sm:p-8 lg:p-10 bg-white rounded-lg shadow-lg">
+          <h1 className="text-xl sm:text-2xl font-bold">Payment Info</h1>
 
-      {/* FORM */}
-      <section className="w-full flex justify-center items-center relative p-10">
-        <section className="w-[50%] flex flex-col justify-center gap-5 p-10 bg-white">
-          <h1 className="text-2xl">Payment Info</h1>
-          {paymentCinema.map((item, index) => (
-            <div key={index} className="w-full shadow-md p-5">
-              <p className="font-normal text-sm text-[#8692A6]">{item.name}</p>
-              <p className="text-base font-normal">{item.value}</p>
-            </div>
-          ))}
+          <div className="space-y-3 sm:space-y-4">
+            {paymentCinema.map((item, index) => (
+              <div
+                key={index}
+                className="w-full shadow-md rounded-lg p-4 sm:p-5 bg-gray-50"
+              >
+                <p className="font-normal text-xs sm:text-sm text-[#8692A6] mb-1 sm:mb-2">
+                  {item.name}
+                </p>
+                <p className="text-sm sm:text-base font-normal text-gray-900 break-words">
+                  {item.value}
+                </p>
+              </div>
+            ))}
+          </div>
 
-          <h1 className="text-2xl font-bold mt-5">Personal Information</h1>
-          <form onSubmit={handleSubmit}>
-            {/* Fullname */}
-            <div className="flex flex-col gap-5">
-              <label className="text-black px-5 mt-5">Fullname</label>
+          <h1 className="text-xl sm:text-2xl font-bold mt-4 sm:mt-5">
+            Personal Information
+          </h1>
+
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+            <div className="flex flex-col gap-2 sm:gap-3">
+              <label className="text-gray-900 text-sm sm:text-base font-medium">
+                Full Name
+              </label>
               <input
                 name="name"
                 type="text"
@@ -207,13 +207,13 @@ function PaymentCard() {
                 readOnly={isUserAvailable}
                 onChange={handleChange}
                 required
-                className=" payment w-full p-3 outline-none"
+                className="payment w-full p-3 sm:p-4 outline-none border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-sm sm:text-base"
               />
             </div>
-
-            {/* Email */}
-            <div className="flex flex-col gap-5">
-              <label className="text-black px-5 mt-5">Email</label>
+            <div className="flex flex-col gap-2 sm:gap-3">
+              <label className="text-gray-900 text-sm sm:text-base font-medium">
+                Email
+              </label>
               <input
                 name="email"
                 type="email"
@@ -222,13 +222,13 @@ function PaymentCard() {
                 readOnly={isUserAvailable}
                 onChange={handleChange}
                 required
-                className=" payment w-full p-3 outline-none"
+                className="payment w-full p-3 sm:p-4 outline-none border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-sm sm:text-base"
               />
             </div>
-
-            {/* Phone */}
-            <div className="flex flex-col gap-5">
-              <label className="text-black px-5 mt-5">Phone Number</label>
+            <div className="flex flex-col gap-2 sm:gap-3">
+              <label className="text-gray-900 text-sm sm:text-base font-medium">
+                Phone Number
+              </label>
               <input
                 name="phone"
                 type="text"
@@ -237,57 +237,62 @@ function PaymentCard() {
                 readOnly={isUserAvailable}
                 onChange={handleChange}
                 required
-                className="payment  w-full p-3 outline-none"
+                className="payment w-full p-3 sm:p-4 outline-none border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-sm sm:text-base"
               />
             </div>
-
-            {/* Payment Method */}
-            <div className="p-5">
-              <h1 className="text-2xl font-bold">Payment Method</h1>
-            </div>
-            <div className="flex w-full justify-center gap-7 p-4">
-              {cinemaLogos.map((item) => (
-                <label key={item.id}>
-                  <input
-                    type="radio"
-                    name="cinema"
-                    value={item.id}
-                    checked={selectedCinema.nameRek === item.id}
-                    onChange={() =>
-                      setSelectedCinema({
-                        nameRek: item.id,
-                        rekening: item.rek,
-                      })
-                    }
-                    className="hidden"
-                  />
-                  <div
-                    className={`w-16 h-16 p-2 cursor-pointer rounded-full border-2 transition-all
-                      ${
-                        selectedCinema.nameRek === item.id
-                          ? "border-blue-600"
-                          : "border-gray-300"
+            <div className="pt-4 sm:pt-5">
+              <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
+                Payment Method
+              </h1>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 justify-items-center">
+                {cinemaLogos.map((item) => (
+                  <label key={item.id} className="cursor-pointer">
+                    <input
+                      type="radio"
+                      name="cinema"
+                      value={item.id}
+                      checked={selectedCinema.nameRek === item.id}
+                      onChange={() =>
+                        setSelectedCinema({
+                          nameRek: item.id,
+                          rekening: item.rek,
+                        })
                       }
-                      hover:shadow-lg flex items-center justify-center`}
-                  >
-                    <img src={item.image} alt={item.id} className="w-10 h-10" />
-                  </div>
-                </label>
-              ))}
+                      className="hidden"
+                    />
+                    <div
+                      className={`w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 p-3 sm:p-4 cursor-pointer rounded-2xl border-2 transition-all duration-200
+                        ${
+                          selectedCinema.nameRek === item.id
+                            ? "border-blue-600 bg-blue-50 shadow-lg scale-105"
+                            : "border-gray-300 bg-white hover:border-gray-400"
+                        }
+                        hover:shadow-lg flex items-center justify-center`}
+                    >
+                      <img
+                        src={item.image}
+                        alt={item.id}
+                        className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 object-contain"
+                      />
+                    </div>
+                    <p className="text-xs sm:text-sm text-center mt-2 font-medium text-gray-700">
+                      {item.id}
+                    </p>
+                  </label>
+                ))}
+              </div>
             </div>
-
-            {/* Submit */}
-            <div className="w-full flex justify-center items-centers mt-5">
+            <div className="w-full flex justify-center items-center pt-4 sm:pt-6">
               <button
                 type="submit"
-                className={`w-full p-5 rounded-4xl text-white ${
+                className={`w-full p-4 sm:p-5 rounded-2xl sm:rounded-4xl text-white font-medium text-sm sm:text-base transition-all duration-200 ${
                   isValid
-                    ? "bg-[#E95102] hover:bg-orange-800"
+                    ? "bg-[#E95102] hover:bg-orange-800 hover:shadow-lg"
                     : "bg-gray-400 cursor-not-allowed"
                 }`}
                 disabled={!isValid}
               >
-                Pay your order
+                Pay Your Order
               </button>
             </div>
           </form>

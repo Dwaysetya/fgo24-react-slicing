@@ -34,7 +34,7 @@ function CustomCheckbox({ selectedCinema, onSelectCinema }) {
     { id: "ebu", src: logoEbu },
     { id: "hiflix", src: logohiflix },
     { id: "cineone", src: logocineone },
-    { id: "ebu-2", src: logoEbu }, // ID unik
+    { id: "ebu-2", src: logoEbu },
   ];
 
   return (

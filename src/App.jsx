@@ -17,6 +17,7 @@ import ProfilPage from "./pages/ProfilPage";
 import AccountSetting from "./components/templates/AccountSetting";
 import Admin from "./pages/Admin";
 import AdminList from "./pages/AdminList";
+import AddNewMovie from "./pages/AddNEwMovie";
 
 function App() {
   const router = createBrowserRouter([
@@ -59,6 +60,10 @@ function App() {
     {
       path: "/adminlist",
       element: <AdminList />,
+    },
+    {
+      path: "/addmovie",
+      element: <AddNewMovie />,
     },
     {
       path: "/profil",

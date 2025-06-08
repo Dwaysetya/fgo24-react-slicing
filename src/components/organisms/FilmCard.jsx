@@ -1,20 +1,12 @@
-import Image from "../atoms/Image";
-import Title from "../atoms/Title";
-import Text from "../atoms/Text";
-import Chip from "../atoms/Chip";
-import Button from "../atoms/Button";
+import { getMoviesDetails } from "../../services/apiClient";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getMoviesDetails } from "../../services/apiClient";
 
-// const genreMap = {
-//   28: "Action",
-//   12: "Adventure",
-//   35: "Comedy",
-//   27: "Horror",
-//   53: "Thriller",
-//   878: "Sci-Fi",
-// };
+import Text from "../atoms/Text";
+import Chip from "../atoms/Chip";
+import Title from "../atoms/Title";
+import Image from "../atoms/Image";
+import Button from "../atoms/Button";
 
 function FilmCard({ film }) {
   const navigate = useNavigate();

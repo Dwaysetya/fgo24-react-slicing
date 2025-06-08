@@ -7,6 +7,7 @@ import Navbar from "../components/organisms/Navbar";
 import NavMenu from "../components/molecules/NavMenu";
 import { editData } from "../redux/reducers/users";
 import { loginUser } from "../redux/reducers/auth";
+import Button from "../components/atoms/Button";
 
 function ProfilPage() {
   const currentUser = useSelector((state) => state.auth.currentUser);
@@ -20,7 +21,7 @@ function ProfilPage() {
   };
   const navLinks = [
     { label: "Account Setting", to: "/profil/setting" },
-    { label: "Order Historry", to: "/profil/history" },
+    { label: "Order History", to: "/profil/history" },
   ];
   const profileImage = image.find((item) => item.id === currentUser.id)?.image;
 
@@ -29,32 +30,29 @@ function ProfilPage() {
       <header className="header-nav">
         <Navbar />
       </header>
-      <section className="w-full min-h-screen bg-gray-100 p-6 flex justify-center">
-        <div className=" w-full flex gap-15 justify-center">
-          {/* Left Sidebar: User Info and Loyalty Points */}
-          <div className="w-1/5 flex flex-col gap-6">
-            {/* User Info */}
-
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
+      <section className="w-full min-h-screen bg-gray-100 p-3 sm:p-4 md:p-6 flex justify-center">
+        <div className="w-full max-w-7xl flex flex-col lg:flex-row lg:gap-15 lg:justify-center">
+          <div className="w-full lg:w-1/5 flex flex-col gap-4 md:gap-6 mb-6 lg:mb-0">
+            <div className="bg-white rounded-2xl p-4 md:p-6 shadow-sm">
               <div className="flex flex-col items-center">
                 <div className="relative group">
                   {profileImage ? (
                     <img
                       src={profileImage}
                       alt="Profile"
-                      className="w-20 h-20 rounded-full mb-4 object-cover"
+                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 object-cover"
                     />
                   ) : (
                     <img
                       src="https://randomuser.me/api/portraits/men/32.jpg"
                       alt="User Avatar"
-                      className="w-20 h-20 rounded-full mb-4 object-cover"
+                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 object-cover"
                     />
                   )}
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 w-20 h-20 rounded-full mb-4">
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4">
                     <label
                       htmlFor="fileUpload"
-                      className="bg-transparent border-1 text-white hover:bg-transparent hover:text-orange-500 hover:border hover:border-orange-500 rounded-full px-1"
+                      className="bg-transparent border-1 text-white hover:bg-transparent hover:text-orange-500 hover:border hover:border-orange-500 rounded-full px-1 text-xs sm:text-sm"
                     >
                       Edit Foto
                     </label>
@@ -75,17 +73,12 @@ function ProfilPage() {
 
                             if (originalUser) {
                               const updatedUser = {
-                                ...originalUser, // data yang lengkap, termasuk password terenkripsi
+                                ...originalUser,
                                 image: base64Image,
                               };
 
-                              // Update image di state profile
                               dispatch(setProfileImage(base64Image));
-
-                              // Update image di Redux users
                               dispatch(editData(updatedUser));
-
-                              // Update user yang sedang login (auth)
                               dispatch(loginUser(updatedUser));
                             }
                           };
@@ -97,7 +90,7 @@ function ProfilPage() {
                   </div>
                 </div>
 
-                <h2 className="text-lg font-semibold text-gray-800">
+                <h2 className="text-base sm:text-lg font-semibold text-gray-800 text-center">
                   {currentUser.name
                     ? currentUser.name
                     : getDisplayName(currentUser.email)}
@@ -105,17 +98,15 @@ function ProfilPage() {
                 <p className="text-sm text-gray-500">{user.role}</p>
               </div>
             </div>
-
-            {/* Loyalty Points */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-800">
+            <div className="bg-white rounded-2xl p-4 md:p-6 shadow-sm">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-800">
                 Loyalty Points
               </h3>
               <div className="relative mt-4">
-                <div className="bg-orange-600 text-white rounded-2xl p-4 flex items-center gap-3">
+                <div className="bg-orange-600 text-white rounded-2xl p-3 sm:p-4 flex items-center gap-3">
                   <div className="bg-orange-500 rounded-full p-2">
                     <svg
-                      className="w-6 h-6 text-white"
+                      className="w-5 h-5 sm:w-6 sm:h-6 text-white"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -123,10 +114,14 @@ function ProfilPage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-lg font-semibold">Moviegoers</p>
-                    <p className="text-2xl font-bold">
+                    <p className="text-base sm:text-lg font-semibold">
+                      Moviegoers
+                    </p>
+                    <p className="text-xl sm:text-2xl font-bold">
                       {user.points}{" "}
-                      <span className="text-sm font-normal">points</span>
+                      <span className="text-xs sm:text-sm font-normal">
+                        points
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -144,15 +139,21 @@ function ProfilPage() {
                   }}
                 ></div>
               </div>
+              <div className="mt-5 flex lg:hidden">
+                <Button className="w-full" type="submit">
+                  Edit Profile
+                </Button>
+              </div>
             </div>
           </div>
-
-          {/* Right Section: Navigation and Order History */}
-          <div className="w-1/2 flex flex-col gap-6">
-            {/* Navigation Tabs */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm flex gap-10 items-center">
+          <div className="w-full lg:w-1/2 flex flex-col gap-4 md:gap-6">
+            <div className="hidden lg:flex bg-white rounded-2xl p-6 shadow-sm gap-10 items-center">
               <NavMenu links={navLinks} textColor="text-black" />
             </div>
+            <div className="flex lg:hidden bg-white rounded-2xl p-4 shadow-sm">
+              <NavMenu links={navLinks} textColor="text-black" />
+            </div>
+
             <Outlet />
           </div>
         </div>

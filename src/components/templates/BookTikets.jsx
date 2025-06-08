@@ -1,19 +1,19 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { setHistorytransaksi } from "../../redux/reducers/historyTransaksi";
 import { useEffect, useState } from "react";
-import Button from "../atoms/Button";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import Swal from "sweetalert2";
+import Button from "../atoms/Button";
 import SelectTikets from "./SelectTikets";
 import CustomCheckbox from "./CustomCheckbox";
-import { setHistorytransaksi } from "../../redux/reducers/historyTransaksi";
 
 function BookTikets() {
-  const [isMovie, setIsMovie] = useState();
-  const { id } = useParams();
-  const navigate = useNavigate();
   const currentUser = useSelector((state) => state.auth.currentUser);
-  // const book = useSelector((state) => state.transaksi.hostoryTransaksi);
+  const [isMovie, setIsMovie] = useState();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { id } = useParams();
   const [formData, setFormData] = useState({
     date: "",
     time: "",
@@ -61,8 +61,6 @@ function BookTikets() {
       });
       return;
     }
-
-    // Validasi semua field harus terisi
     const { date, time, location, cinema } = formData;
     if (!date || !time || !location || !cinema) {
       Swal.fire({
@@ -91,7 +89,6 @@ function BookTikets() {
           </Button>
         )}
       </div>
-      {/* Ini bagian SelectTikets */}
       <SelectTikets formData={formData} onChange={handleChange} />
       <CustomCheckbox
         selectedCinema={formData.cinema}

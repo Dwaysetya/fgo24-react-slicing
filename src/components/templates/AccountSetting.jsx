@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
-import { LuEye, LuEyeClosed } from "react-icons/lu";
-import Button from "../atoms/Button";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
 import { editData } from "../../redux/reducers/users";
 import { loginUser } from "../../redux/reducers/auth";
-import Swal from "sweetalert2";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { LuEye, LuEyeClosed } from "react-icons/lu";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-// Validasi schema dengan Yup
+import * as yup from "yup";
+import Swal from "sweetalert2";
+import Button from "../atoms/Button";
 
 const schema = yup.object().shape({
   name: yup.string().optional(),
@@ -21,7 +20,7 @@ const schema = yup.object().shape({
   phone: yup.string().optional(),
   password: yup.string().optional(),
   newpassword: yup.string().when("password", {
-    is: (val) => val && val.length > 0, // Jika password lama diisi
+    is: (val) => val && val.length > 0,
     then: (schema) =>
       schema
         .required("Password baru wajib diisi")
@@ -34,8 +33,8 @@ const schema = yup.object().shape({
 });
 
 const AccountSetting = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const userId = useSelector((state) => state.auth.currentUser?.id);
+  const [showPassword, setShowPassword] = useState(false);
   const users = useSelector((state) => state.users.data);
   const user = users.find((e) => e.id === userId);
   console.log(atob(users[0].password));
@@ -69,8 +68,6 @@ const AccountSetting = () => {
         text: "User tidak ditemukan.",
       });
     }
-
-    // Kalau password lama diisi, validasi dulu
     if (data.password?.trim()) {
       if (atob(user.password) !== data.password) {
         return Swal.fire({
@@ -116,7 +113,7 @@ const AccountSetting = () => {
         <h1 className="text-gray-500 border-b border-black pb-4">
           Details Information
         </h1>
-        <div className="flex gap-5">
+        <div className="flex sm:flex-row flex-col gap-5">
           <div className="flex flex-col w-full gap-2">
             <label>First Name</label>
             <input
@@ -142,7 +139,7 @@ const AccountSetting = () => {
             )}
           </div>
         </div>
-        <div className="flex gap-5">
+        <div className="flex sm:flex-row flex-col gap-5">
           <div className="flex flex-col w-full gap-2">
             <label>Email</label>
             <input
@@ -174,7 +171,7 @@ const AccountSetting = () => {
         <h1 className="text-gray-500 border-b border-black pb-4">
           Account and Privacy
         </h1>
-        <div className="flex gap-5">
+        <div className="flex sm:flex-row flex-col gap-5">
           <div className="flex flex-col w-full gap-2">
             <label>Old Password</label>
             <div className="flex items-center w-full rounded-full px-4 bg-orange/50 border border-gray-500 hover:border-orange-500">

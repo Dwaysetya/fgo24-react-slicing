@@ -1,6 +1,7 @@
 import { X, Menu } from "lucide-react";
 import { useState } from "react";
 import { BiLogOut } from "react-icons/bi";
+import { FaUserCircle } from "react-icons/fa";
 import { logoutUser } from "../../redux/reducers/auth";
 import { getDisplayName } from "../../script/Function";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,7 +12,7 @@ import Logo from "../atoms/Logo";
 import NavMenu from "../molecules/NavMenu";
 import NavAction from "../molecules/NavAction";
 
-const Navbar = () => {
+const NavbarAdmin = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const users = useSelector((state) => state.users.data);
@@ -19,8 +20,8 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const navLinks = [
-    { label: "HOME", to: "/" },
-    { label: "MOVIE", to: "/movie" },
+    { label: "Dashboard", to: "/admin" },
+    { label: "MOVIE", to: "/adminlist" },
   ];
 
   const navButtons = [
@@ -130,6 +131,7 @@ const Navbar = () => {
             ))}
           </nav>
         </div>
+
         <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200">
           {currentUser ? (
             <div className="space-y-4">
@@ -196,6 +198,7 @@ const Navbar = () => {
           <div className="flex sm:flex-shrink-0">
             <Logo size="small" />
           </div>
+
           <div className="hidden md:flex flex-1 justify-center">
             <NavMenu links={navLinks} />
           </div>
@@ -226,4 +229,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarAdmin;

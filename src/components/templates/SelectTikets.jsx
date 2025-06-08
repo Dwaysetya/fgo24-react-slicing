@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import "dayjs/locale/id"; // untuk Indonesia
+import "dayjs/locale/id";
 dayjs.locale("id");
 
 function SelectTikets({ formData = {}, onChange }) {
