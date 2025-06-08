@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
 import { getDisplayName } from "../script/Function";
 import { setProfileImage } from "../redux/reducers/profile";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,11 +44,7 @@ function ProfilPage() {
                       className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 object-cover"
                     />
                   ) : (
-                    <img
-                      src="https://randomuser.me/api/portraits/men/32.jpg"
-                      alt="User Avatar"
-                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4 object-cover"
-                    />
+                    <FaUserCircle size={44} color="#888" />
                   )}
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4">
                     <label

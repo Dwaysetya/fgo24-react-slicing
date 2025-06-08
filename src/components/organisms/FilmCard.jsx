@@ -42,7 +42,7 @@ function FilmCard({ film }) {
         <Image
           src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
           alt={film.title}
-          className="w-full h-auto rounded-2xl object-cover "
+          className="w-[90%] h-auto rounded-2xl object-cover "
         />
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 rounded-2xl">
           <div className="flex flex-col gap-4">

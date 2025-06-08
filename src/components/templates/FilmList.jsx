@@ -41,7 +41,6 @@ function FilmList() {
       ) : (
         <>
           <div className="mb-8">
-            {/* Mobile layout */}
             <div className="flex overflow-x-auto gap-4 pb-4 sm:hidden">
               {isMovies
                 .sort((a, b) => b.vote_average - a.vote_average)
@@ -52,16 +51,12 @@ function FilmList() {
                   </div>
                 ))}
             </div>
-
-            {/* Desktop layout */}
             <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {isMovies
                 .sort((a, b) => b.vote_average - a.vote_average)
                 .slice(OFFSET, OFFSET + LIMIT)
                 .map((film) => (
-                  <div key={film.id}>
-                    <FilmCard film={film} />
-                  </div>
+                  <FilmCard film={film} key={film.id} />
                 ))}
             </div>
           </div>
