@@ -11,7 +11,6 @@ import hiflix from "../../assets/images/orderpage/hiflix.svg";
 function OrderCard() {
   const transaksi = useSelector((state) => state.transaksi.historyTransaksi);
   const historyBook = useSelector((state) => state.transaksi.historyBook);
-  const display = cinema.find((item) => item.id === transaksi.cinema);
   const usedSeats = historyBook.flatMap((item) => item.seat);
 
   const [isGenre, setIsGenre] = useState([]);
@@ -33,6 +32,7 @@ function OrderCard() {
     { id: "hiflix", src: hiflix },
     { id: "cineone", src: order },
   ];
+  const display = cinema.find((item) => item.id === transaksi.cinema);
 
   const orderCinema = [
     {
