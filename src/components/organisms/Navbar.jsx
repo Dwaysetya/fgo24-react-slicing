@@ -1,6 +1,7 @@
 import { X, Menu } from "lucide-react";
 import { useState } from "react";
 import { BiLogOut } from "react-icons/bi";
+import { FaUserCircle } from "react-icons/fa";
 import { logoutUser } from "../../redux/reducers/auth";
 import { getDisplayName } from "../../script/Function";
 import { Link, useNavigate } from "react-router-dom";
