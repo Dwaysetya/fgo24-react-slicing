@@ -4,6 +4,7 @@ import { setHistorytransaksi } from "../../redux/reducers/historyTransaksi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+
 import ebu from "../../assets/images/orderpage/ebu.svg";
 import order from "../../assets/images/orderpage/order.svg";
 import hiflix from "../../assets/images/orderpage/hiflix.svg";
@@ -16,6 +17,7 @@ function OrderCard() {
   const [isGenre, setIsGenre] = useState([]);
   const [isMovie, setIsMovie] = useState();
   const [isSeat, setIsSeat] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -116,19 +118,25 @@ function OrderCard() {
     }
   }
 
-  function handleSubmit() {
-    const genres = isGenre.map((item) => item.name);
+  function handleSubmit(e) {
+    e.preventDefault(); // Hindari reload form
 
-    dispatch(
-      setHistorytransaksi({
-        resultSeat: isSeat.length * 10,
-        seat: isSeat,
-        genre: genres,
-        title: isMovie.title,
-        poster: isMovie.backdrop_path,
-      })
-    );
-    navigate("/payment");
+    const genres = isGenre.map((item) => item.name);
+    setIsLoading(true); // Nyalakan loading
+
+    setTimeout(() => {
+      dispatch(
+        setHistorytransaksi({
+          resultSeat: isSeat.length * 10,
+          seat: isSeat,
+          genre: genres,
+          title: isMovie.title,
+          poster: isMovie.backdrop_path,
+        })
+      );
+      setIsLoading(false); // Matikan loading
+      navigate("/payment");
+    }, 1000); // Simulasi async delay 1 detik
   }
 
   return (
@@ -226,13 +234,7 @@ function OrderCard() {
                   </div>
                 </div>
               </div>
-
-              <div className="w-full text-center lg:text-left">
-                <h1 className="font-semibold text-base sm:text-lg">
-                  Seating key
-                </h1>
-              </div>
-              <div className="w-full justify-center lg:justify-start items-center flex flex-wrap gap-4 sm:gap-6 lg:gap-10">
+              <div className="w-full justify-center lg:justify-center items-center flex flex-wrap gap-4 sm:gap-6 lg:gap-10">
                 <div className="flex items-center gap-2">
                   <div className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px] lg:w-[26px] lg:h-[26px] bg-gray-200"></div>
                   <h1 className="text-xs sm:text-sm font-semibold">
@@ -287,11 +289,14 @@ function OrderCard() {
 
               <div className="w-full flex justify-center items-center">
                 <button
-                  className="bg-[#E95102] text-white border-transparent hover:bg-orange-800 w-full p-4 sm:p-5 rounded-lg text-sm sm:text-base font-semibold transition-colors duration-200"
+                  className={`bg-[#E95102] text-white border-transparent hover:bg-orange-800 w-full p-4 sm:p-5 rounded-lg text-sm sm:text-base font-semibold transition-colors duration-200 ${
+                    isLoading ? "opacity-60 cursor-not-allowed" : ""
+                  }`}
                   type="submit"
                   onClick={handleSubmit}
+                  disabled={isLoading}
                 >
-                  Payment Now
+                  {isLoading ? "Processing..." : "Payment Now"}
                 </button>
               </div>
             </div>

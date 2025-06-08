@@ -40,7 +40,8 @@ function FilmList() {
         </div>
       ) : (
         <>
-          <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-4 mb-8">
+          <div className="mb-8">
+            {/* Mobile layout */}
             <div className="flex overflow-x-auto gap-4 pb-4 sm:hidden">
               {isMovies
                 .sort((a, b) => b.vote_average - a.vote_average)
@@ -51,17 +52,20 @@ function FilmList() {
                   </div>
                 ))}
             </div>
-            <div className="hidden sm:contents">
+
+            {/* Desktop layout */}
+            <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {isMovies
                 .sort((a, b) => b.vote_average - a.vote_average)
                 .slice(OFFSET, OFFSET + LIMIT)
                 .map((film) => (
-                  <div key={film.id} className="w-full">
+                  <div key={film.id}>
                     <FilmCard film={film} />
                   </div>
                 ))}
             </div>
           </div>
+
           <div className="flex flex-wrap justify-center items-center gap-2 py-10 sm:py-6">
             <Button
               onClick={() => setPage(page - 1)}
