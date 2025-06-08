@@ -34,11 +34,10 @@ function CustomCheckbox({ selectedCinema, onSelectCinema }) {
     { id: "ebu", src: logoEbu },
     { id: "hiflix", src: logohiflix },
     { id: "cineone", src: logocineone },
-    { id: "ebu-2", src: logoEbu },
   ];
 
   return (
-    <div className="w-full flex justify-center flex-col md:grid md:grid-cols-2 lg:grid-cols-4 gap-[32px]">
+    <div className="w-full flex justify-center flex-col md:grid md:grid-cols-2 lg:grid-cols-3 gap-[32px]">
       {cinemas.map((cinema) => (
         <Checkbox
           key={cinema.id}
