@@ -49,7 +49,7 @@ function ProfilPage() {
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-full mb-4">
                     <label
                       htmlFor="fileUpload"
-                      className="bg-transparent border-1 text-white hover:bg-transparent hover:text-orange-500 hover:border hover:border-orange-500 rounded-full px-1 text-xs sm:text-sm"
+                      className="bg-transparent border-1 text-white hover:bg-transparent hover:text-[#b20f15] hover:border hover:border-[#b20f15] rounded-full px-1 text-xs sm:text-sm"
                     >
                       Edit Foto
                     </label>

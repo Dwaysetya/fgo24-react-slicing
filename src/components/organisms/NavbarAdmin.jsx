@@ -61,7 +61,7 @@ const NavbarAdmin = () => {
           <img
             src={profileImage}
             alt="User Avatar"
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-gray-600 hover:border-orange-500 transition-colors"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-gray-600 hover:border-[#b20f15] transition-colors"
           />
         ) : (
           <FaUserCircle size={44} color="#888" />
@@ -120,7 +120,7 @@ const NavbarAdmin = () => {
                 <Link
                   to={link.to}
                   onClick={closeMobileMenu}
-                  className="text-lg text-gray-800 hover:text-orange-500 transition-colors font-medium"
+                  className="text-lg text-gray-800 hover:text-[#b20f15] transition-colors font-medium"
                 >
                   {link.label}
                 </Link>
@@ -151,7 +151,7 @@ const NavbarAdmin = () => {
                   <Link
                     to="/profil/setting"
                     onClick={closeMobileMenu}
-                    className="text-xs text-orange-500 hover:text-orange-600"
+                    className="text-xs text-[#b20f15] hover:text-orange-600"
                   >
                     View Profile
                   </Link>
@@ -173,7 +173,7 @@ const NavbarAdmin = () => {
               <Link
                 to="/signin"
                 onClick={closeMobileMenu}
-                className="block w-full py-3 px-6 border-2 border-black text-black font-medium rounded-full hover:bg-black hover:text-white transition-colors text-center"
+                className="block w-full py-3 px-6 border-2 border-[#9599a2] text-black font-medium rounded-full hover:bg-black hover:text-white transition-colors text-center"
               >
                 LOGIN
               </Link>

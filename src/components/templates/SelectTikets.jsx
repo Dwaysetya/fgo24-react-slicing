@@ -21,7 +21,7 @@ function SelectTikets({ formData = {}, onChange }) {
           requaried
           value={formData.date || ""}
           onChange={(e) => onChange("date", e.target.value)}
-          className="border-1 border-black px-5 py-2 text-black rounded-full"
+          className="border-1 border-[#9599a2] px-5 py-2 text-black rounded-full"
         >
           <option value="">Pilih tanggal</option>
           {dates.map((date) => (
@@ -39,7 +39,7 @@ function SelectTikets({ formData = {}, onChange }) {
           required
           value={formData.time}
           onChange={(e) => onChange("time", e.target.value)}
-          className="border-1 border-black px-5 py-2 text-black rounded-full"
+          className="border-1 border-[#9599a2] px-5 py-2 text-black rounded-full"
         >
           <option value="">Pilih waktu</option>
           <option value="12:05">12.05 PM</option>
@@ -57,7 +57,7 @@ function SelectTikets({ formData = {}, onChange }) {
           requaried
           value={formData.location}
           onChange={(e) => onChange("location", e.target.value)}
-          className="border-1 border-black px-5 py-2 text-black rounded-full"
+          className="border-1 border-[#9599a2] px-5 py-2 text-black rounded-full"
         >
           <option value="">Pilih lokasi</option>
           <option value="Yogyakarta">Jakarta</option>

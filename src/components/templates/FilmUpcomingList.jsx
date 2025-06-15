@@ -66,7 +66,7 @@ function FilmUpcomingList() {
             ${
               currentPage === i
                 ? "bg-[#b20f15] text-white shadow-lg"
-                : "bg-[#b20f15]/20 text-orange-500 hover:bg-[#b20f15] hover:text-white"
+                : "bg-[#b20f15]/20 text-[#b20f15] hover:bg-[#b20f15] hover:text-white"
             }
           `}
           aria-label={`Go to page ${i}`}

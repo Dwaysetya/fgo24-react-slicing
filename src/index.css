@@ -14,30 +14,36 @@
     @apply w-full h-[100px] flex items-center justify-between bg-[#b20f15] py-[24px] px-5 sm:px-[80px] shadow-md;
   }
   .section-1 {
-    @apply flex flex-col h-auto w-full px-10 lg:px-[60px] py-[20px] items-center;
+    @apply bg-[#0D1A2F] flex flex-col h-auto w-full px-10 lg:px-[60px] py-[20px] items-center;
   }
   .footer-1 {
     @apply flex h-auto w-full py-[40px] px-[60px] gap-10 bg-[#b20f15] justify-center items-center rounded-tr-4xl rounded-tl-4xl;
   }
+  .bg-orange-500{
+    @apply bg-[#b20f15];
+  }
+  .bg-white{
+    @apply bg-[#0D1A2F];
+  }
 }
 @layer utilities {
   .regist-1 {
-    @apply shadow-xl/50 flex justify-center items-center gap-5 h-[54px] rounded-full py-[15px] px-[24px] border border-white hover:border-orange-500 text-white;
+    @apply shadow-xl/50 flex justify-center items-center gap-5 h-[54px] rounded-full py-[15px] px-[24px] border border-white hover:border-[#b20f15] text-white;
   }
   .regist-2 {
-    @apply w-[384px] h-[54px] rounded-full py-[15px] px-[24px] border border-white hover:border-orange-500 text-white shadow-xl/50;
+    @apply w-[384px] h-[54px] rounded-full py-[15px] px-[24px] border border-white hover:border-[#b20f15] text-white shadow-xl/50;
   }
   .payment {
-    @apply w-full h-[54px] rounded-full py-[15px] px-[24px] border border-orange-500 hover:border-orange-500 text-black shadow-md;
+    @apply w-full h-[54px] rounded-full py-[15px] px-[24px] border border-[#b20f15] hover:border-[#b20f15] text-black shadow-md;
   }
   .div-buttons { 
     @apply bg-transparent border-1 text-white inline-flex items-center justify-center gap-2 h-12 px-5 rounded-full transition duration-300 font-semibold;
   }
   .div-buttons-1 { 
-    @apply bg-transparent border-1 text-orange-500 inline-flex items-center justify-center gap-2 h-12 px-5 rounded-full transition duration-300 font-semibold;
+    @apply bg-transparent border-1 text-[#b20f15] inline-flex items-center justify-center gap-2 h-12 px-5 rounded-full transition duration-300 font-semibold;
   }
   .button-hover{
-    @apply hover:bg-transparent hover:text-orange-500 hover:border-orange-500 hover:border-1;
+    @apply hover:bg-transparent hover:text-[#b20f15] hover:border-[#b20f15] hover:border-1;
   }
 }
 .logo--small {

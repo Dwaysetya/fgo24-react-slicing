@@ -84,7 +84,7 @@ function SignInCard() {
                     id="email"
                     type="text"
                     placeholder="Enter your email"
-                    className="w-full h-12 sm:h-14 md:h-[54px] rounded-full py-3 sm:py-4 md:py-[15px] px-4 sm:px-5 md:px-[24px] bg-orange/50 border border-white hover:border-orange-500 text-white shadow-xl/50 text-sm sm:text-base outline-none"
+                    className="w-full h-12 sm:h-14 md:h-[54px] rounded-full py-3 sm:py-4 md:py-[15px] px-4 sm:px-5 md:px-[24px] bg-orange/50 border border-white hover:border-[#b20f15] text-white shadow-xl/50 text-sm sm:text-base outline-none"
                   />
                 </div>
                 <div className="w-full h-12 sm:h-14 md:h-[54px] rounded-full mt-6 sm:mt-8 md:mt-10">
@@ -153,7 +153,7 @@ function SignInCard() {
               </div>
               <div className="flex justify-end gap-3 sm:gap-4 md:gap-5 mt-3 sm:mt-4 md:mt-5 px-2 sm:px-3 md:px-4 lg:px-5">
                 <p
-                  className="text-white hover:text-orange-500 cursor-pointer text-xs sm:text-sm md:text-base transition-colors"
+                  className="text-white hover:text-[#b20f15] cursor-pointer text-xs sm:text-sm md:text-base transition-colors"
                   onClick={() => setIsModal(true)}
                 >
                   Forgot your password
@@ -170,7 +170,7 @@ function SignInCard() {
                 Don't have an account?{" "}
                 <Link
                   to="/signup"
-                  className="text-orange-500 hover:text-orange-400 transition-colors font-medium"
+                  className="text-[#b20f15] hover:text-orange-400 transition-colors font-medium"
                 >
                   Sign-Up
                 </Link>

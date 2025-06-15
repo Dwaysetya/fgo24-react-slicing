@@ -78,7 +78,7 @@ function MovieCard() {
             id="category"
             value={selected}
             onChange={handleChange}
-            className="border-0 sm:border sm:border-gray-300 px-4 sm:px-4 md:px-5 py-3 sm:py-2 bg-[#E95102] text-white rounded-full text-sm sm:text-base w-auto font-medium min-w-[140px]"
+            className="border-0 sm:border sm:border-gray-300 px-4 sm:px-4 md:px-5 py-3 sm:py-2 bg-[#b20f15] text-white rounded-full text-sm sm:text-base w-auto font-medium min-w-[140px]"
           >
             <option value="">POPULAR</option>
             <option value="alphabet">Alphabet (A-Z)</option>

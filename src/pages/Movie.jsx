@@ -16,8 +16,8 @@ function Movie() {
       <section className="section-1">
         <MovieCard />
       </section>
-      <section className="flex h-auto w-full p-[60px]">
-        <div className="bg-[#FDECE3] flex flex-col w-full justify-center items-center py-[80px] px[244px] rounded-3xl gap-10 ">
+      <section className="section-1">
+        <div className="bg-[#9599a2] flex flex-col w-full justify-center items-center py-[80px] px[244px] rounded-3xl gap-10 ">
           <h2 className="font-semibold text-md sm:text-3xl text-center md:text-left md:text-4xl lg:text-6xl text-black">
             Subscribe to Our Newsletter
           </h2>

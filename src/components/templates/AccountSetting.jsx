@@ -110,7 +110,7 @@ const AccountSetting = () => {
   return (
     <form onSubmit={handleSubmit(handleEdit)} className="flex flex-col gap-10">
       <div className="bg-white rounded-2xl py-6 px-5 shadow-sm flex flex-col gap-5">
-        <h1 className="text-gray-500 border-b border-black pb-4">
+        <h1 className="text-gray-500 border-b border-[#9599a2] pb-4">
           Details Information
         </h1>
         <div className="flex sm:flex-row flex-col gap-5">
@@ -120,7 +120,7 @@ const AccountSetting = () => {
               {...register("name")}
               placeholder="Enter your first name"
               autoComplete="off"
-              className="w-full rounded-full py-2 px-4 bg-orange/50 border border-gray-500 hover:border-orange-500"
+              className="w-full rounded-full py-2 px-4 bg-orange/50 border border-gray-500 hover:border-[#b20f15]"
             />
             {errors.name && (
               <p className="text-red-500 text-sm">{errors.name.message}</p>
@@ -132,7 +132,7 @@ const AccountSetting = () => {
               {...register("lastname")}
               placeholder="Enter your last name"
               autoComplete="off"
-              className="w-full rounded-full py-2 px-4 bg-orange/50 border border-gray-500 hover:border-orange-500"
+              className="w-full rounded-full py-2 px-4 bg-orange/50 border border-gray-500 hover:border-[#b20f15]"
             />
             {errors.lastname && (
               <p className="text-red-500 text-sm">{errors.lastname.message}</p>
@@ -146,7 +146,7 @@ const AccountSetting = () => {
               {...register("email")}
               placeholder="Enter your email"
               autoComplete="off"
-              className="w-full rounded-full py-2 px-4 bg-orange/50 border border-gray-500 hover:border-orange-500"
+              className="w-full rounded-full py-2 px-4 bg-orange/50 border border-gray-500 hover:border-[#b20f15]"
             />
             {errors.email && (
               <p className="text-red-500 text-sm">{errors.email.message}</p>
@@ -158,7 +158,7 @@ const AccountSetting = () => {
               {...register("phone")}
               placeholder="Enter your phone number"
               autoComplete="off"
-              className="w-full rounded-full py-2 px-4 bg-orange/50 border border-gray-500 hover:border-orange-500"
+              className="w-full rounded-full py-2 px-4 bg-orange/50 border border-gray-500 hover:border-[#b20f15]"
             />
             {errors.phone && (
               <p className="text-red-500 text-sm">{errors.phone.message}</p>
@@ -168,13 +168,13 @@ const AccountSetting = () => {
       </div>
 
       <div className="bg-white rounded-2xl py-6 px-5 shadow-sm flex flex-col gap-5">
-        <h1 className="text-gray-500 border-b border-black pb-4">
+        <h1 className="text-gray-500 border-b border-[#9599a2] pb-4">
           Account and Privacy
         </h1>
         <div className="flex sm:flex-row flex-col gap-5">
           <div className="flex flex-col w-full gap-2">
             <label>Old Password</label>
-            <div className="flex items-center w-full rounded-full px-4 bg-orange/50 border border-gray-500 hover:border-orange-500">
+            <div className="flex items-center w-full rounded-full px-4 bg-orange/50 border border-gray-500 hover:border-[#b20f15]">
               <input
                 {...register("password")}
                 type={showPassword ? "text" : "password"}
@@ -195,7 +195,7 @@ const AccountSetting = () => {
           </div>
           <div className="flex flex-col w-full gap-2">
             <label>New Password</label>
-            <div className="flex items-center w-full rounded-full px-4 bg-orange/50 border border-gray-500 hover:border-orange-500">
+            <div className="flex items-center w-full rounded-full px-4 bg-orange/50 border border-gray-500 hover:border-[#b20f15]">
               <input
                 {...register("newpassword")}
                 type={showPassword ? "text" : "password"}

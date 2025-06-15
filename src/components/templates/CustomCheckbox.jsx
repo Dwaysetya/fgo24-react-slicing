@@ -9,10 +9,10 @@ function Checkbox({ imageSrc, checked, onChange }) {
         className={`relative rounded-[16px] border-2 flex items-center justify-center cursor-pointer transition-all duration-300
           ${
             checked
-              ? "border-black bg-orange-500"
+              ? "border-[#9599a2] bg-orange-500"
               : "bg-[#646464] border-gray-300"
           } 
-          hover:border-orange-500 hover:bg-orange-500 w-[296px] h-[153px]`}
+          hover:border-[#b20f15] hover:bg-orange-500 w-[296px] h-[153px]`}
       >
         <input
           type="radio"
@@ -22,7 +22,7 @@ function Checkbox({ imageSrc, checked, onChange }) {
         />
         <img src={imageSrc} alt="cinema" className="max-h-[80%]" />
         {!checked && (
-          <span className="absolute top-3 right-3 w-4 h-4 bg-white rounded-full border-2 border-black" />
+          <span className="absolute top-3 right-3 w-4 h-4 bg-white rounded-full border-2 border-[#9599a2]" />
         )}
       </label>
     </div>

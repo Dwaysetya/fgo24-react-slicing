@@ -131,8 +131,8 @@ function PaymentCard() {
                   {selectedCinema.rekening}
                 </p>
                 <Chip
-                  textClassName="text-xs sm:text-base text-orange-500"
-                  className="flex bg-[#FDECE3] rounded-full py-2 px-1 sm:py-[13px] sm:px-[24px]"
+                  textClassName="text-xs sm:text-base text-[#b20f15]"
+                  className="flex bg-[#b20f15] rounded-full py-2 px-1 sm:py-[13px] sm:px-[24px]"
                 >
                   Copy
                 </Chip>
@@ -155,12 +155,12 @@ function PaymentCard() {
               <div className="w-full space-y-3 sm:space-y-4">
                 <button
                   onClick={handleClick}
-                  className="w-full bg-[#E95102] text-white hover:bg-orange-800 p-4 sm:p-5 rounded-2xl sm:rounded-4xl text-sm sm:text-base font-medium transition-colors"
+                  className="w-full bg-[#b20f15] text-white hover:bg-orange-800 p-4 sm:p-5 rounded-2xl sm:rounded-4xl text-sm sm:text-base font-medium transition-colors"
                 >
                   Check Payment
                 </button>
                 <button
-                  className="w-full bg-[#E95102] text-white hover:bg-orange-800 p-4 sm:p-5 rounded-2xl sm:rounded-4xl text-sm sm:text-base font-medium transition-colors"
+                  className="w-full bg-[#b20f15] text-white hover:bg-orange-800 p-4 sm:p-5 rounded-2xl sm:rounded-4xl text-sm sm:text-base font-medium transition-colors"
                   onClick={() => setIsModal(false)}
                 >
                   Pay Later
@@ -287,7 +287,7 @@ function PaymentCard() {
                 type="submit"
                 className={`w-full p-4 sm:p-5 rounded-2xl sm:rounded-4xl text-white font-medium text-sm sm:text-base transition-all duration-200 ${
                   isValid
-                    ? "bg-[#E95102] hover:bg-orange-800 hover:shadow-lg"
+                    ? "bg-[#b20f15] hover:bg-orange-800 hover:shadow-lg"
                     : "bg-gray-400 cursor-not-allowed"
                 }`}
                 disabled={!isValid}

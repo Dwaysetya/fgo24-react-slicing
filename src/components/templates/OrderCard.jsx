@@ -289,7 +289,7 @@ function OrderCard() {
 
               <div className="w-full flex justify-center items-center">
                 <button
-                  className={`bg-[#E95102] text-white border-transparent hover:bg-orange-800 w-full p-4 sm:p-5 rounded-lg text-sm sm:text-base font-semibold transition-colors duration-200 ${
+                  className={`bg-[#b20f15] text-white border-transparent hover:bg-orange-800 w-full p-4 sm:p-5 rounded-lg text-sm sm:text-base font-semibold transition-colors duration-200 ${
                     isLoading ? "opacity-60 cursor-not-allowed" : ""
                   }`}
                   type="submit"

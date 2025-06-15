@@ -74,7 +74,7 @@ const Home = () => {
           </div>
         </div>
         <div className="flex w-full flex-col justify-center md:w-[30%]">
-          <Chip className="flex w-full justify-center bg-[#FDECE3] rounded-full py-[13px] px-[24px] mb-10 md:w-[216px]">
+          <Chip className="flex w-full justify-center bg-[#b20f15] rounded-full py-[13px] px-[24px] mb-10 md:w-[216px]">
             UPCOMING MOVIES
           </Chip>
           <h2 className="font-semibold text-center mb-5 md:mb-0 md:text-left text-4xl md:text-6xl text-[#9599a2]">

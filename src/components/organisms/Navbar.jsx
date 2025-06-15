@@ -61,7 +61,7 @@ const Navbar = () => {
           <img
             src={profileImage}
             alt="User Avatar"
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-gray-600 hover:border-orange-500 transition-colors"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-gray-600 hover:border-[#b20f15] transition-colors"
           />
         ) : (
           <FaUserCircle size={44} color="#888" />
@@ -150,7 +150,7 @@ const Navbar = () => {
                   <Link
                     to="/profil/setting"
                     onClick={closeMobileMenu}
-                    className="text-xs text-orange-500 hover:text-orange-600"
+                    className="text-xs text-[#b20f15] hover:text-orange-600"
                   >
                     View Profile
                   </Link>
@@ -172,7 +172,7 @@ const Navbar = () => {
               <Link
                 to="/signin"
                 onClick={closeMobileMenu}
-                className="block w-full py-3 px-6 border-2 border-black text-black font-medium rounded-full hover:bg-black hover:text-[#9599a2] transition-colors text-center"
+                className="block w-full py-3 px-6 border-2 border-[#9599a2] text-black font-medium rounded-full hover:bg-black hover:text-[#9599a2] transition-colors text-center"
               >
                 LOGIN
               </Link>

@@ -212,7 +212,7 @@ function SignUpCard() {
                   Already have an account?{" "}
                   <Link
                     to="/signin"
-                    className="text-orange-500 hover:text-orange-400 transition-colors font-medium"
+                    className="text-[#b20f15] hover:text-orange-400 transition-colors font-medium"
                   >
                     Log in
                   </Link>
