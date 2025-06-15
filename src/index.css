@@ -2,7 +2,7 @@
 
 @layer base {
   .main-container {
-    @apply w-full h-screen bg-white text-black;
+    @apply w-full h-screen bg-[#0D1A2F] text-[#9599a2];
   }
   .card-support {
     @apply bg-[#F3F3F3] flex flex-col gap-10 p-[40px] rounded-[16px];
@@ -11,13 +11,13 @@
     @apply text-black hover:text-[#E95102] transition-colors duration-300;
   }
   .header-nav {
-    @apply w-full h-[100px] flex items-center justify-between bg-black py-[24px] px-5 sm:px-[80px] shadow-md;
+    @apply w-full h-[100px] flex items-center justify-between bg-[#b20f15] py-[24px] px-5 sm:px-[80px] shadow-md;
   }
   .section-1 {
     @apply flex flex-col h-auto w-full px-10 lg:px-[60px] py-[20px] items-center;
   }
   .footer-1 {
-    @apply flex h-auto w-full py-[40px] px-[60px] gap-10 bg-black justify-center items-center rounded-tr-4xl rounded-tl-4xl;
+    @apply flex h-auto w-full py-[40px] px-[60px] gap-10 bg-[#b20f15] justify-center items-center rounded-tr-4xl rounded-tl-4xl;
   }
 }
 @layer utilities {

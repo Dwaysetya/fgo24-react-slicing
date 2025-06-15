@@ -65,8 +65,8 @@ function FilmUpcomingList() {
             w-12 h-12 rounded-full font-medium transition-all duration-200
             ${
               currentPage === i
-                ? "bg-orange-500 text-white shadow-lg"
-                : "bg-orange-500/20 text-orange-500 hover:bg-orange-500 hover:text-white"
+                ? "bg-[#b20f15] text-white shadow-lg"
+                : "bg-[#b20f15]/20 text-orange-500 hover:bg-[#b20f15] hover:text-white"
             }
           `}
           aria-label={`Go to page ${i}`}
@@ -127,7 +127,7 @@ function FilmUpcomingList() {
               ${
                 currentPage === 1
                   ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                  : "bg-orange-500 text-white hover:bg-orange-600 shadow-lg hover:shadow-xl"
+                  : "bg-[#b20f15]  text-[#0D1A2F] hover:bg-orange-600 shadow-lg hover:shadow-xl"
               }
             `}
             aria-label="Go to previous page"
@@ -146,7 +146,7 @@ function FilmUpcomingList() {
               ${
                 currentPage === totalPages
                   ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                  : "bg-orange-500 text-white hover:bg-orange-600 shadow-lg hover:shadow-xl"
+                  : "bg-[#b20f15]  text-[#0D1A2F] hover:bg-orange-600 shadow-lg hover:shadow-xl"
               }
             `}
             aria-label="Go to next page"

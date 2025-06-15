@@ -51,7 +51,7 @@ const Navbar = () => {
     <div className="flex items-center gap-3 sm:gap-4">
       <Link
         to="/profil/setting"
-        className="hidden sm:block text-sm font-medium hover:text-gray-300 transition-colors"
+        className="hidden sm:block text-sm text-white font-medium hover:text-[#0D1A2F] transition-colors"
       >
         Hi, {currentUser.name || getDisplayName(currentUser.email)}
       </Link>
@@ -70,10 +70,10 @@ const Navbar = () => {
 
       <button
         onClick={handleLogout}
-        className="p-1 hover:bg-gray-800 rounded-full transition-colors"
+        className="p-1 transition-colors"
         title="Logout"
       >
-        <BiLogOut className="text-red-500 text-xl sm:text-2xl" />
+        <BiLogOut className="text-white text-xl sm:text-2xl hover:text-[#0D1A2F]" />
       </button>
     </div>
   );
@@ -85,9 +85,9 @@ const Navbar = () => {
       aria-label="Toggle mobile menu"
     >
       {isMobileMenuOpen ? (
-        <X className="w-6 h-6 text-white" />
+        <X className="w-6 h-6 text-[#9599a2]" />
       ) : (
-        <Menu className="w-6 h-6 text-white" />
+        <Menu className="w-6 h-6 text-[#9599a2]" />
       )}
     </button>
   );
@@ -95,11 +95,11 @@ const Navbar = () => {
   const renderMobileMenu = () => (
     <>
       <div
-        className="fixed inset-0 bg-black/50 z-40 md:hidden"
+        className="fixed inset-0 bg-[#b20f15]/50 z-40 md:hidden"
         onClick={closeMobileMenu}
       />
-      <div className="fixed top-0 right-0 h-[70%] w-full rounded-br-4xl rounded-bl-4xl bg-white z-50 transform transition-transform duration-300 md:hidden">
-        <div className="flex items-center bg-black justify-between p-6 border-b border-gray-200">
+      <div className="fixed top-0 right-0 h-[70%] w-full rounded-br-4xl rounded-bl-4xl bg-[#9599a2] z-50 transform transition-transform duration-300 md:hidden">
+        <div className="flex items-center bg-[#b20f15] justify-between p-6 border-b border-gray-200">
           <div className="flex items-center space-x-2">
             <div className="flex-shrink-0">
               <Logo size="small" />
@@ -110,7 +110,7 @@ const Navbar = () => {
             onClick={closeMobileMenu}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
-            <X className="w-6 h-6 text-white" />
+            <X className="w-6 h-6 text-[#9599a2]" />
           </button>
         </div>
         <div className="py-8">
@@ -120,12 +120,12 @@ const Navbar = () => {
                 <Link
                   to={link.to}
                   onClick={closeMobileMenu}
-                  className="text-lg text-gray-800 hover:text-orange-500 transition-colors font-medium"
+                  className="text-lg text-gray-800 hover:text-[#b20f15] transition-colors font-medium"
                 >
                   {link.label}
                 </Link>
                 {index === 0 && (
-                  <div className="w-2 h-2 bg-orange-500 rounded-full mx-auto mt-2" />
+                  <div className="w-2 h-2 bg-[#b20f15] rounded-full mx-auto mt-2" />
                 )}
               </div>
             ))}
@@ -161,7 +161,7 @@ const Navbar = () => {
                   handleLogout();
                   closeMobileMenu();
                 }}
-                className="w-full py-3 px-4 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition-colors flex items-center justify-center gap-2"
+                className="w-full py-3 px-4 bg-red-500 text-[#9599a2] font-medium rounded-lg hover:bg-red-600 transition-colors flex items-center justify-center gap-2"
               >
                 <BiLogOut className="text-lg" />
                 Logout
@@ -172,14 +172,14 @@ const Navbar = () => {
               <Link
                 to="/signin"
                 onClick={closeMobileMenu}
-                className="block w-full py-3 px-6 border-2 border-black text-black font-medium rounded-full hover:bg-black hover:text-white transition-colors text-center"
+                className="block w-full py-3 px-6 border-2 border-black text-black font-medium rounded-full hover:bg-black hover:text-[#9599a2] transition-colors text-center"
               >
                 LOGIN
               </Link>
               <Link
                 to="/signup"
                 onClick={closeMobileMenu}
-                className="block w-full py-3 px-6 bg-orange-500 text-white font-medium rounded-full hover:bg-orange-600 transition-colors text-center"
+                className="block w-full py-3 px-6 bg-orange-500 text-[#9599a2] font-medium rounded-full hover:bg-orange-600 transition-colors text-center"
               >
                 SIGN UP
               </Link>
@@ -191,7 +191,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="w-full bg-black text-white sticky top-0 z-30 shadow-lg">
+    <nav className="w-full bg-[#b20f15] text-[#9599a2] sticky top-0 z-30 shadow-lg">
       <div className="container w-full mx-auto px-0 sm:px-4 md:px-6">
         <div className="flex w-full items-center justify-between h-16 sm:h-20">
           <div className="flex sm:flex-shrink-0">

@@ -6,12 +6,12 @@ const NavButtonLink = ({ to, label, variant = "primary" }) => {
     "inline-block w-auto h-[54px] rounded-[60px] border text-sm font-medium text-center leading-[16px] py-[19px] px-[24px]";
 
   const variantStyle = clsx({
-    "bg-[#E95102] text-white border-transparent hover:bg-orange-800 p-5":
+    "bg-[#b20f15] text-[#9599a2] border-transparent hover:bg-orange-800 p-5":
       variant === "primary",
-    "bg-white text-black border border-gray-300": variant === "secondary",
-    "bg-transparant text-white border-white hover:bg-orange-500":
+    "bg-[#9599a2] text-black border border-gray-300": variant === "secondary",
+    "bg-transparant text-[#9599a2] border-[#9599a2] hover:bg-orange-500":
       variant === "other",
-    "bg-[#E95102] text-white border-transparent hover:bg-orange-800 w-full p-5":
+    "bg-[#b20f15] text-[#9599a2] border-transparent hover:bg-orange-800 w-full p-5":
       variant === "payment",
   });
 

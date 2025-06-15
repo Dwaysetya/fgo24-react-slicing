@@ -11,8 +11,8 @@ import React from "react";
  */
 function Chip({ children, className, textClassName }) {
   const baseStyle =
-    className || "flex bg-[#FDECE3] rounded-full py-[13px] px-[24px]";
-  const baseTextStyle = textClassName || "text-orange-500 font-black";
+    className || "flex bg-[#b20f15] rounded-full py-[13px] px-[24px]";
+  const baseTextStyle = textClassName || "text-[#9599a2] font-black";
 
   return (
     <div className={baseStyle}>

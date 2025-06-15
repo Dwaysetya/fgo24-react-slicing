@@ -31,8 +31,8 @@ function FilmCard({ film }) {
     <div className="relative md:w-[296px] rounded-2xl gap-[32px] ">
       {film.vote_average >= 7.2 && (
         <Chip
-          className="md:w-[139px] md:h-[40px] p-2 flex bg-[#FDECE3] absolute top-0 rounded-br-2xl rounded-tl-2xl justify-center z-20"
-          textClassName="text-xs md:text-base self-center text-orange-500"
+          className="md:w-[139px] md:h-[40px] p-2 flex bg-[#b20f15] absolute top-0 rounded-br-2xl rounded-tl-2xl justify-center z-20"
+          textClassName="text-xs md:text-base self-center text-[#9599a2]"
         >
           Recomended
         </Chip>
@@ -42,9 +42,9 @@ function FilmCard({ film }) {
         <Image
           src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
           alt={film.title}
-          className="w-[90%] h-auto rounded-2xl object-cover "
+          className="w-[90%] h-auto rounded-2xl object-cover shadow-2xl"
         />
-        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 rounded-2xl">
+        <div className=" w-[90%] absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 rounded-2xl">
           <div className="flex flex-col gap-4">
             <Button
               variant="primary"
@@ -62,7 +62,9 @@ function FilmCard({ film }) {
 
       <div className="mt-3 z-20 p-4 bg-opacity-60">
         <Title>{film.title.slice(0, 10)}</Title>
-        <Text>{`⭐ ${film.vote_average.toFixed(1)}`}</Text>
+        <Text className="text-[#9599a2]">{`⭐ ${film.vote_average.toFixed(
+          1
+        )}`}</Text>
       </div>
 
       <div className="flex gap-2 justify-center items-center mt-2 z-20">

@@ -9,7 +9,7 @@ import media4 from "../../assets/images/footer/yutup.svg";
 
 function Footer() {
   return (
-    <footer className="flex flex-col md:flex-row md:justify-between lg:flex-row justify-between items-start w-full">
+    <footer className=" flex flex-col md:flex-row md:justify-between lg:flex-row justify-between items-start w-full">
       <div className="flex flex-col w-full md:w-[50%]">
         <div className="hidden sm:flex">
           <Logo size="large" />

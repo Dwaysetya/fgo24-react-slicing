@@ -11,8 +11,8 @@ const NavMenu = ({ links = [], textColor = "text-white" }) => {
             className={({ isActive }) =>
               `${textColor} text-sm px-2 whitespace-nowrap transition-all duration-200 ${
                 isActive
-                  ? "underline decoration-orange-500 decoration-2 underline-offset-4"
-                  : "hover:underline hover:decoration-orange-500 hover:decoration-2 hover:underline-offset-4"
+                  ? "underline decoration-[#0D1A2F] decoration-2 underline-offset-4"
+                  : "hover:underline hover:decoration-[#0D1A2F] hover:decoration-2 hover:underline-offset-4"
               }`
             }
           >
