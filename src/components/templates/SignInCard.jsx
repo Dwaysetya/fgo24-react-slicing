@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 import React from "react";
 import Button from "../atoms/Button";
 import image11 from "../../assets/images/signup/image 1.png";
-import logoTick from "../../assets/images/logo/logorooms.png";
+import logoTick from "../../assets/images/logo/newlogorooms.png";
 
 function SignInCard() {
   const { register, handleSubmit, reset } = useForm();

@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import image11 from "../../assets/images/signup/image 1.png";
 import Button from "../atoms/Button";
-import logoTick from "../../assets/images/logo/logorooms.png";
+import logoTick from "../../assets/images/logo/newlogorooms.png";
 import React from "react";
 import * as yup from "yup";
 import Swal from "sweetalert2";
