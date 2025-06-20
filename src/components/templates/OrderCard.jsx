@@ -119,10 +119,10 @@ function OrderCard() {
   }
 
   function handleSubmit(e) {
-    e.preventDefault(); // Hindari reload form
+    e.preventDefault();
 
     const genres = isGenre.map((item) => item.name);
-    setIsLoading(true); // Nyalakan loading
+    setIsLoading(true);
 
     setTimeout(() => {
       dispatch(
@@ -134,13 +134,13 @@ function OrderCard() {
           poster: isMovie.backdrop_path,
         })
       );
-      setIsLoading(false); // Matikan loading
+      setIsLoading(false);
       navigate("/payment");
-    }, 1000); // Simulasi async delay 1 detik
+    }, 1000);
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 py-4 sm:py-6 lg:py-8">
+    <main className="min-h-screen bg-[#1e2c39] py-4 sm:py-6 lg:py-8">
       {isMovie && (
         <section className="w-full flex justify-center items-center px-4 sm:px-6 lg:px-8">
           <form className="w-full max-w-7xl flex flex-col lg:flex-row justify-center gap-4 sm:gap-6 lg:gap-8">
@@ -184,7 +184,7 @@ function OrderCard() {
                   Choose Your Seat
                 </h1>
               </div>
-              <div className="w-[60%] sm:w-[50%] lg:w-[40%] h-4 sm:h-5 flex justify-center items-center bg-orange-500 rounded-tl-full rounded-tr-full">
+              <div className="w-[60%] sm:w-[50%] lg:w-[40%] h-4 sm:h-5 flex justify-center items-center bg-[#1e2c39] rounded-tl-full rounded-tr-full">
                 <p className="text-xs sm:text-sm font-semibold text-white">
                   Screen
                 </p>

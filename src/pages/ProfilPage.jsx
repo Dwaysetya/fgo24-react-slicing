@@ -31,7 +31,7 @@ function ProfilPage() {
       <header className="header-nav">
         <Navbar />
       </header>
-      <section className="w-full min-h-screen bg-gray-100 p-3 sm:p-4 md:p-6 flex justify-center">
+      <section className="w-full min-h-screen bg-[#1e2c39] p-3 sm:p-4 md:p-6 flex justify-center">
         <div className="w-full max-w-7xl flex flex-col lg:flex-row lg:gap-15 lg:justify-center">
           <div className="w-full lg:w-1/5 flex flex-col gap-4 md:gap-6 mb-6 lg:mb-0">
             <div className="bg-white rounded-2xl p-4 md:p-6 shadow-sm">
@@ -100,8 +100,8 @@ function ProfilPage() {
                 Loyalty Points
               </h3>
               <div className="relative mt-4">
-                <div className="bg-orange-600 text-white rounded-2xl p-3 sm:p-4 flex items-center gap-3">
-                  <div className="bg-orange-500 rounded-full p-2">
+                <div className="bg-[#b20f15] text-white rounded-2xl p-3 sm:p-4 flex items-center gap-3">
+                  <div className="bg-[#fe1a27] rounded-full p-2">
                     <svg
                       className="w-5 h-5 sm:w-6 sm:h-6 text-white"
                       fill="currentColor"
@@ -128,7 +128,7 @@ function ProfilPage() {
               </p>
               <div className="mt-2 bg-gray-200 rounded-full h-2">
                 <div
-                  className="bg-orange-600 h-2 rounded-full"
+                  className="bg-[#b20f15] h-2 rounded-full"
                   style={{
                     width: `${
                       (user.points / (user.points + user.pointsToMaster)) * 100

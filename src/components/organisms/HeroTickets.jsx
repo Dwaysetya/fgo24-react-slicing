@@ -31,7 +31,7 @@ function HeroTickets() {
   const creditsCast = isCast.filter(
     (cast) => cast.known_for_department === "Acting"
   );
-  console.log("cccc", creditsJob);
+
 
   return (
     <section className="w-full">
@@ -55,7 +55,7 @@ function HeroTickets() {
                   </div>
                   <div className="flex">
                     <div className="lg:w-[40%] 2xl:w-[30%]"></div>
-                    <div className="mt-0 p-[40px] flex flex-col gap-5 justify-between lg:w-[50%] 2xl:w-[60%]">
+                    <div className="mt-30 p-[40px] flex flex-col gap-5 justify-between lg:w-[50%] 2xl:w-[65%]">
                       <div className="flex-col gap-10">
                         <div className="w-full">
                           <h1 className="text-white font-semibold md:text-5xl 2xl:text-6xl">
@@ -140,12 +140,13 @@ function HeroTickets() {
                   ))}
                   <div className="text-center md:text-left">
                     <h5 className="text-sm font-light text-gray-600">Cast</h5>
-                    <div className="grid grid-rows-2 gap-1">
-                      {creditsCast.slice(0, 4).map((e, index) => (
-                        <p key={index} className="font-semibold text-xl">
-                          {e.name}
-                        </p>
-                      ))}
+                    <div className="grid grid-rows-2 gap-1 sm:flex ">
+                      <p className="font-semibold text-xl">
+                        {creditsCast
+                          .slice(0, 4)
+                          .map((e) => e.name)
+                          .join(", ")}
+                      </p>
                     </div>
                   </div>
                 </div>

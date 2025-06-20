@@ -21,7 +21,7 @@ function Button({ className = "", children, variant = "primary", ...props }) {
 
   const variantStyle = {
     primary:
-      "bg-[#b20f15] text-[#9599a2] hover:bg-[#b20f15] hover:bg-transparent hover:text-[#b20f15] hover:border hover:border-[#b20f15]",
+      "bg-[#b20f15] text-[#9599a2] hover:bg-[#b20f15] hover:bg-transparent hover:text-[#1e2c39] hover:border hover:border-[#b20f15]",
     secondary:
       "bg-white text-[#b20f15] border border-[#9599a2] hover:bg-[#b20f15] hover:text-[#9599a2] hover:border-none",
   };

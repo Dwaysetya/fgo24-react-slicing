@@ -18,6 +18,7 @@ import AccountSetting from "./components/templates/AccountSetting";
 import Admin from "./pages/Admin";
 import AdminList from "./pages/AdminList";
 import AddNewMovie from "./pages/AddNEwMovie";
+import SplashCursor from "./components/animations/SplashCursor";
 
 function App() {
   const router = createBrowserRouter([
@@ -85,6 +86,7 @@ function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+        <SplashCursor />
         <RouterProvider router={router} />
       </PersistGate>
     </Provider>

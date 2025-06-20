@@ -7,6 +7,7 @@ import Chip from "../atoms/Chip";
 import Title from "../atoms/Title";
 import Image from "../atoms/Image";
 import Button from "../atoms/Button";
+import PixelTransition from "../animations/PixelTransition";
 
 function FilmCard({ film }) {
   const navigate = useNavigate();
@@ -37,28 +38,44 @@ function FilmCard({ film }) {
           Recomended
         </Chip>
       )}
-
-      <div className="relative w-full h-auto group gap-[32px] ">
-        <Image
-          src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-          alt={film.title}
-          className="w-[90%] h-auto rounded-2xl object-cover shadow-2xl"
-        />
-        <div className=" w-[90%] absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 rounded-2xl">
-          <div className="flex flex-col gap-4">
-            <Button
-              variant="primary"
-              className="bg-transparent border-1"
-              onClick={() => navigate(`/tickets/${film.id}`)}
-            >
-              <Link>VIEW DETAILS</Link>
-            </Button>
-            <Button variant="primary" className="bg-transparent border-1">
-              <Link>BUY TICKET</Link>
-            </Button>
+      <PixelTransition
+        gridSize={12}
+        pixelColor="#ffffff"
+        animationStepDuration={0.4}
+        className="custom-pixel-card h-auto"
+        firstContent={
+          <div className="relative w-full h-auto group gap-[32px]">
+            <Image
+              src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+              alt={film.title}
+              className="w-auto h-auto rounded-2xl object-cover shadow-2xl"
+            />
           </div>
-        </div>
-      </div>
+        }
+        secondContent={
+          <div className="relative w-full h-full group">
+            <Image
+              src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+              alt={film.title}
+              className="w-full h-auto rounded-2xl object-cover blur-sm opacity-50"
+            />
+            <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-10 rounded-2xl">
+              <div className="flex flex-col gap-4 z-20">
+                <Button
+                  variant="primary"
+                  className="bg-transparent border-1"
+                  onClick={() => navigate(`/tickets/${film.id}`)}
+                >
+                  <Link>VIEW DETAILS</Link>
+                </Button>
+                <Button variant="primary" className="bg-transparent border-1">
+                  <Link>BUY TICKET</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        }
+      />
 
       <div className="mt-3 z-20 p-4 bg-opacity-60">
         <Title>{film.title.slice(0, 10)}</Title>
@@ -66,7 +83,6 @@ function FilmCard({ film }) {
           1
         )}`}</Text>
       </div>
-
       <div className="flex gap-2 justify-center items-center mt-2 z-20">
         {isGenre.slice(0, 2).map((item) => (
           <Chip

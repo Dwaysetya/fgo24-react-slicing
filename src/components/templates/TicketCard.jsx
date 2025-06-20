@@ -46,9 +46,9 @@ function TicketCard() {
         className="w-full h-auto bg-cover bg-center flex flex-col gap-5 relative justify-center items-center"
         style={{ backgroundImage: `url(${image11})` }}
       >
-        <section className="w-full flex flex-col lg:flex-row justify-center items-center relative p-4 sm:p-6 md:p-8 lg:p-10">
+        <section className="w-full flex flex-col lg:flex-row justify-center items-center relative">
           <section className="w-full lg:w-[60%] p-4 sm:p-6 md:p-8 lg:p-10">
-            <div className="w-full bg-orange-500/90 p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20 rounded-tl-4xl rounded-br-4xl">
+            <div className="w-full bg-[#820f15]/90 p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20 rounded-tl-4xl rounded-br-4xl">
               <div className="flex flex-col gap-3 sm:gap-4 lg:gap-5">
                 <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white text-center lg:text-left">
                   Thankyou For Purchasing
@@ -63,7 +63,7 @@ function TicketCard() {
               </div>
             </div>
           </section>
-          <section className="w-full lg:w-[40%] flex flex-col justify-center gap-3 sm:gap-4 lg:gap-5 p-4 sm:p-6 md:p-8 lg:p-12 xl:p-20">
+          <section className="w-full bg-[#1e2c39] lg:w-[40%] flex flex-col justify-center gap-3 sm:gap-4 lg:gap-5 p-4 sm:p-6 md:p-8 lg:p-12 xl:p-20">
             <div className="w-full bg-white flex flex-col rounded-2xl">
               <div className="w-full flex justify-center items-center p-6 sm:p-8 lg:p-10">
                 <img
@@ -74,15 +74,15 @@ function TicketCard() {
               </div>
               <div className="w-full bg-white flex justify-between items-center">
                 <div className="w-[50px] h-[50px] bg-white">
-                  <div className="w-[30px] h-[25px] bg-[#ECEDF2] rounded-tr-full"></div>
-                  <div className="w-[30px] h-[25px] bg-[#ECEDF2] rounded-br-full"></div>
+                  <div className="w-[30px] h-[25px] bg-[#1e2c39] rounded-tr-full"></div>
+                  <div className="w-[30px] h-[25px] bg-[#1e2c39] rounded-br-full"></div>
                 </div>
                 <div className="text-xs sm:text-sm">
                   - - - - - - - - - - - - - - - - - - - - -{" "}
                 </div>
                 <div className="w-[30px] h-[50px] bg-white">
-                  <div className="w-[30px] h-[25px] bg-[#ECEDF2] rounded-tl-full"></div>
-                  <div className="w-[30px] h-[25px] bg-[#ECEDF2] rounded-bl-full"></div>
+                  <div className="w-[30px] h-[25px] bg-[#1e2c39] rounded-tl-full"></div>
+                  <div className="w-[30px] h-[25px] bg-[#1e2c39] rounded-bl-full"></div>
                 </div>
               </div>
               {struk.map((item, index) => (

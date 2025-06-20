@@ -135,14 +135,15 @@ const Navbar = () => {
           {currentUser ? (
             <div className="space-y-4">
               <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                <img
-                  src={
-                    profileImage ||
-                    "https://randomuser.me/api/portraits/men/32.jpg"
-                  }
-                  alt="User Avatar"
-                  className="w-10 h-10 rounded-full object-cover"
-                />
+                {profileImage ? (
+                  <img
+                    src={profileImage}
+                    alt="User Avatar"
+                    className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-gray-600 hover:border-[#b20f15] transition-colors"
+                  />
+                ) : (
+                  <FaUserCircle size={44} color="#888" />
+                )}
                 <div className="flex-1">
                   <p className="text-sm font-medium text-gray-800">
                     {currentUser.name || getDisplayName(currentUser.email)}
@@ -191,7 +192,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="w-full bg-[#b20f15] text-[#9599a2] sticky top-0 z-30 shadow-lg">
+    <nav className="w-full bg-[#b20f15] text-[#9599a2] sticky top-0 z-30">
       <div className="container w-full mx-auto px-0 sm:px-4 md:px-6">
         <div className="flex w-full items-center justify-between h-16 sm:h-20">
           <div className="flex sm:flex-shrink-0">
@@ -208,15 +209,14 @@ const Navbar = () => {
             )}
           </div>
           <div className="flex items-center gap-2 md:hidden">
-            {currentUser && (
+            {profileImage ? (
               <img
-                src={
-                  profileImage ||
-                  "https://randomuser.me/api/portraits/men/32.jpg"
-                }
+                src={profileImage}
                 alt="User Avatar"
-                className="w-8 h-8 rounded-full object-cover"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-gray-600 hover:border-[#b20f15] transition-colors"
               />
+            ) : (
+              <FaUserCircle size={44} color="#888" />
             )}
             {renderMobileMenuButton()}
           </div>

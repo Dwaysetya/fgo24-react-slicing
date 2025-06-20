@@ -91,7 +91,7 @@ function SignUpCard() {
         style={{ backgroundImage: `url(${image11})` }}
       >
         <div className="w-full min-h-auto px-4 sm:px-6 md:px-8 lg:px-10 flex justify-center items-center rounded-tl-4xl rounded-br-4xl">
-          <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 bg-black/80 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:w-[40%] py-8 sm:py-5 md:py-16 lg:py-5 px-6 sm:px-8 md:px-12 lg:px-16 justify-center items-center rounded-2xl sm:rounded-3xl md:rounded-4xl">
+          <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 bg-[#b20f15]/70 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:w-[40%] py-8 sm:py-5 md:py-16 lg:py-5 px-6 sm:px-8 md:px-12 lg:px-16 justify-center items-center rounded-2xl sm:rounded-3xl md:rounded-4xl">
             <div className="flex justify-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 items-center mb-2">
               <img
                 src={logoTick}
@@ -114,7 +114,7 @@ function SignUpCard() {
                   required
                   {...register("email")}
                   autoComplete="off"
-                  className="w-full px-4 py-3 sm:px-5 sm:py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
+                  className="w-full px-4 py-3 sm:px-5 sm:py-4 rounded-lg bg-[#b20f15]/50 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-[#1e2c39] focus:border-transparent text-sm sm:text-base"
                 />
                 {errors.email && (
                   <p className="text-yellow-400 text-xs sm:text-sm mt-1 px-1">
@@ -135,7 +135,7 @@ function SignUpCard() {
                     required
                     autoComplete="off"
                     {...register("password")}
-                    className="w-full px-4 py-3 sm:px-5 sm:py-4 pr-12 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
+                    className="w-full px-4 py-3 sm:px-5 sm:py-4 pr-12 rounded-lg bg-[#b20f15]/50 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-[#1e2c39] focus:border-transparent text-sm sm:text-base"
                   />
                   <button
                     type="button"
@@ -168,7 +168,7 @@ function SignUpCard() {
                     required
                     autoComplete="off"
                     {...register("confirmPassword")}
-                    className="w-full px-4 py-3 sm:px-5 sm:py-4 pr-12 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
+                    className="w-full px-4 py-3 sm:px-5 sm:py-4 pr-12 rounded-lg bg-[#b20f15]/50 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-[#1e2c39] focus:border-transparent text-sm sm:text-base"
                   />
                   <button
                     type="button"
@@ -212,7 +212,7 @@ function SignUpCard() {
                   Already have an account?{" "}
                   <Link
                     to="/signin"
-                    className="text-[#b20f15] hover:text-orange-400 transition-colors font-medium"
+                    className="text-white hover:text-[#1e2c39] transition-colors font-medium"
                   >
                     Log in
                   </Link>
@@ -220,11 +220,11 @@ function SignUpCard() {
               </div>
             </form>
             <div className="flex items-center w-full max-w-xs sm:max-w-sm gap-4 sm:gap-6 justify-center mt-6 sm:mt-8">
-              <button className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 text-white text-xs sm:text-sm font-medium transition-colors min-w-0 flex-1">
+              <button className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-[#b20f15]/50 hover:bg-white/20 rounded-lg border border-white/20 text-white text-xs sm:text-sm font-medium transition-colors min-w-0 flex-1">
                 <FcGoogle className="text-lg sm:text-xl flex-shrink-0" />
                 <span className="truncate">Google</span>
               </button>
-              <button className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 text-white text-xs sm:text-sm font-medium transition-colors min-w-0 flex-1">
+              <button className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-[#b20f15]/50 hover:bg-white/20 rounded-lg border border-white/20 text-white text-xs sm:text-sm font-medium transition-colors min-w-0 flex-1">
                 <FaFacebook className="text-blue-400 text-lg sm:text-xl flex-shrink-0" />
                 <span className="truncate">Facebook</span>
               </button>

@@ -95,7 +95,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <footer className="footer-1">
+      <footer className="footer-1 relative">
         <Footer />
       </footer>
     </main>

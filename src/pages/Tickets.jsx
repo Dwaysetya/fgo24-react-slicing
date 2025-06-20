@@ -13,13 +13,15 @@ function Tickets() {
       <section className="relative">
         <HeroTickets />
       </section>
-      <section className="w-full bg-[#F8F8F8] rounded-tl-[48px] p-[80px] rounded-tr-[48px]">
-        <div>
-          <BookTikets />
-        </div>
-        <div className="mt-10">
-          <ChooseCinema />
-        </div>
+      <section className="bg-[#1e2c39]">
+        <section className="w-full bg-[#9599a2] rounded-tl-[48px] p-[80px] rounded-tr-[48px]">
+          <div>
+            <BookTikets />
+          </div>
+          <div className="mt-10">
+            <ChooseCinema />
+          </div>
+        </section>
       </section>
       <footer className="footer-1">
         <Footer />

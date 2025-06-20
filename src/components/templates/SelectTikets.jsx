@@ -14,14 +14,14 @@ function SelectTikets({ formData = {}, onChange }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[32px]">
       <div className="flex flex-col gap-10">
-        <label className="block mb-2 text-3xl font-semibold text-[#0F100D]">
+        <label className="block mb-2 text-3xl font-semibold text-[#820f15]">
           Choose Date
         </label>
         <select
           requaried
           value={formData.date || ""}
           onChange={(e) => onChange("date", e.target.value)}
-          className="border-1 border-[#9599a2] px-5 py-2 text-black rounded-full"
+          className="border-1 border-[#820f15] px-5 py-2 text-black rounded-full"
         >
           <option value="">Pilih tanggal</option>
           {dates.map((date) => (
@@ -32,14 +32,14 @@ function SelectTikets({ formData = {}, onChange }) {
         </select>
       </div>
       <div className="flex flex-col gap-10">
-        <label className="block mb-2 text-3xl font-semibold text-[#0F100D]">
+        <label className="block mb-2 text-3xl font-semibold text-[#820f15]">
           Choose Time
         </label>
         <select
           required
           value={formData.time}
           onChange={(e) => onChange("time", e.target.value)}
-          className="border-1 border-[#9599a2] px-5 py-2 text-black rounded-full"
+          className="border-1 border-[#820f15] px-5 py-2 text-black rounded-full"
         >
           <option value="">Pilih waktu</option>
           <option value="12:05">12.05 PM</option>
@@ -50,14 +50,14 @@ function SelectTikets({ formData = {}, onChange }) {
         </select>
       </div>
       <div className="flex flex-col gap-10">
-        <label className="block mb-2 text-3xl font-semibold text-[#0F100D]">
+        <label className="block mb-2 text-3xl font-semibold text-[#820f15]">
           Choose Location
         </label>
         <select
           requaried
           value={formData.location}
           onChange={(e) => onChange("location", e.target.value)}
-          className="border-1 border-[#9599a2] px-5 py-2 text-black rounded-full"
+          className="border-1 border-[#820f15] px-5 py-2 text-black rounded-full"
         >
           <option value="">Pilih lokasi</option>
           <option value="Yogyakarta">Jakarta</option>

@@ -73,8 +73,8 @@ function SignInCard() {
         style={{ backgroundImage: `url(${image11})` }}
       >
         {isModal && (
-          <div className="flex w-full h-screen absolute z-30 justify-center items-center bg-black/90 px-4">
-            <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 bg-black/70 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl md:rounded-4xl w-full max-w-sm sm:max-w-md">
+          <div className="flex w-full h-screen absolute z-30 justify-center items-center bg-[#b20f15]/70 px-4">
+            <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 bg-[#b20f15]/70 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl md:rounded-4xl w-full max-w-sm sm:max-w-md">
               <form>
                 <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
                   <label className="text-white text-sm sm:text-base">
@@ -100,7 +100,7 @@ function SignInCard() {
           </div>
         )}
         <div className="w-full min-h-screen px-4 sm:px-6 md:px-8 lg:px-10 flex justify-center items-center">
-          <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 justify-center items-center bg-black/80 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:w-[40%] py-8 sm:py-12 md:py-16 lg:py-20 px-6 sm:px-8 md:px-12 rounded-2xl sm:rounded-3xl md:rounded-4xl">
+          <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 justify-center items-center bg-[#b20f15]/60 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:w-[40%] py-8 sm:py-12 md:py-16 lg:py-20 px-6 sm:px-8 md:px-12 rounded-2xl sm:rounded-3xl md:rounded-4xl">
             <div className="flex justify-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-[30%]">
               <img
                 src={logoTick}
@@ -122,7 +122,7 @@ function SignInCard() {
                   placeholder="Enter your email"
                   autoComplete="off"
                   {...register("email")}
-                  className="w-full px-4 2xl:px-5 py-3 sm:px-5 sm:py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
+                  className="w-full px-4 2xl:px-5 py-3 sm:px-5 sm:py-4 rounded-lg bg-[#820f15]/60 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
                 />
               </div>
               <div className="w-full">
@@ -134,7 +134,7 @@ function SignInCard() {
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
-                    className="w-full px-4 py-3 sm:px-5 sm:py-4 pr-12 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
+                    className="w-full px-4 py-3 sm:px-5 sm:py-4 pr-12 rounded-lg bg-[#820f15]/60 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
                     {...register("password")}
                     autoComplete="off"
                   />
@@ -170,18 +170,18 @@ function SignInCard() {
                 Don't have an account?{" "}
                 <Link
                   to="/signup"
-                  className="text-[#b20f15] hover:text-orange-400 transition-colors font-medium"
+                  className="text-white hover:text-orange-400 transition-colors font-medium"
                 >
                   Sign-Up
                 </Link>
               </p>
             </div>
             <div className="flex items-center w-full max-w-xs sm:max-w-sm gap-4 sm:gap-6 justify-center mt-6 sm:mt-8">
-              <button className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 text-white text-xs sm:text-sm font-medium transition-colors min-w-0 flex-1">
+              <button className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-[#820f15]/60 hover:bg-white/20 rounded-lg border border-white/20 text-white text-xs sm:text-sm font-medium transition-colors min-w-0 flex-1">
                 <FcGoogle className="text-lg sm:text-xl flex-shrink-0" />
                 <span className="truncate">Google</span>
               </button>
-              <button className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 text-white text-xs sm:text-sm font-medium transition-colors min-w-0 flex-1">
+              <button className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-[#820f15]/60 hover:bg-white/20 rounded-lg border border-white/20 text-white text-xs sm:text-sm font-medium transition-colors min-w-0 flex-1">
                 <FaFacebook className="text-blue-400 text-lg sm:text-xl flex-shrink-0" />
                 <span className="truncate">Facebook</span>
               </button>
