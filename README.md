@@ -21,7 +21,7 @@ This repository contains a **ticket booking web application** built with **React
 
 ## Result
 
-![Result](./src/assets/Screenshot%202025-05-21%20at%2023.10.29.png)
+![Result](./src/assets/images/Screenshot%202025-06-20%20at%2015.43.35.png)
 
 ## How to Run this project
 
