@@ -8,7 +8,7 @@ function OrderPage() {
       <header className="header-nav">
         <Navbar />
       </header>
-      <section className="bg-[#1e2c39]">
+      <section>
         <OrderCard />
       </section>
       <footer className="footer-1">
