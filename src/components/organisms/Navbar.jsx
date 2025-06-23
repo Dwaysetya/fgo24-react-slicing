@@ -104,7 +104,7 @@ const Navbar = () => {
             <div className="flex-shrink-0">
               <Logo size="small" />
             </div>
-            <div className="w-2 h-2 bg-orange-500 rounded-full" />
+            <div className="w-2 h-2 bg-[#b20f15] rounded-full" />
           </div>
           <button
             onClick={closeMobileMenu}
@@ -180,7 +180,7 @@ const Navbar = () => {
               <Link
                 to="/signup"
                 onClick={closeMobileMenu}
-                className="block w-full py-3 px-6 bg-orange-500 text-[#9599a2] font-medium rounded-full hover:bg-orange-600 transition-colors text-center"
+                className="block w-full py-3 px-6 bg-[#b20f15] text-[#9599a2] font-medium rounded-full hover:bg-orange-600 transition-colors text-center"
               >
                 SIGN UP
               </Link>

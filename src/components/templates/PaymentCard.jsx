@@ -131,7 +131,7 @@ function PaymentCard() {
                   {selectedCinema.rekening}
                 </p>
                 <Chip
-                  textClassName="text-xs sm:text-base text-[#b20f15]"
+                  textClassName="text-xs sm:text-base text-white"
                   className="flex bg-[#b20f15] rounded-full py-2 px-1 sm:py-[13px] sm:px-[24px]"
                 >
                   Copy

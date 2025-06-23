@@ -99,7 +99,7 @@ const NavbarAdmin = () => {
         onClick={closeMobileMenu}
       />
       <div className="fixed top-0 right-0 h-[70%] w-full rounded-br-4xl rounded-bl-4xl bg-white z-50 transform transition-transform duration-300 md:hidden">
-        <div className="flex items-center bg-black justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center bg-[#b20f15] justify-between p-6 border-b border-gray-200">
           <div className="flex items-center space-x-2">
             <div className="flex-shrink-0">
               <Logo size="small" />
@@ -192,7 +192,7 @@ const NavbarAdmin = () => {
   );
 
   return (
-    <nav className="w-full bg-black text-white sticky top-0 z-30 shadow-lg">
+    <nav className="w-full bg-[#b20f15] text-white sticky top-0 z-30">
       <div className="container w-full mx-auto px-0 sm:px-4 md:px-6">
         <div className="flex w-full items-center justify-between h-16 sm:h-20">
           <div className="flex sm:flex-shrink-0">

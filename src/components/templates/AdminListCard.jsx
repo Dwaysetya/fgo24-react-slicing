@@ -50,6 +50,7 @@ const AdminListCard = ({ film }) => {
       try {
         const result = await getMovies();
         setMovieCard(result);
+        console.log(result);
       } catch (error) {
         console.log("Gagal mengambil data", error);
       }
@@ -185,8 +186,8 @@ const AdminListCard = ({ film }) => {
                   {movie.release_date}
                 </td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {Math.floor(movie.runtime / 60)} hours {movie.runtime % 60}{" "}
-                  minutes
+                  {/* {Math.floor(movie.runtime / 60)} hours {movie.runtime % 60}{" "} */}
+                  {/* minutes */}
                 </td>
                 <td className="px-4 py-4 whitespace-nowrap">
                   <div className="flex space-x-2">
@@ -290,7 +291,7 @@ const AdminListCard = ({ film }) => {
     </div>
   ) : isAddMovie ? (
     <div className="min-h-screen flex justify-center w-full">
-      <div className="px-6 py-8 flex justify-center w-[50%] shadow-2xl">
+      <div className="bg-white px-6 py-8 flex justify-center w-[50%] shadow-2xl">
         <div className="max-w-2xl w-full">
           <h2 className="text-2xl font-semibold text-gray-800 mb-8">
             Add New Movie

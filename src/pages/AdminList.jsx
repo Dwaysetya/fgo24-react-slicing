@@ -10,6 +10,7 @@ function AdminList() {
     const fetchMovie = async () => {
       try {
         const result = await getMovies();
+        console.log(result);
         setIsMovie(result);
       } catch (error) {
         console.log("Gagal mengambil data", error);
@@ -22,7 +23,7 @@ function AdminList() {
       <header className="header-nav">
         <NavbarAdmin />
       </header>
-      <section className="w-full p-20">
+      <section className="w-full p-20 section-1">
         <AdminListCard film={isMovie} />
       </section>
     </main>
